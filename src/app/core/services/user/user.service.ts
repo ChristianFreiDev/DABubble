@@ -58,7 +58,8 @@ export class UserService implements OnDestroy {
       usersCollection.forEach(user => {
         this.allUsersSignal().push(new ChatUser(user.data()));
       });
-    });
+    }
+  );
   }
 
 

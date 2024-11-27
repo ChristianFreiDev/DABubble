@@ -111,7 +111,6 @@ export class ChatService {
   ) {
     this.unsubChannels = this.subChannels();
     this.unsubDirectMessageChannels = this.subDirectMessageChannels();
-    this.unsubThread = this.subThread();
   }
 
   ngOnDestroy() {
@@ -396,8 +395,7 @@ export class ChatService {
           this.layoutService.selectNewMessage();
         } 
         this.getUsersInCurrentChannel();
-      }
-    );
+      });
   }
 
   subDirectMessageChannels() {
@@ -422,8 +420,7 @@ export class ChatService {
           this.changeDirectMessageChannel(this.contactUUID);
         }
         this.getUsersInCurrentChannel();
-      }
-    );
+      });
   }
 
   resubThread() {

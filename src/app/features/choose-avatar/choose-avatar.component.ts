@@ -96,7 +96,6 @@ export class ChooseAvatarComponent {
       this.uploadFile = 'done';
     } catch (error) {
       this.handleUploadError('else');
-      // console.log('Error:', error);
     }
   }
 
