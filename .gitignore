@@ -36,6 +36,8 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+src/app/features/privacy-policy/privacy-policy.component.html
+src/app/features/imprint/imprint.component.html
 
 # System files
 .DS_Store
