@@ -1,6 +1,6 @@
 # DABubble
 
-This modern messenger app was developed as a team project together with Tobias Reize and Kristian Sebic.
+This modern messenger app was developed as a team project together with Tobias Reize and Kristian Cebic.
 
 The tech stack that was used consists of TypeScript, Angular, and Firebase.
 
