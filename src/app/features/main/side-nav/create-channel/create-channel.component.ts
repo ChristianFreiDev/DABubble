@@ -125,8 +125,8 @@ export class CreateChannelComponent {
     this.userUIDs = [];
     this.chatService.chosenUserUIDs().forEach((userUID) => {
       this.userUIDs.push(userUID);
-      this.userUIDs.push(this.userService.currentOnlineUser().userUID);
     });
+    this.userUIDs.push(this.userService.currentOnlineUser().userUID);
   }
 
   addPeople() {

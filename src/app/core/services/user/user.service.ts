@@ -43,10 +43,6 @@ export class UserService implements OnDestroy {
       if (currentUser) {
         this.updateUserDoc(currentUser.uid, {isOnline: true});
         this.currentUserUIDSignal.set(currentUser.uid);
-      } else if (sessionStorage.getItem('guestIsOnline')) {
-        this.updateUserDoc(environment.guestUid, {isOnline: true});
-        this.currentUserUIDSignal.set(environment.guestUid);
-        this.addInitialChannels();
       }
     });
   }
@@ -93,12 +89,7 @@ export class UserService implements OnDestroy {
 
 
   async signOutUser() {
-    if (this.currentUserUID() == environment.guestUid) {
-      await this.updateUserDoc(environment.guestUid, {isOnline: false});
-      sessionStorage.removeItem('guestIsOnline');
-    } else {
-      await this.updateUserDoc(this.currentOnlineUser().userUID, {isOnline: false});
-    }
+    await this.updateUserDoc(this.currentOnlineUser().userUID, {isOnline: false});
     await signOut(this.auth)
       .catch((error) => {
         console.log('Error:', error);
@@ -106,9 +97,7 @@ export class UserService implements OnDestroy {
   }
 
 
-  async updateUserIdsInChannel(
-    channelId: string,
-  ) {
+  async updateUserIdsInChannel(channelId: string) {
     await updateDoc(
       this.firebaseService.getDocRef(channelId, 'channels'), {
       userUIDs: arrayUnion(this.currentUserUID())

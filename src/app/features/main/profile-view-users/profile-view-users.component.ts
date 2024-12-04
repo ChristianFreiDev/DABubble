@@ -20,4 +20,9 @@ export class ProfileViewUsersComponent {
   onDiv2Click(event: MouseEvent): void {
     event.stopPropagation();
   }
+
+  openChat(userUID: string) {
+    this.onDiv1Click();
+    this.chatService.openChat(userUID);
+  }
 }

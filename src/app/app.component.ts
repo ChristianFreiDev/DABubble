@@ -20,11 +20,7 @@ export class AppComponent {
 
   @HostListener('window:beforeunload', ['$event'])
   beforeUnloadHandler(event: any) {
-    if (this.userService.currentUserUID() == environment.guestUid) {
-      this.userService.updateUserDoc(environment.guestUid, {isOnline: false});
-    } else {
-      this.userService.updateUserDoc(this.userService.currentOnlineUser().userUID, {isOnline: false});
-    }
+    this.userService.updateUserDoc(this.userService.currentOnlineUser().userUID, {isOnline: false});
   }
 
   @HostListener('window:resize', ['$event'])

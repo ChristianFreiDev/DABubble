@@ -704,9 +704,7 @@ export class ChatService {
     if (userUID == this.userService.currentOnlineUser().userUID) {
       this.profileViewLoggedUser = true;
     } else {
-      if (!this.contactIndex) {
-        this.setContactIndexFromUID(userUID);
-      }
+      this.setContactIndexFromUID(userUID);
       this.profileViewUsersActive = true;
     }
   }

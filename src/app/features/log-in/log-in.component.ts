@@ -113,7 +113,7 @@ export class LogInComponent implements OnInit {
 
   async saveGoogleUser(user: User) {
     const userExists = this.userService.allUsersMap().has(user.uid);
-    if (userExists) {
+    if (!userExists) {
       this.userService.newUser.name = user.displayName ? user.displayName : 'Google User';
       this.userService.newUser.email = user.email ? user.email : 'Google Mail';
       this.userService.newUser.avatar = 'assets/img/google.svg';
@@ -127,10 +127,6 @@ export class LogInComponent implements OnInit {
     this.loginData.email = environment.guestEmail;
     this.loginData.password = environment.guestPassword;
     await this.signInUser()
-    await this.userService.updateUserDoc(environment.guestUid, {isOnline: true});
-    sessionStorage.setItem('guestIsOnline', 'true');
-    this.userService.currentUserUIDSignal.set(environment.guestUid);
-    this.router.navigateByUrl('main');
   }
 
 

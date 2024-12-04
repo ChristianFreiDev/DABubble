@@ -40,7 +40,7 @@
     </div>
 
     <!-- Nachricht Button -->
-    <div class="messageButton" (click)="onDiv1Click()">
+    <div class="messageButton" (click)="openChat(userService.allUsers()[chatService.contactIndex].userUID)">
       <div class="dFlexRowFlex-EndCenter">
         <img src="assets/img/main/message-img.png" />
         <span>Nachricht</span>
