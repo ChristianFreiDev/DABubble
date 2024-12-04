@@ -52,5 +52,3 @@ environments
 .firebase
 *-debug.log
 .runtimeconfig.json
-
-environments
