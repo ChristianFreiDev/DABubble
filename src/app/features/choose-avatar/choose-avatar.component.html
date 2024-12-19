@@ -5,7 +5,7 @@
         <span (click)="goBack()" class="material-symbols-rounded arrow-back">arrow_back</span>
         <h1 class="m-btm-32">Wähle deinen Avatar</h1>
 
-        <img #profile [src]="profileImgPath()" class="profile" alt="profil">
+        <img #profile [src]="url" class="profile" alt="profil">
         <h3>{{userService.newUser.name}}</h3>
         <p class="m-btm-16 width-100">Aus der Liste wählen:</p>
 
@@ -18,7 +18,7 @@
         <div class="upload-img-container">
             <p>eigenes Bild verwenden</p>
             <label [ariaDisabled]="uploadFile == 'inProgress'" class="btn btn-sec" for="file_upload">Datei hochladen</label>
-            <input (change)="uploadImg(upload)" #upload [disabled]="uploadFile == 'inProgress'" style="display: none;" id="file_upload" type="file" accept="image/png, image/jpeg, image/svg+xml, image/webp">
+            <input (change)="saveImg(upload)" #upload [disabled]="uploadFile == 'inProgress'" style="display: none;" id="file_upload" type="file" accept="image/png, image/jpeg, image/svg+xml, image/webp">
         </div>
 
         <div [ngStyle]="{'opacity': uploadFile != null ? '1' : '0'}" class="upload-info-container">

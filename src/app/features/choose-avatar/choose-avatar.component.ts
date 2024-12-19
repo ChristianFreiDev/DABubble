@@ -37,7 +37,8 @@ export class ChooseAvatarComponent {
     'assets/img/avatar4.svg',
     'assets/img/avatar5.svg',
   ];
-
+  file: File | null | undefined = undefined;
+  url: string = 'assets/img/profile.svg';
 
   constructor(private location: Location, private router: Router) { }
 
@@ -52,12 +53,23 @@ export class ChooseAvatarComponent {
     this.uploadFile = null;
   }
 
+  saveImg(input: HTMLInputElement) {
+    this.file = input.files?.item(0);
+    const reader = new FileReader();
 
-  uploadImg(input: HTMLInputElement) {
+    reader.onload = (event: any) => {
+      this.url = event.target.result;
+    };
+
+    if (this.file instanceof File) {
+      reader.readAsDataURL(this.file);
+    }
+  }
+
+  async uploadImg(file: File | null | undefined) {
     this.uploadFile = 'inProgress';
     this.uploadError = false;
     this.uploadInfo = '';
-    const file = input.files?.item(0);
     if (file) {
       switch (true) {
         case (file.type != 'image/jpeg') && (file.type != 'image/png') && (file.type != 'image/svg+xml') && (file.type != 'image/webp'):
@@ -67,7 +79,7 @@ export class ChooseAvatarComponent {
           this.handleUploadError('size');
           break;
         default:
-          this.uploadImgToStorage(file);
+          await this.uploadImgToStorage(file);
       }
     }
   }
@@ -102,7 +114,8 @@ export class ChooseAvatarComponent {
 
   registerNewUser() {
     createUserWithEmailAndPassword(this.auth, this.userService.newUser.email, this.userService.newUser.password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
+        await this.uploadImg(this.file);
         const user = userCredential.user;
         this.userService.newUser.userUID = user.uid;
         this.userService.newUser.avatar = this.profileImgPath();
