@@ -1,4 +1,4 @@
-import { Component, effect, ElementRef, inject, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, Input, ViewChild } from '@angular/core';
 import { FormControl, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserService } from '../../../core/services/user/user.service';
@@ -11,8 +11,9 @@ import {
   getDoc,
   onSnapshot,
   query,
+  Unsubscribe,
   where,
-} from 'firebase/firestore';
+} from '@angular/fire/firestore'
 import { directMessage } from '../../../core/models/direct-message';
 
 @Component({
@@ -39,12 +40,14 @@ export class SearchComponentComponent {
   @ViewChild('searchComponentInput') inputRef!: ElementRef;
   @ViewChild('dropDownMenu') dropDownMenu!: ElementRef;
 
+  unsubMessages!: Unsubscribe
+
   constructor() {
-    effect(() => {
-      if (this.userService.allUsers().length > 0 || this.chatService.channels().length > 0) {
-        this.getDirectMessages();
-      }
-    })
+    this.unsubMessages = this.getDirectMessages();
+  }
+
+  ngOnDestroy() {
+    this.unsubMessages();
   }
 
   resetInput() {
@@ -85,7 +88,8 @@ export class SearchComponentComponent {
     ];
   }
 
-  async getDirectMessages() {
+  getDirectMessages() {
+
     const messagesRef = collectionGroup(
       this.fireBaseService.firestore,
       'messages'
@@ -93,13 +97,10 @@ export class SearchComponentComponent {
 
     const q = query(messagesRef, where('content', '!=', null));
 
-    onSnapshot(q, (querySnapshot) => {
-      this.messages = [];
+    return onSnapshot(q, (querySnapshot) => {
 
       querySnapshot.forEach(async (doc) => {
-        this.messages = [];
         const docData = doc.data();
-
         const messagesCollectionRef = doc.ref.parent;
         const directMessageChannelsDocRef = messagesCollectionRef.parent;
 
@@ -109,14 +110,11 @@ export class SearchComponentComponent {
           );
           const directMessageChannelDocData = directMessageChannelDoc.data();
           const userIds: string[] = directMessageChannelDocData!['userIds'];
-          // const otherUserId: string = userIds?.find((id) => id !== this.userService.currentOnlineUser().userUID) || '';
           const messageObject = new directMessage(
             directMessageChannelDoc.id,
-            // otherUserId,
             userIds,
             docData['content']
           );
-
           this.messages.push(messageObject);
         }
       });
