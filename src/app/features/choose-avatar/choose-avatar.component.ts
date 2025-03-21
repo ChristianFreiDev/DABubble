@@ -42,14 +42,14 @@ export class ChooseAvatarComponent {
 
   constructor(private location: Location, private router: Router) { }
 
-
   goBack() {
     this.location.back();
   }
 
-
   changeProfileImg(index: number) {
     this.profileImgPathSignal.set(this.profileImages[index]);
+    this.url = this.profileImages[index];
+    this.file = null;
     this.uploadFile = null;
   }
 
@@ -67,10 +67,10 @@ export class ChooseAvatarComponent {
   }
 
   async uploadImg(file: File | null | undefined) {
-    this.uploadFile = 'inProgress';
-    this.uploadError = false;
-    this.uploadInfo = '';
     if (file) {
+      this.uploadFile = 'inProgress';
+      this.uploadError = false;
+      this.uploadInfo = '';
       switch (true) {
         case (file.type != 'image/jpeg') && (file.type != 'image/png') && (file.type != 'image/svg+xml') && (file.type != 'image/webp'):
           this.handleUploadError('type');
@@ -84,7 +84,6 @@ export class ChooseAvatarComponent {
     }
   }
 
-
   handleUploadError(info: string) {
     this.uploadError = true;
     this.uploadFile = 'done';
@@ -97,10 +96,8 @@ export class ChooseAvatarComponent {
     }
   }
 
-
   async uploadImgToStorage(file: File) {
     const path = 'profil-images/' + this.userService.newUser.email + '/' + file.name;
-    this.uploadInfo = file.name;
     try {
       await this.firebaseService.uploadFileToStorage(file, path);
       this.profileImgPathSignal.set(this.firebaseService.downloadURL);
@@ -110,7 +107,6 @@ export class ChooseAvatarComponent {
       this.handleUploadError('else');
     }
   }
-
 
   registerNewUser() {
     createUserWithEmailAndPassword(this.auth, this.userService.newUser.email, this.userService.newUser.password)
@@ -129,13 +125,11 @@ export class ChooseAvatarComponent {
       });
   }
 
-
   goToLogin() {
     this.inputFinished = true;
     setTimeout(() => {
       this.router.navigateByUrl('' + '?email=' + this.userService.newUser.email);
     }, 1300);
   }
-
 
 }
