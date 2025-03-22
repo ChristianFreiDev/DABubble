@@ -42,7 +42,7 @@
                     <hr [ngClass]="{'editable-hr': isChannelDescriptionEditable}">
                     <div class="edit-channel-created-by">
                         <span class="edit-channel-heading">Erstellt von</span>
-                        <span class="edit-channel-created-by-name"> {{ currentChannel().createdBy }}</span>
+                        <span class="edit-channel-created-by-name"> {{ getUserName() }}</span>
                     </div>
                 </div>
                 <app-members [isEditChannel]="true"></app-members>

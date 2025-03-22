@@ -362,7 +362,8 @@ export class ChatService {
       data['name'],
       data['description'],
       data['userUIDs'],
-      data['createdBy']
+      data['createdByName'],
+      data['createdById']
     );
     return channel;
   }

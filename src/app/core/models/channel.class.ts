@@ -4,8 +4,7 @@ export class Channel {
         public name: string = '',
         public description: string = '',
         public userUIDs: string[] = [''],
-        public createdBy: string = ''
-    ) {}
-
-    
+        public createdByName: string = '',
+        public createdById: string = ''
+    ) {}   
 }

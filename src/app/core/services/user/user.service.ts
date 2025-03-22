@@ -52,7 +52,7 @@ export class UserService implements OnDestroy {
     return onSnapshot(this.firebaseService.getCollectionRef('users'), usersCollection => {
       this.allUsersSignal.set([]);
       usersCollection.forEach(user => {
-        this.allUsersSignal().push(new ChatUser(user.data()));
+        this.allUsersSignal.update(values => [...values, new ChatUser(user.data())]);
       });
     }
   );
@@ -115,6 +115,16 @@ export class UserService implements OnDestroy {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach(doc => this.updateUserIdsInChannel(doc.id));
     });
+  }
+
+  
+  getUserName(targetUserUID: string) {
+    const user = this.allUsersSignal().find(user => user.userUID === targetUserUID);
+    if(user) {
+      return user.name;
+    } else {
+      return undefined;
+    }
   }
 
 

@@ -87,7 +87,8 @@ export class CreateChannelComponent {
       {
         name: channelName.value,
         description: description.value,
-        createdBy: this.userService.currentOnlineUser().name,
+        createdByName: this.userService.currentOnlineUser().name,
+        createdById: this.userService.currentOnlineUser().userUID,
         userUIDs: this.userUIDs,
       }
     );

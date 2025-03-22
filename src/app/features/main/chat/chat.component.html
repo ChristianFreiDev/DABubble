@@ -33,7 +33,7 @@
             <div class="channel-name-chat">{{ channel().name }}</div>
         </div>
         <p class="channel-notice">
-        @if(true) {
+        @if(isMe()) {
             Du hast diesen Channel erstellt.
         }
          Das ist der Anfang des Channels <span class="channel-name-container"><span class="material-symbols-rounded small-tag">tag</span><span class="empty-chat-container-second-channel-name">{{ channel().name }}</span>.</span>
