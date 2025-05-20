@@ -300,8 +300,8 @@ export class ChatService {
   ) {
     await updateDoc(
       this.firebaseService.getDocRefInSubSubcollection(
-        'channels',
-        this.currentChannel().id,
+        this.currentMainChatCollectionSignal(),
+        this.getMainChatChannelId(),
         'messages',
         this.topThreadMessage().id,
         'thread',
