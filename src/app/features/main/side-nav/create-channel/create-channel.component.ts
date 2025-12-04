@@ -5,14 +5,14 @@ import { UserService } from '../../../../core/services/user/user.service';
 import { Channel } from '../../../../core/models/channel.class';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import { FirebaseService } from '../../../../core/services/firebase/firebase.service';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { ChatUser } from '../../../../core/models/user.class';
 import { FilterNameComponent } from '../../../../shared/filter-name/filter-name.component';
 
 @Component({
     selector: 'app-create-channel',
-    imports: [CommonModule, FormsModule, FilterNameComponent],
+    imports: [FormsModule, FilterNameComponent],
     templateUrl: './create-channel.component.html',
     styleUrl: './create-channel.component.scss'
 })

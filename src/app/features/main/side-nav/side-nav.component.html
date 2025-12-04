@@ -4,7 +4,6 @@
     <img id="searchImg" src="assets/img/search.png" alt="" />
   </div>
 
-  <!-- 1 Section - Devspace Section -->
   <div id="devSpace" class="dFlex">
     <div class="devSpace">
       <img src="assets/img/main/workspace-logo.svg" />
@@ -16,20 +15,18 @@
     </button>
   </div>
 
-  <!-- 2 Section -->
   <div class="gap25 divWidth channels-messages-container">
-    <!-- Channels, Channel hinzufügen -->
     <div class="gap25 dFlex">
       <div class="dFlex channels">
         <div class="dFlex1 cursor-pointer purpleHover" (click)="openChannels()">
-          <span *ngIf="channelsOpened" class="material-symbols-rounded"
-            >arrow_drop_down</span
-          >
+          @if (channelsOpened) {
+          <span class="material-symbols-rounded">arrow_drop_down</span>
+          } @if (!channelsOpened) {
           <img
-            *ngIf="!channelsOpened"
             class="changeArrowRightBlue"
             src="assets/img/main/arrow_right.png"
           />
+          }
 
           <div>
             <svg
@@ -65,16 +62,32 @@
           <span class="material-symbols-rounded">add</span>
         </button>
       </div>
-      <div *ngIf="channelsOpened" class="dFlexColumn gap25 slideIn_Out divWidth" style="align-items: flex-start;">
-        <div class="divWidth dFlexColumn gap25 divWidth" style="overflow: auto; align-items: flex-start;">
-          @for (channel of chatService.myChannels(); track channel.name; let i = $index) {
-            <div [ngClass]="{'channelWasChosen': chatService.getSelectedChannelId() === channel.id}" class="channel-name-container dFlexRowFlex-StartCenter" (click)="chatService.openChannel(channel.id)">
-              <span id="tag" class="material-symbols-rounded cursor-pointer">tag</span>
-              <span>{{channel.name}}</span>
-            </div>
-            }
+      @if (channelsOpened) {
+      <div
+        class="dFlexColumn gap25 slideIn_Out divWidth"
+        style="align-items: flex-start"
+      >
+        <div
+          class="divWidth dFlexColumn gap25 divWidth"
+          style="overflow: auto; align-items: flex-start"
+        >
+          @for (channel of chatService.myChannels(); track channel.name; let i =
+          $index) {
+          <div
+            [ngClass]="{
+              channelWasChosen:
+                chatService.getSelectedChannelId() === channel.id
+            }"
+            class="channel-name-container dFlexRowFlex-StartCenter"
+            (click)="chatService.openChannel(channel.id)"
+          >
+            <span id="tag" class="material-symbols-rounded cursor-pointer"
+              >tag</span
+            >
+            <span>{{ channel.name }}</span>
+          </div>
+          }
         </div>
-
         <div
           class="purpleHover cursor-pointer channel"
           (click)="openCreateChannels()"
@@ -82,26 +95,27 @@
           <span class="material-symbols-rounded cursor-pointer purpleHover"
             >add_circle</span
           >
-
           <span class="cursor-pointer purpleHover">Channel hinzufügen</span>
         </div>
       </div>
+      }
     </div>
 
-    <!-- Direktnachrichten, Kontakte  -->
     <div id="contacts" class="contactDiv divWidth gap25">
-      <!-- Direktnachrichten -->
-      <div class="dFlex2 divWidth directMessages purpleHover" (click)="closeContactDiv()">
-        <span
-          *ngIf="sideNavService.contactsOpened"
-          class="material-symbols-rounded cursor-pointer"
+      <div
+        class="dFlex2 divWidth directMessages purpleHover"
+        (click)="closeContactDiv()"
+      >
+        @if (sideNavService.contactsOpened) {
+        <span class="material-symbols-rounded cursor-pointer"
           >arrow_drop_down</span
         >
+        } @if (!sideNavService.contactsOpened) {
         <img
-          *ngIf="!sideNavService.contactsOpened"
           class="changeArrowRightBlue cursor-pointer"
           src="assets/img/main/arrow_right.png"
         />
+        }
 
         <div>
           <span class="material-symbols-rounded cursor-pointer"
@@ -112,13 +126,10 @@
         </div>
       </div>
 
-      <!-- contacts -->
-      <div class="gap13" *ngIf="sideNavService.contactsOpened">
-        <div
-          *ngFor="let user of userService.allUsers(); let i = index"
-          class="contactsDiv"
-          (click)="chatService.openChat(user.userUID)"
-        >
+      @if (sideNavService.contactsOpened) {
+      <div class="gap13">
+        @for (user of userService.allUsers(); track user; let i = $index) {
+        <div class="contactsDiv" (click)="chatService.openChat(user.userUID)">
           <div class="profil-status-container">
             <img class="avatar avatar-50" [src]="user.avatar" />
             <div
@@ -134,15 +145,11 @@
             }
           </span>
         </div>
+        }
       </div>
+      }
     </div>
-    <!-- mobile version button for new message -->
     <div class="dFlexRowFlexEndCenter width-100 mobileVersion">
-      <!-- <img
-        src="assets/img/main/newMessageButton.svg"
-        alt="new message button"
-        (click)="newMessage()"
-      /> -->
       <div class="icon-btn new-message-btn" (click)="newMessage()">
         <span class="material-symbols-rounded">edit_square</span>
       </div>

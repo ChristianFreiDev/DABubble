@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { MessageTextareaComponent } from '../../message-textarea/message-textarea.component';
-import { CommonModule } from '@angular/common';
+
 import { SideNavService } from '../../../../core/services/sideNav/side-nav.service';
 import { ChatService } from '../../../../core/services/chat/chat.service';
 import { UserService } from '../../../../core/services/user/user.service';
@@ -10,7 +10,7 @@ import { LayoutService } from '../../../../core/services/layout/layout.service';
 
 @Component({
     selector: 'app-new-message',
-    imports: [MessageTextareaComponent, CommonModule],
+    imports: [MessageTextareaComponent],
     templateUrl: './new-message.component.html',
     styleUrl: './new-message.component.scss'
 })

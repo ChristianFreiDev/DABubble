@@ -1,53 +1,118 @@
 <div class="overlayComponent fadeInFromOpacity0" (click)="closeDialog()">
-    <div class="edit-channel-container">
-        <div class="edit-channel" (click)="$event.stopPropagation()">
-            <div class="edit-channel-header">
-                <div class="edit-channel-header-left">
-                    <span class="material-symbols-rounded edit-channel-header-tag">tag</span>
-                    <span class="edit-channel-header-channel-name">{{ currentChannel().name }}</span>
-                </div>
-                <button class="icon-btn" (click)="closeDialog()">
-                    <span class="material-symbols-rounded">close</span>
-                </button>
+  <div class="edit-channel-container">
+    <div class="edit-channel" (click)="$event.stopPropagation()">
+      <div class="edit-channel-header">
+        <div class="edit-channel-header-left">
+          <span class="material-symbols-rounded edit-channel-header-tag"
+            >tag</span
+          >
+          <span class="edit-channel-header-channel-name">{{
+            currentChannel().name
+          }}</span>
+        </div>
+        <button class="icon-btn" (click)="closeDialog()">
+          <span class="material-symbols-rounded">close</span>
+        </button>
+      </div>
+      <div class="edit-channel-main">
+        <div
+          class="edit-channel-name-container"
+          [ngClass]="{ 'editable-section': isChannelNameEditable }"
+        >
+          <div class="edit-channel-name-header">
+            <span class="edit-channel-heading">Channel-Name</span>
+            <button
+              class="edit-btn"
+              (click)="
+                toggleChannelNameEdit(channelNameInput.value, channelNameInput)
+              "
+            >
+              {{ isChannelNameEditable ? "Speichern" : "Bearbeiten" }}
+            </button>
+            <button
+              class="material-symbols-rounded icon-btn edit-btn-mobile"
+              (click)="
+                toggleChannelNameEdit(channelNameInput.value, channelNameInput)
+              "
+            >
+              {{ isChannelNameEditable ? "check_circle" : "edit" }}
+            </button>
+          </div>
+          <div class="edit-channel-name">
+            <span
+              class="material-symbols-rounded channel-tag"
+              [ngClass]="{ 'editable-channel-tag': isChannelNameEditable }"
+              >tag</span
+            >
+            <input
+              #channelNameInput
+              class="channel-name-input"
+              value="{{ currentChannel().name }}"
+              [ngClass]="{
+                'editable-channel-name-input': isChannelNameEditable
+              }"
+              [disabled]="!isChannelNameEditable"
+            />
+          </div>
+        </div>
+        @if (channelNameError) {
+        <span class="channel-name-error"
+          >Channel-Name existiert bereits/wurde nicht geändert.</span
+        >
+        }
+        <div
+          class="edit-channel-lower-container"
+          [ngClass]="{ 'editable-section': isChannelDescriptionEditable }"
+        >
+          <div class="edit-channel-description-container">
+            <div class="edit-channel-description-header">
+              <span class="edit-channel-heading">Beschreibung</span>
+              <button
+                class="edit-btn"
+                (click)="
+                  toggleChannelDescriptionEdit(channelDescriptionInput.value)
+                "
+              >
+                {{ isChannelDescriptionEditable ? "Speichern" : "Bearbeiten" }}
+              </button>
+              <button
+                class="material-symbols-rounded icon-btn edit-btn-mobile"
+                (click)="
+                  toggleChannelDescriptionEdit(channelDescriptionInput.value)
+                "
+              >
+                {{ isChannelDescriptionEditable ? "check_circle" : "edit" }}
+              </button>
             </div>
-            <div class="edit-channel-main">
-                <div class="edit-channel-name-container" [ngClass]="{'editable-section': isChannelNameEditable}">
-                    <div class="edit-channel-name-header">
-                        <span class="edit-channel-heading">Channel-Name</span>
-                        <button class="edit-btn" (click)="toggleChannelNameEdit(channelNameInput.value, channelNameInput)">{{ isChannelNameEditable ? 'Speichern' : 'Bearbeiten' }}</button>
-                        <button class="material-symbols-rounded icon-btn edit-btn-mobile" (click)="toggleChannelNameEdit(channelNameInput.value, channelNameInput)">{{ isChannelNameEditable ? 'check_circle' : 'edit' }}</button>
-                    </div>
-                    <div class="edit-channel-name">
-                        <span class="material-symbols-rounded channel-tag" [ngClass]="{'editable-channel-tag': isChannelNameEditable}">tag</span>
-                        <input #channelNameInput class="channel-name-input" value="{{ currentChannel().name }}" [ngClass]="{'editable-channel-name-input': isChannelNameEditable}" [disabled]="!isChannelNameEditable">
-                    </div>
-                </div>
-                @if (channelNameError) {
-                    <span class="channel-name-error">Channel-Name existiert bereits/wurde nicht geändert.</span>
-                }
-                <div class="edit-channel-lower-container" [ngClass]="{'editable-section': isChannelDescriptionEditable}">
-                    <div class="edit-channel-description-container">
-                        <div class="edit-channel-description-header">
-                            <span class="edit-channel-heading">Beschreibung</span>
-                            <button class="edit-btn" (click)="toggleChannelDescriptionEdit(channelDescriptionInput.value)">{{ isChannelDescriptionEditable ? 'Speichern' : 'Bearbeiten' }}</button>
-                            <button class="material-symbols-rounded icon-btn edit-btn-mobile" (click)="toggleChannelDescriptionEdit(channelDescriptionInput.value)">{{ isChannelDescriptionEditable ? 'check_circle' : 'edit' }}</button>
-                        </div>
-                        <div class="edit-channel-description">
-                            <textarea rows="1" #channelDescriptionInput [ngClass]="{'editable-field': isChannelDescriptionEditable}" value="{{ currentChannel().description }}" [disabled]="!isChannelDescriptionEditable" (input)="resizeTextArea()"></textarea>
-                        </div>
-                    </div>
-                    @if (channelDescriptionError) {
-                        <span class="channel-name-error">Channel-Beschreibung existiert bereits/wurde nicht geändert.</span>
-                    }
-                    <hr [ngClass]="{'editable-hr': isChannelDescriptionEditable}">
-                    <div class="edit-channel-created-by">
-                        <span class="edit-channel-heading">Erstellt von</span>
-                        <span class="edit-channel-created-by-name"> {{ getUserName() }}</span>
-                    </div>
-                </div>
-                <app-members [isEditChannel]="true"></app-members>
-                <button class="btn btn-prim leave-channel-btn" (click)="leaveChannel()">Channel verlassen</button>
+            <div class="edit-channel-description">
+              <textarea
+                rows="1"
+                #channelDescriptionInput
+                [ngClass]="{ 'editable-field': isChannelDescriptionEditable }"
+                value="{{ currentChannel().description }}"
+                [disabled]="!isChannelDescriptionEditable"
+                (input)="resizeTextArea()"
+              ></textarea>
             </div>
-        </div> 
+          </div>
+          @if (channelDescriptionError) {
+          <span class="channel-name-error"
+            >Channel-Beschreibung existiert bereits/wurde nicht geändert.</span
+          >
+          }
+          <hr [ngClass]="{ 'editable-hr': isChannelDescriptionEditable }" />
+          <div class="edit-channel-created-by">
+            <span class="edit-channel-heading">Erstellt von</span>
+            <span class="edit-channel-created-by-name">
+              {{ getUserName() }}</span
+            >
+          </div>
+        </div>
+        <app-members [isEditChannel]="true"></app-members>
+        <button class="btn btn-prim leave-channel-btn" (click)="leaveChannel()">
+          Channel verlassen
+        </button>
+      </div>
     </div>
+  </div>
 </div>

@@ -1,15 +1,15 @@
 @if (fileUrl && !isPdf()) {
-    <div class="message-img-container">
-        <img class="message-img" src="{{fileUrl}}" alt="message image">
-        <div class="icon-btn" (click)="deleteFile(messageId)">
-            <span class="material-symbols-rounded">close</span>
-        </div>
-    </div>
+<div class="message-img-container">
+  <img class="message-img" src="{{ fileUrl }}" alt="message image" />
+  <div class="icon-btn" (click)="deleteFile(messageId)">
+    <span class="material-symbols-rounded">close</span>
+  </div>
+</div>
 } @else if (fileUrl) {
-    <div class="file-name">
-        <span>{{fileName}}</span>
-        <div class="icon-btn" (click)="deleteFile(messageId)">
-            <span class="material-symbols-rounded">close</span>
-        </div>
-    </div>
+<div class="file-name">
+  <span>{{ fileName }}</span>
+  <div class="icon-btn" (click)="deleteFile(messageId)">
+    <span class="material-symbols-rounded">close</span>
+  </div>
+</div>
 }

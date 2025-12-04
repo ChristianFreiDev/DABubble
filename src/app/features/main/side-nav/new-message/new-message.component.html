@@ -1,36 +1,47 @@
 <section>
-    <div class="fade-in">
-        <span id="newMessageSpan">Neue Nachricht</span> 
-        <div class="position-relative">
-            <input #input type="text" placeholder="An: #channel, oder @jemand oder E-Mail Adresse" (input)="updateSearchQuery($event)" (click)="sideNavService.stopPropagation($event)">
-            <div *ngIf="divForSelectedElement" class="dFlexRowCenterCenter gap15 contactsDiv selectedChannelOrUser">
-                <img *ngIf="selectedUserAvatar" src={{selectedUserAvatar}} class="avatar-50 avatar">
-                <span *ngIf="selectedUser">{{ selectedUser }}</span>
-                <span *ngIf="selectedChannel" id="tag" class="material-symbols-rounded cursor-pointer">tag</span>
-                <span *ngIf="selectedChannel">{{ selectedChannel }}</span>
-                <span (click)="deleteDiv()" class="material-symbols-rounded closeIcon">close</span>
-            </div>
+  <div class="fade-in">
+    <span id="newMessageSpan">Neue Nachricht</span>
+    <div class="position-relative">
+      <input #input type="text" placeholder="An: #channel, oder @jemand oder E-Mail Adresse" (input)="updateSearchQuery($event)" (click)="sideNavService.stopPropagation($event)">
+      @if (divForSelectedElement) {
+        <div class="dFlexRowCenterCenter gap15 contactsDiv selectedChannelOrUser">
+          @if (selectedUserAvatar) {
+            <img src={{selectedUserAvatar}} class="avatar-50 avatar">
+          }
+          @if (selectedUser) {
+            <span>{{ selectedUser }}</span>
+          }
+          @if (selectedChannel) {
+            <span id="tag" class="material-symbols-rounded cursor-pointer">tag</span>
+          }
+          @if (selectedChannel) {
+            <span>{{ selectedChannel }}</span>
+          }
+          <span (click)="deleteDiv()" class="material-symbols-rounded closeIcon">close</span>
         </div>
+      }
     </div>
-    <!-- drop down menu -->
-     <div id="searchResultsDropdown2" class="height100 dNone">
-        <div id="newMessageOnContact"  class=" searchingResults" (click)="sideNavService.stopPropagation($event)">
-            <div *ngFor="let result of filteredUsers" class="dFlexRowFlex-StartCenter width-100" (click)="chatService.closeDropDownMenu()">
-            @if(result.avatar) {
-                <div class="dFlexRowCenterCenter gap15 contactsDiv" (click)="selectUserOrChannel(result.userUID)">
-                    <img src={{result.avatar}} alt="avatar" class="avatar-50 avatar">
-                    <span>{{ result?.name }}</span>
-                </div>
-            } @else if(result.description) {
-                <div class="dFlexRowCenterCenter gap15 contactsDiv" (click)="selectUserOrChannel(result.id)">
-                    <span id="tag" class="material-symbols-rounded cursor-pointer">tag</span>
-                    <span>{{ result?.name }}</span>
-                </div>
-            }
+  </div>
+  <div id="searchResultsDropdown2" class="height100 dNone">
+    <div id="newMessageOnContact"  class=" searchingResults" (click)="sideNavService.stopPropagation($event)">
+      @for (result of filteredUsers; track result) {
+        <div class="dFlexRowFlex-StartCenter width-100" (click)="chatService.closeDropDownMenu()">
+          @if(result.avatar) {
+            <div class="dFlexRowCenterCenter gap15 contactsDiv" (click)="selectUserOrChannel(result.userUID)">
+              <img src={{result.avatar}} alt="avatar" class="avatar-50 avatar">
+              <span>{{ result?.name }}</span>
             </div>
+          } @else if(result.description) {
+            <div class="dFlexRowCenterCenter gap15 contactsDiv" (click)="selectUserOrChannel(result.id)">
+              <span id="tag" class="material-symbols-rounded cursor-pointer">tag</span>
+              <span>{{ result?.name }}</span>
+            </div>
+          }
         </div>
-     </div>
-    <app-message-textarea [type]="type" [isNewMessage]="true" [textAreaDisabled]="!divForSelectedElement" class="fadeInFromOpacity0"></app-message-textarea>
+      }
+    </div>
+  </div>
+  <app-message-textarea [type]="type" [isNewMessage]="true" [textAreaDisabled]="!divForSelectedElement" class="fadeInFromOpacity0"></app-message-textarea>
 </section>
 
 

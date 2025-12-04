@@ -1,41 +1,36 @@
 <div class="overlayComponent fadeInFromOpacity0" (click)="onDiv1Click()">
-  <section
-    *ngIf="!isProfileBeingEdited"
-    class="card dFlexColumn"
-    (click)="onDiv2Click($event)"
-  >
-    <!-- Profile -->
+  @if (!isProfileBeingEdited) {
+  <section class="card dFlexColumn" (click)="onDiv2Click($event)">
     <div class="dFlexRowSpaceBetweenCenter width-100">
       <span class="profil">Profil</span>
       <span class="material-symbols-rounded closeIcon" (click)="onDiv1Click()"
         >close</span
       >
     </div>
-
-    <!-- avatar -->
     <div class="dFlexRowCenterCenter">
       <img
         class="avatar avatar-200"
         [src]="userService.currentOnlineUser().avatar"
       />
     </div>
-
-    <!-- Bearbeiten -->
     <div class="dFlexColumnCenterFlexStart gap15 width-100">
       <div class="dFlexRowSpaceBetweenCenter width-100">
-        <span class="nameCard">{{
-          userService.currentOnlineUser().name
-        }}</span>
-        <span *ngIf="userService.currentOnlineUser().userUID != guestUid" class="edit" (click)="editProfile($event)">Bearbeiten</span>
-        <span *ngIf="userService.currentOnlineUser().userUID != guestUid" (click)="editProfile($event)" class="material-symbols-rounded profil-edit-icon">edit</span>
+        <span class="nameCard">{{ userService.currentOnlineUser().name }}</span>
+        @if (userService.currentOnlineUser().userUID != guestUid) {
+        <span class="edit" (click)="editProfile($event)">Bearbeiten</span>
+        } @if (userService.currentOnlineUser().userUID != guestUid) {
+        <span
+          (click)="editProfile($event)"
+          class="material-symbols-rounded profil-edit-icon"
+          >edit</span
+        >
+        }
       </div>
       <div class="gap15 dFlexRowCenterCenter">
         <img src="assets/img/main/Aktiv.png" />
         <span class="f400w-20px-gray online-green">Aktiv</span>
       </div>
     </div>
-
-    <!-- Email Adresse -->
     <div class="width-100 gap15 dFlexColumn">
       <div class="dFlexRowFlex-StartCenter gap20 width-100">
         <img src="assets/img/main/mail.png" />
@@ -48,39 +43,52 @@
       </div>
     </div>
   </section>
-
-  <section
-    *ngIf="isProfileBeingEdited"
-    class="card2 dFlexColumn"
-    (click)="onDiv2Click($event)"
-  >
-    <!-- Profile -->
+  } @if (isProfileBeingEdited) {
+  <section class="card2 dFlexColumn" (click)="onDiv2Click($event)">
     <div class="dFlexRowSpaceBetweenCenter width-100">
       <span class="profil">Dein Profil bearbeiten</span>
       <span class="material-symbols-rounded closeIcon" (click)="onDiv1Click()"
         >close</span
       >
     </div>
-
-    <!-- avatar -->
     <div class="dFlexColumn avatar-container">
-      <label [ariaDisabled]="uploadFile == 'inProgress'" class="change-profile-img" for="new_img">
-        <img class="avatar avatar-200" #profileImg [src]="userService.currentOnlineUser().avatar"/>
+      <label
+        [ariaDisabled]="uploadFile == 'inProgress'"
+        class="change-profile-img"
+        for="new_img"
+      >
+        <img
+          class="avatar avatar-200"
+          #profileImg
+          [src]="userService.currentOnlineUser().avatar"
+        />
       </label>
-      <input (change)="changeProfileImg(newImg)" #newImg [disabled]="uploadFile == 'inProgress'" style="display: none;" id="new_img" type="file" accept="image/png, image/jpeg, image/svg+xml, image/webp">
-    
-      <div [ngStyle]="{'opacity': uploadFile != null ? '1' : '0'}" class="upload-info-container">
-        <span [ngClass]="{'upload-error': uploadError}">{{uploadInfo}}</span>
-        <span [ngStyle]="{'visibility': uploadError ? 'hidden' : 'visible'}">{{fireBaseService.uploadProgress()}}%</span>
+      <input
+        (change)="changeProfileImg(newImg)"
+        #newImg
+        [disabled]="uploadFile == 'inProgress'"
+        style="display: none"
+        id="new_img"
+        type="file"
+        accept="image/png, image/jpeg, image/svg+xml, image/webp"
+      />
+      <div
+        [ngStyle]="{ opacity: uploadFile != null ? '1' : '0' }"
+        class="upload-info-container"
+      >
+        <span [ngClass]="{ 'upload-error': uploadError }">{{
+          uploadInfo
+        }}</span>
+        <span [ngStyle]="{ visibility: uploadError ? 'hidden' : 'visible' }"
+          >{{ fireBaseService.uploadProgress() }}%</span
+        >
       </div>
     </div>
-
     <form
       (ngSubmit)="saveNewContactInfos(contactForm)"
       #contactForm="ngForm"
       class="columnGap16 width-100"
     >
-      <!-- name -->
       <div class="columnGap7 width-100">
         <div class="dFlexRowFlex-StartCenter gap20 width-100">
           <img src="assets/img/main/account_circle.png" alt="" />
@@ -97,7 +105,6 @@
           required
         />
       </div>
-      <!-- Email Adresse -->
       <div class="columnGap7 width-100">
         <div class="dFlexRowFlex-StartCenter gap20 width-100">
           <img src="assets/img/main/mail.png" />
@@ -118,7 +125,6 @@
           required
         />
       </div>
-      <!-- buttons -->
       <div class="rowGap32 jc-center">
         <button class="btn btn-sec" (click)="onDiv1Click()">Abbrechen</button>
         <input
@@ -131,6 +137,7 @@
       </div>
     </form>
   </section>
+  }
 </div>
 
 <div [ngClass]="{ 'translateX-0': inputFinished }" class="email-sent-overlay">

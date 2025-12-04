@@ -2,7 +2,7 @@ import { Component, ElementRef, inject, Input, ViewChild } from '@angular/core';
 import { FormControl, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserService } from '../../../core/services/user/user.service';
-import { CommonModule } from '@angular/common';
+
 import { SideNavService } from '../../../core/services/sideNav/side-nav.service';
 import { ChatService } from '../../../core/services/chat/chat.service';
 import { FirebaseService } from '../../../core/services/firebase/firebase.service';
@@ -18,7 +18,7 @@ import { directMessage } from '../../../core/models/direct-message';
 
 @Component({
     selector: 'app-search-component',
-    imports: [FormsModule, CommonModule, ReactiveFormsModule],
+    imports: [FormsModule, ReactiveFormsModule],
     templateUrl: './search-component.component.html',
     styleUrl: './search-component.component.scss'
 })

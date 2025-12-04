@@ -1,8 +1,8 @@
 <div>
-    <p>Suche&nbsp;ein&nbsp;Emoji&nbsp;aus</p>
-    <div class="emoji-container">
-        @for (emoji of emojis; track $index) {
-            <button class="icon-btn" (click)="selectEmoji(emoji)">{{ emoji }}</button>
-        }
-    </div>
+  <p>Suche&nbsp;ein&nbsp;Emoji&nbsp;aus</p>
+  <div class="emoji-container">
+    @for (emoji of emojis; track $index) {
+    <button class="icon-btn" (click)="selectEmoji(emoji)">{{ emoji }}</button>
+    }
+  </div>
 </div>

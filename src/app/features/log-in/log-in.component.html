@@ -1,53 +1,108 @@
 @if (!userService.introDone) {
-    <app-intro (hideIntroScreen)="setIntroVariable($event)" [ngClass]="{'opacity': hideIntroScreen}"></app-intro>
+<app-intro
+  (hideIntroScreen)="setIntroVariable($event)"
+  [ngClass]="{ opacity: hideIntroScreen }"
+></app-intro>
 }
 
 <div class="content-wrapper">
-    <app-login-header></app-login-header>
+  <app-login-header></app-login-header>
 
-    <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" class="content-window">
-        <h1 class="m-btm-32">Anmeldung</h1>
-        <p class="login-text">Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</p>
-        
-        <div class="input-style">
-            <input #email="ngModel" [(ngModel)]="loginData.email" type="email" name="email" id="email" placeholder="beispielname@email.com" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" required>
-            <span class="material-symbols-rounded">mail</span>
-        </div>
-        <span class="error-text" [ngStyle]="{'visibility': (!email.valid && email.touched) ? 'visible' : 'hidden'}">Diese E-Mail-Adresse ist leider ungültig.</span>
-        
-        <div class="input-style">
-            <input #password="ngModel" [(ngModel)]="loginData.password" minlength="6" type="password" name="password" id="password" placeholder="Passwort" required>
-            <span class="material-symbols-rounded">lock</span>
-        </div>
-        <span class="error-text" [ngStyle]="{'visibility': (!password.valid && password.touched) || passwordFalse ? 'visible' : 'hidden'}">Falsches Passwort oder E-Mail... Bitte noch einmal versuchen.</span>
-        
-        <span routerLink="/reset-password" class="forgot-password">Passwort vergessen?</span>
+  <form
+    (ngSubmit)="onSubmit(contactForm)"
+    #contactForm="ngForm"
+    class="content-window"
+  >
+    <h1 class="m-btm-32">Anmeldung</h1>
+    <p class="login-text">
+      Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit
+      verwendest.
+    </p>
 
-        <div class="or-separator">
-            <div class="line"></div>
-            <span>ODER</span>
-            <div class="line"></div>
-        </div>
+    <div class="input-style">
+      <input
+        #email="ngModel"
+        [(ngModel)]="loginData.email"
+        type="email"
+        name="email"
+        id="email"
+        placeholder="beispielname@email.com"
+        pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+        required
+      />
+      <span class="material-symbols-rounded">mail</span>
+    </div>
+    <span
+      class="error-text"
+      [ngStyle]="{
+        visibility: !email.valid && email.touched ? 'visible' : 'hidden'
+      }"
+      >Diese E-Mail-Adresse ist leider ungültig.</span
+    >
 
-        <div class="google-btn">
-            <img src="assets/img/google.svg" alt="google">
-            <span (click)="signInWithGoogle()">Anmelden mit Google</span>
-        </div>
+    <div class="input-style">
+      <input
+        #password="ngModel"
+        [(ngModel)]="loginData.password"
+        minlength="6"
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Passwort"
+        required
+      />
+      <span class="material-symbols-rounded">lock</span>
+    </div>
+    <span
+      class="error-text"
+      [ngStyle]="{
+        visibility:
+          (!password.valid && password.touched) || passwordFalse
+            ? 'visible'
+            : 'hidden'
+      }"
+      >Falsches Passwort oder E-Mail... Bitte noch einmal versuchen.</span
+    >
 
-        <div class="google-login-info" [ngStyle]="{'visibility': googleLoginError ? 'visible' : 'hidden'}">
-            <span>Es ist ein Fehler aufgetreten! Bitte erneut versuchen.</span>
-        </div>
-        
-        <div class="login-btn-container">
-            <input [disabled]="!email.valid || !password.valid"  class="btn btn-prim" type="submit" name="submit" id="submit" value="Anmelden">
-            <a (click)="signInWithGuest()" class="btn btn-sec">Gäste-Login</a>
-        </div>
-    </form>
+    <span routerLink="/reset-password" class="forgot-password"
+      >Passwort vergessen?</span
+    >
 
-    <div class="create-account-container">
-        <span>Neu bei DABubble?</span>
-        <a routerLink="/register" class="btn btn-sec">Konto erstellen</a>
+    <div class="or-separator">
+      <div class="line"></div>
+      <span>ODER</span>
+      <div class="line"></div>
     </div>
 
-    <app-footer></app-footer>
+    <div class="google-btn">
+      <img src="assets/img/google.svg" alt="google" />
+      <span (click)="signInWithGoogle()">Anmelden mit Google</span>
+    </div>
+
+    <div
+      class="google-login-info"
+      [ngStyle]="{ visibility: googleLoginError ? 'visible' : 'hidden' }"
+    >
+      <span>Es ist ein Fehler aufgetreten! Bitte erneut versuchen.</span>
+    </div>
+
+    <div class="login-btn-container">
+      <input
+        [disabled]="!email.valid || !password.valid"
+        class="btn btn-prim"
+        type="submit"
+        name="submit"
+        id="submit"
+        value="Anmelden"
+      />
+      <a (click)="signInWithGuest()" class="btn btn-sec">Gäste-Login</a>
+    </div>
+  </form>
+
+  <div class="create-account-container">
+    <span>Neu bei DABubble?</span>
+    <a routerLink="/register" class="btn btn-sec">Konto erstellen</a>
+  </div>
+
+  <app-footer></app-footer>
 </div>

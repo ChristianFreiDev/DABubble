@@ -1,49 +1,68 @@
 <div class="chat-header">
-    <div class="chat-header-left" (click)="toggleEditChannelVisibility()">
-        <span class="material-symbols-rounded">tag</span>
-        <div #channelName class="channel-name">{{ channel().name }}</div>
-        <span class="material-symbols-rounded">keyboard_arrow_down</span>
+  <div class="chat-header-left" (click)="toggleEditChannelVisibility()">
+    <span class="material-symbols-rounded">tag</span>
+    <div #channelName class="channel-name">{{ channel().name }}</div>
+    <span class="material-symbols-rounded">keyboard_arrow_down</span>
+  </div>
+  <div class="chat-header-right">
+    @if (usersInCurrentChannel().length > 0) {
+    <div class="chat-header-avatars" (click)="toggleMembersVisibility()">
+      @for (user of usersInCurrentChannel() | slice:0:3; track user) {
+      <img class="avatar avatar-40" src="{{ user.avatar }}" alt="user avatar" />
+      }
     </div>
-    <div class="chat-header-right">
-        @if (usersInCurrentChannel().length > 0) {
-            <div class="chat-header-avatars" (click)="toggleMembersVisibility()">
-                    @for (user of usersInCurrentChannel() | slice:0:3; track user) {
-                        <img class="avatar avatar-40" src="{{user.avatar}}" alt="user avatar">
-                    }
-            </div>
-        }
-        @if (usersInCurrentChannel().length > 0) {
-            <span class="chat-header-right-span">{{ usersInCurrentChannel().length }}</span>
-        }
-        <div class="icon-btn add-people-btn" (click)="openAddPeople()">
-            <span class="material-symbols-rounded">person_add</span>
-        </div>
-        @if (isAddPeopleDialogVisible()) {
-            <app-add-people></app-add-people>
-        }
-        @if (isMembersDialogVisible()) {
-            <app-members class="fadeInFromOpacity0"></app-members>
-        }
+    } @if (usersInCurrentChannel().length > 0) {
+    <span class="chat-header-right-span">{{
+      usersInCurrentChannel().length
+    }}</span>
+    }
+    <div class="icon-btn add-people-btn" (click)="openAddPeople()">
+      <span class="material-symbols-rounded">person_add</span>
     </div>
+    @if (isAddPeopleDialogVisible()) {
+    <app-add-people></app-add-people>
+    } @if (isMembersDialogVisible()) {
+    <app-members class="fadeInFromOpacity0"></app-members>
+    }
+  </div>
 </div>
 @if (messages().length === 0 && !chatService.isLoadingMessages()) {
-    <div class="empty-chat-container">
-        <div class="empty-chat-container-header">
-            <span class="material-symbols-rounded">tag</span>
-            <div class="channel-name-chat">{{ channel().name }}</div>
-        </div>
-        <p class="channel-notice">
-        @if(isMe()) {
-            Du hast diesen Channel erstellt.
-        }
-         Das ist der Anfang des Channels <span class="channel-name-container"><span class="material-symbols-rounded small-tag">tag</span><span class="empty-chat-container-second-channel-name">{{ channel().name }}</span>.</span>
-        </p>
-    </div>
-    <app-message-textarea placeholder="Nachricht an #{{ channel().name }}" type="chat"></app-message-textarea>
+<div class="empty-chat-container">
+  <div class="empty-chat-container-header">
+    <span class="material-symbols-rounded">tag</span>
+    <div class="channel-name-chat">{{ channel().name }}</div>
+  </div>
+  <p class="channel-notice">
+    @if(isMe()) { Du hast diesen Channel erstellt. } Das ist der Anfang des
+    Channels
+    <span class="channel-name-container"
+      ><span class="material-symbols-rounded small-tag">tag</span
+      ><span class="empty-chat-container-second-channel-name">{{
+        channel().name
+      }}</span
+      >.</span
+    >
+  </p>
+</div>
+<app-message-textarea
+  placeholder="Nachricht an #{{ channel().name }}"
+  type="chat"
+></app-message-textarea>
 } @else if (messages().length > 0) {
-    <app-chat-bottom-container #messageContainer [channel]="channel" [messages]="messages"></app-chat-bottom-container>
-    <app-message-textarea placeholder="Nachricht an #{{ channel().name }}" type="chat" [messagesContainerRef]="messageContainer.elementRef.nativeElement"></app-message-textarea>
+<app-chat-bottom-container
+  #messageContainer
+  [channel]="channel"
+  [messages]="messages"
+></app-chat-bottom-container>
+<app-message-textarea
+  placeholder="Nachricht an #{{ channel().name }}"
+  type="chat"
+  [messagesContainerRef]="messageContainer.elementRef.nativeElement"
+></app-message-textarea>
 } @else {
-    <div class="height100"></div>
-    <app-message-textarea placeholder="Nachricht an #{{ channel().name }}" type="chat"></app-message-textarea>
+<div class="height100"></div>
+<app-message-textarea
+  placeholder="Nachricht an #{{ channel().name }}"
+  type="chat"
+></app-message-textarea>
 }

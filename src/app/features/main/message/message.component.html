@@ -1,124 +1,224 @@
-<div #messageContainer (touchstart)="touchMessage()" (touchend)="stopTouchingMessage()" (touchmove)="onTouchMove()" class="message" [ngClass]="{ 'message-alternative' : isMe, 'thread-message' : isThreadMessage, 'thread-message-alternative' : isMe && isThreadMessage, 'small-message': isSmallMessageWidth(), 'very-small-message': isVerySmallMessageWidth(), 'touch-message': isHighlightingMessage, 'touch-message-alternative': isHighlightingMessage && isMe, 'touch-small-message': isHighlightingMessage && isSmallMessageWidth() }">
-    @if (!isSmallMessageWidth || !(isMessageBeingEdited && isSmallMessageWidth())) {
-        <img class="avatar avatar-70" src="{{ userAvatar() }}" alt="{{userAvatar()}}">
-    }
-    @if (!isMessageBeingEdited) {
-    <div class="main-message-container" [ngClass]="isMe ? 'main-message-container-alternative' : ''">
-            <div class="message-header">
-                <span class="user-name">{{ userName() }}</span>
-                <span class="message-posted-at">{{ messageData.postedAt.toLocaleTimeString('de-DE', {hour: '2-digit', minute:'2-digit'}) }} Uhr</span>
-            </div>
-            <div #messageContent class="message-content" [ngClass]="{ 'message-content-alternative': isMe }">{{messageData.content}}</div>
-            @if (messageData.fileUrl !== '' && messageData.fileType !== 'application/pdf') {
-                <img class="message-img" src="{{messageData.fileUrl}}" alt="message image">
-            } @else if (messageData.fileUrl) {
-                <a class="file-name" href="{{messageData.fileUrl}}" target="_blank">
-                    <span>{{messageData.fileName}}</span>
-                    <span class="material-symbols-rounded">download</span>
-                </a>
-            }
-            @if (messageData.numberOfReplies > 0 && !isThreadMessage) {
-                <div class="bottom-message-container">
-                    <div (click)="openThread()" class="number-of-replies">{{ messageData.numberOfReplies }}&nbsp;Antworten</div>
-                    @if (messageData.lastReplyAt) {
-                        <div class="last-reply-at">Letzte Antwort {{ messageData.lastReplyAt.toLocaleTimeString('de-DE', {hour: '2-digit', minute:'2-digit'}) }}</div>
-                    }
-                </div>
-            }
-            @if (messageData.reactions && !isTopMessage) {
-            <div class="reactions-container">
-                    @for (reaction of messageData.reactions; track reaction) {
-                        <div class="reaction-container">
-                            <button class="reaction" (click)="toggleReaction(reaction)">
-                                <img class="reaction-img" src="assets/img/emojis/{{reaction.emoji}}" alt="reaction emoji"><span>{{ reaction.userNames.length }}</span>
-                            </button>
-                            <div class="reaction-bubble">
-                                <img class="reaction-img" src="assets/img/emojis/{{reaction.emoji}}" alt="reaction emoji">
-                                <div>
-                                    @for (userUID of filterReactionUserUIDs(reaction.userUIDs) | slice:0:3; track userUID) {
-                                        @if (userUID !== userService.currentOnlineUser().userUID) {
-                                            <span class="reaction-bubble-username">{{ reaction.userNames[$index] }}</span><br>
-                                        }
-                                    }
-                                    @if (didIReact(reaction)) {
-                                        <span class="reaction-bubble-username">Du</span><br>
-                                    }
-                                    @if (reaction.userNames.length > 3 && !didIReact(reaction) || reaction.userNames.length > 4 && didIReact(reaction)) {
-                                        <span class="has-reacted">und weitere</span><br>
-                                        <span class="has-reacted">haben reagiert</span>
-                                    }
-                                    @else if (reaction.userNames.length > 1) {
-                                        <span class="has-reacted">haben reagiert</span>
-                                    } @else {
-                                        @if (didIReact(reaction)) {
-                                            <span class="has-reacted">hast reagiert</span>
-                                        } @else {
-                                            <span class="has-reacted">hat reagiert</span>
-                                        }
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    @if (messageData.reactions.length > 0) {
-                        <button class="icon-btn add-reaction-btn" (click)="toggleSecondaryReactionOptionMenu()">
-                            <span class="material-symbols-rounded">add_reaction</span>
-                            @if (areSecondaryReactionOptionsOpen) {
-                                <app-reaction-options (newReactionEvent)="addNewReaction($event)" [reactionOptions]="reactionOptions()" class="app-reaction-options-alternative3"></app-reaction-options>
-                            }
-                        </button>
-                    }
-            </div>
-        }
+<div
+  #messageContainer
+  (touchstart)="touchMessage()"
+  (touchend)="stopTouchingMessage()"
+  (touchmove)="onTouchMove()"
+  class="message"
+  [ngClass]="{
+    'message-alternative': isMe,
+    'thread-message': isThreadMessage,
+    'thread-message-alternative': isMe && isThreadMessage,
+    'small-message': isSmallMessageWidth(),
+    'very-small-message': isVerySmallMessageWidth(),
+    'touch-message': isHighlightingMessage,
+    'touch-message-alternative': isHighlightingMessage && isMe,
+    'touch-small-message': isHighlightingMessage && isSmallMessageWidth()
+  }"
+>
+  @if (!isSmallMessageWidth || !(isMessageBeingEdited && isSmallMessageWidth()))
+  {
+  <img
+    class="avatar avatar-70"
+    src="{{ userAvatar() }}"
+    alt="{{ userAvatar() }}"
+  />
+  } @if (!isMessageBeingEdited) {
+  <div
+    class="main-message-container"
+    [ngClass]="isMe ? 'main-message-container-alternative' : ''"
+  >
+    <div class="message-header">
+      <span class="user-name">{{ userName() }}</span>
+      <span class="message-posted-at"
+        >{{
+          messageData.postedAt.toLocaleTimeString("de-DE", {
+            hour: "2-digit",
+            minute: "2-digit"
+          })
+        }}
+        Uhr</span
+      >
     </div>
-    <div class="message-menu chat-message-menu" [ngClass]="{ 'chat-message-menu-alternative': isMe }" (touchstart)="$event.stopPropagation()">
-        @if (!isThreadMessage) {
-            <div class="icon-btn" (click)="addNewReaction(menuEmojis()[0])">
-                <img class="reaction-img" src="assets/img/emojis/{{menuEmojis()[0]}}" alt="menu emoji 1">
-            </div>
-            <div class="icon-btn" (click)="addNewReaction(menuEmojis()[1])">
-                <img class="reaction-img" src="assets/img/emojis/{{menuEmojis()[1]}}" alt="menu emoji 2">
-            </div>
-        }
-        <div class="icon-btn" (click)="toggleReactionOptionMenu()">
-            <span class="material-symbols-rounded">add_reaction</span>
+    <div
+      #messageContent
+      class="message-content"
+      [ngClass]="{ 'message-content-alternative': isMe }"
+    >
+      {{ messageData.content }}
+    </div>
+    @if (messageData.fileUrl !== '' && messageData.fileType !==
+    'application/pdf') {
+    <img
+      class="message-img"
+      src="{{ messageData.fileUrl }}"
+      alt="message image"
+    />
+    } @else if (messageData.fileUrl) {
+    <a class="file-name" href="{{ messageData.fileUrl }}" target="_blank">
+      <span>{{ messageData.fileName }}</span>
+      <span class="material-symbols-rounded">download</span>
+    </a>
+    } @if (messageData.numberOfReplies > 0 && !isThreadMessage) {
+    <div class="bottom-message-container">
+      <div (click)="openThread()" class="number-of-replies">
+        {{ messageData.numberOfReplies }}&nbsp;Antworten
+      </div>
+      @if (messageData.lastReplyAt) {
+      <div class="last-reply-at">
+        Letzte Antwort
+        {{
+          messageData.lastReplyAt.toLocaleTimeString("de-DE", {
+            hour: "2-digit",
+            minute: "2-digit"
+          })
+        }}
+      </div>
+      }
+    </div>
+    } @if (messageData.reactions && !isTopMessage) {
+    <div class="reactions-container">
+      @for (reaction of messageData.reactions; track reaction) {
+      <div class="reaction-container">
+        <button class="reaction" (click)="toggleReaction(reaction)">
+          <img
+            class="reaction-img"
+            src="assets/img/emojis/{{ reaction.emoji }}"
+            alt="reaction emoji"
+          /><span>{{ reaction.userNames.length }}</span>
+        </button>
+        <div class="reaction-bubble">
+          <img
+            class="reaction-img"
+            src="assets/img/emojis/{{ reaction.emoji }}"
+            alt="reaction emoji"
+          />
+          <div>
+            @for (userUID of filterReactionUserUIDs(reaction.userUIDs) |
+            slice:0:3; track userUID) { @if (userUID !==
+            userService.currentOnlineUser().userUID) {
+            <span class="reaction-bubble-username">{{
+              reaction.userNames[$index]
+            }}</span
+            ><br />
+            } } @if (didIReact(reaction)) {
+            <span class="reaction-bubble-username">Du</span><br />
+            } @if (reaction.userNames.length > 3 && !didIReact(reaction) ||
+            reaction.userNames.length > 4 && didIReact(reaction)) {
+            <span class="has-reacted">und weitere</span><br />
+            <span class="has-reacted">haben reagiert</span>
+            } @else if (reaction.userNames.length > 1) {
+            <span class="has-reacted">haben reagiert</span>
+            } @else { @if (didIReact(reaction)) {
+            <span class="has-reacted">hast reagiert</span>
+            } @else {
+            <span class="has-reacted">hat reagiert</span>
+            } }
+          </div>
         </div>
-        @if (!isThreadMessage) {
-            <div class="icon-btn" (click)="openThread()">
-                <span class="material-symbols-rounded">comment</span>
-            </div>
+      </div>
+      } @if (messageData.reactions.length > 0) {
+      <button
+        class="icon-btn add-reaction-btn"
+        (click)="toggleSecondaryReactionOptionMenu()"
+      >
+        <span class="material-symbols-rounded">add_reaction</span>
+        @if (areSecondaryReactionOptionsOpen) {
+        <app-reaction-options
+          (newReactionEvent)="addNewReaction($event)"
+          [reactionOptions]="reactionOptions()"
+          class="app-reaction-options-alternative3"
+        ></app-reaction-options>
         }
-        @if (isMe) {
-            <div class="icon-btn" (click)="toggleMoreMenu()">
-                <span class="material-symbols-rounded">more_vert</span>
-            </div>
-        }
-        @if (isMoreMenuOpen) {
-            <div class="more-menu">
-                <div class="edit-message" (click)="editMessage()">Nachricht&nbsp;bearbeiten</div>
-            </div>
-        }
-        @if (areReactionOptionsOpen) {
-            <app-reaction-options (newReactionEvent)="addNewReaction($event)" [reactionOptions]="reactionOptions()" [ngClass]="{ 'app-reaction-options-alternative': isMe, 'app-reaction-options-alternative2': !isThreadMessage && !isMe }"></app-reaction-options>
-        }
+      </button>
+      }
     </div>
     }
-    @if (isMessageBeingEdited) {
-        <div class="edit-message-container" (touchstart)="$event.stopPropagation()">
-            <textarea #editMessageContent [(ngModel)]="editMessageText"  name="edit-message-content" id="edit-message-content" class="edit-message-textarea"></textarea>
-            <app-deletable-file (deletionEventFromMessage)="handleDeletionEvent()" [fileUrl]="!fileRemoved ? messageData.fileUrl : ''" [fileType]="messageData.fileType" [fileName]="messageData.fileName" [messageId]="messageData.id" [type]="type"></app-deletable-file>
-            <div class="edit-message-container-bottom">
-                <button class="icon-btn" (click)="toggleEmojiPickerForEditing()">
-                    <span class="material-symbols-rounded">sentiment_satisfied</span>
-                    @if (isEmojiPickerForEditingVisible()) {
-                        <app-emoji-picker (selectEmojiEvent)="insertEmoji($event)" [ngClass]="{'low-emoji-picker': isTopMessage}"></app-emoji-picker>
-                    }
-                </button>
-                <div class="edit-message-button-container">
-                    <button class="btn btn-sec" (click)="stopEditingMessage()">Abbrechen</button>
-                    <button class="btn btn-prim" (click)="saveEditedMessage()">Speichern</button>
-                </div>
-            </div>
-        </div>
+  </div>
+  <div
+    class="message-menu chat-message-menu"
+    [ngClass]="{ 'chat-message-menu-alternative': isMe }"
+    (touchstart)="$event.stopPropagation()"
+  >
+    @if (!isThreadMessage) {
+    <div class="icon-btn" (click)="addNewReaction(menuEmojis()[0])">
+      <img
+        class="reaction-img"
+        src="assets/img/emojis/{{ menuEmojis()[0] }}"
+        alt="menu emoji 1"
+      />
+    </div>
+    <div class="icon-btn" (click)="addNewReaction(menuEmojis()[1])">
+      <img
+        class="reaction-img"
+        src="assets/img/emojis/{{ menuEmojis()[1] }}"
+        alt="menu emoji 2"
+      />
+    </div>
     }
+    <div class="icon-btn" (click)="toggleReactionOptionMenu()">
+      <span class="material-symbols-rounded">add_reaction</span>
+    </div>
+    @if (!isThreadMessage) {
+    <div class="icon-btn" (click)="openThread()">
+      <span class="material-symbols-rounded">comment</span>
+    </div>
+    } @if (isMe) {
+    <div class="icon-btn" (click)="toggleMoreMenu()">
+      <span class="material-symbols-rounded">more_vert</span>
+    </div>
+    } @if (isMoreMenuOpen) {
+    <div class="more-menu">
+      <div class="edit-message" (click)="editMessage()">
+        Nachricht&nbsp;bearbeiten
+      </div>
+    </div>
+    } @if (areReactionOptionsOpen) {
+    <app-reaction-options
+      (newReactionEvent)="addNewReaction($event)"
+      [reactionOptions]="reactionOptions()"
+      [ngClass]="{
+        'app-reaction-options-alternative': isMe,
+        'app-reaction-options-alternative2': !isThreadMessage && !isMe
+      }"
+    ></app-reaction-options>
+    }
+  </div>
+  } @if (isMessageBeingEdited) {
+  <div class="edit-message-container" (touchstart)="$event.stopPropagation()">
+    <textarea
+      #editMessageContent
+      [(ngModel)]="editMessageText"
+      name="edit-message-content"
+      id="edit-message-content"
+      class="edit-message-textarea"
+    ></textarea>
+    <app-deletable-file
+      (deletionEventFromMessage)="handleDeletionEvent()"
+      [fileUrl]="!fileRemoved ? messageData.fileUrl : ''"
+      [fileType]="messageData.fileType"
+      [fileName]="messageData.fileName"
+      [messageId]="messageData.id"
+      [type]="type"
+    ></app-deletable-file>
+    <div class="edit-message-container-bottom">
+      <button class="icon-btn" (click)="toggleEmojiPickerForEditing()">
+        <span class="material-symbols-rounded">sentiment_satisfied</span>
+        @if (isEmojiPickerForEditingVisible()) {
+        <app-emoji-picker
+          (selectEmojiEvent)="insertEmoji($event)"
+          [ngClass]="{ 'low-emoji-picker': isTopMessage }"
+        ></app-emoji-picker>
+        }
+      </button>
+      <div class="edit-message-button-container">
+        <button class="btn btn-sec" (click)="stopEditingMessage()">
+          Abbrechen
+        </button>
+        <button class="btn btn-prim" (click)="saveEditedMessage()">
+          Speichern
+        </button>
+      </div>
+    </div>
+  </div>
+  }
 </div>

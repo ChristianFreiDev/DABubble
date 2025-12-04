@@ -1,18 +1,41 @@
 <div id="mainDiv" (click)="chatService.closeDropDownMenu()">
   <app-header></app-header>
   <div class="main">
-    <app-side-nav [ngClass]="{'width100': layoutState().isSideNavOpen && shouldAnimateSideNav(), 'width0': !layoutState().isSideNavOpen && shouldAnimateSideNav(), 'd-none': !layoutState().isSideNavOpen && !shouldAnimateSideNav() }"></app-side-nav>
-    <app-new-message *ngIf="layoutState().isNewMessageOpen"></app-new-message>
-    <app-direct-message *ngIf="layoutState().isDirectMessageOpen"></app-direct-message>
-    <app-chat *ngIf="layoutState().isChatOpen"></app-chat>
-    <app-profile-view-users *ngIf="chatService.profileViewUsersActive"></app-profile-view-users>
-    <app-profile-view-logged-user *ngIf="chatService.profileViewLoggedUser"></app-profile-view-logged-user>
-    <app-thread [ngClass]="{'width100': layoutState().isThreadOpen && shouldAnimateThread(), 'width0': !layoutState().isThreadOpen && shouldAnimateThread(), 'd-none': !layoutState().isThreadOpen && !shouldAnimateThread() }"></app-thread>
-    <app-upload-error *ngIf="dialogService.openUploadError()"></app-upload-error>
+    <app-side-nav
+      [ngClass]="{
+        width100: layoutState().isSideNavOpen && shouldAnimateSideNav(),
+        width0: !layoutState().isSideNavOpen && shouldAnimateSideNav(),
+        'd-none': !layoutState().isSideNavOpen && !shouldAnimateSideNav()
+      }"
+    ></app-side-nav>
+    @if (layoutState().isNewMessageOpen) {
+    <app-new-message></app-new-message>
+    } @if (layoutState().isDirectMessageOpen) {
+    <app-direct-message></app-direct-message>
+    } @if (layoutState().isChatOpen) {
+    <app-chat></app-chat>
+    } @if (chatService.profileViewUsersActive) {
+    <app-profile-view-users></app-profile-view-users>
+    } @if (chatService.profileViewLoggedUser) {
+    <app-profile-view-logged-user></app-profile-view-logged-user>
+    }
+    <app-thread
+      [ngClass]="{
+        width100: layoutState().isThreadOpen && shouldAnimateThread(),
+        width0: !layoutState().isThreadOpen && shouldAnimateThread(),
+        'd-none': !layoutState().isThreadOpen && !shouldAnimateThread()
+      }"
+    ></app-thread>
+    @if (dialogService.openUploadError()) {
+    <app-upload-error></app-upload-error>
+    }
   </div>
-  <div class="closeMenu purpleHover" (click)="closeSection()" >
-    <span *ngIf="sectionIsVisible">Workspace-Menü schließen</span>
-    <span *ngIf="!sectionIsVisible">Workspace-Menü öffnen</span>
+  <div class="closeMenu purpleHover" (click)="closeSection()">
+    @if (sectionIsVisible) {
+    <span>Workspace-Menü schließen</span>
+    } @if (!sectionIsVisible) {
+    <span>Workspace-Menü öffnen</span>
+    }
     <img
       id="menuButton"
       class="rotate-180deg changeMenuImg"
@@ -20,8 +43,9 @@
       [class.changeMenuImgBlue]="!sectionIsVisible"
     />
   </div>
-  <app-create-channel *ngIf="sideNavService.createChannelsDivOpened"></app-create-channel>
-  @if (isEditChannelVisible()) {
-    <app-edit-channel></app-edit-channel>
+  @if (sideNavService.createChannelsDivOpened) {
+  <app-create-channel></app-create-channel>
+  } @if (isEditChannelVisible()) {
+  <app-edit-channel></app-edit-channel>
   }
 </div>

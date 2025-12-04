@@ -2,8 +2,7 @@
   style="position: relative"
   class="input-wrapper"
   (click)="sideNavService.stopPropagation($event)"
-  >
-
+>
   <input
     #addName
     class="inputElement"
@@ -12,25 +11,24 @@
     (click)="showAllUsers()"
     (keyup)="searchUsers(addName)"
   />
-  <div
-    (click)="addedUsers = true"
-    *ngIf="arrayOfChosenContacts.length > 0"
-    class="chosenAvatars fadeInFromOpacity0"
-  >
-    <ng-container
-      *ngFor="
-        let chosenContact of arrayOfChosenContacts | slice : 0 : 3;
-        let i = index
-      "
-    >
-      <img class="avatar avatar-50" [src]="chosenContact.avatar" />
-    </ng-container>
+  @if (arrayOfChosenContacts.length > 0) {
+  <div (click)="addedUsers = true" class="chosenAvatars fadeInFromOpacity0">
+    @for ( chosenContact of arrayOfChosenContacts | slice : 0 : 3; track
+    chosenContact; let i = $index) {
+    <img class="avatar avatar-50" [src]="chosenContact.avatar" />
+    }
     <span class="contact-count">{{ chatService.chosenUserUIDs().length }}</span>
   </div>
+  }
 
   <div class="dFlexRowFlexEndCenter" style="position: relative">
     @if (showedAllUsers == true && filteredUsers.length > 0) {
-    <div id="results" class="people" [ngClass]="{'results-create-channel': !isInChat}" (click)="sideNavService.stopPropagation($event)">
+    <div
+      id="results"
+      class="people"
+      [ngClass]="{ 'results-create-channel': !isInChat }"
+      (click)="sideNavService.stopPropagation($event)"
+    >
       @for (user of filteredUsers; track $index) {
       <div class="person" (click)="selectUser(user.userUID)">
         <img
@@ -45,30 +43,30 @@
     }
   </div>
 
+  @if (addedUsers) {
   <div
-    *ngIf="addedUsers"
     class="members fadeInFromOpacity0"
-    [ngClass]="{'members-chat': isInChat}"
+    [ngClass]="{ 'members-chat': isInChat }"
     (click)="sideNavService.stopPropagation($event)"
-    >
+  >
     <span class="members-heading">Mitglieder</span>
     @for (user of arrayOfChosenContacts; track $index) {
-      <div class="dFlexRowCenterCenter gap10">
+    <div class="dFlexRowCenterCenter gap10">
+      <img
+        src="assets/img/main/close (2).png"
+        class="cursor-pointer close"
+        (click)="deleteUserFromArrayOfChosenContacts(user.userUID)"
+      />
+      <div class="dFlex gap10 member">
         <img
-          src="assets/img/main/close (2).png"
-          class="cursor-pointer close"
-          (click)="deleteUserFromArrayOfChosenContacts(user.userUID)"
+          class="avatar avatar-50"
+          src="{{ user.avatar }}"
+          alt="{{ user.name }}"
         />
-        <div class="dFlex gap10 member">
-          <img
-            class="avatar avatar-50"
-            src="{{ user.avatar }}"
-            alt="{{ user.name }}"
-          />
-          <span class="user-name">{{ user.name }}</span>
-        </div>
+        <span class="user-name">{{ user.name }}</span>
       </div>
+    </div>
     }
   </div>
+  }
 </div>
-

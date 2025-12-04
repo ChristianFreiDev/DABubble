@@ -1,7 +1,7 @@
 import { Component, QueryList, Signal, ViewChildren } from '@angular/core';
 import { Message } from '../../../core/models/message.class';
 import { MessageComponent } from '../message/message.component';
-import { CommonModule } from '@angular/common';
+
 import { MessageTextareaComponent } from '../message-textarea/message-textarea.component';
 import { ChatService } from '../../../core/services/chat/chat.service';
 import { Channel } from '../../../core/models/channel.class';
@@ -10,7 +10,7 @@ import { UserService } from '../../../core/services/user/user.service';
 
 @Component({
     selector: 'app-thread',
-    imports: [MessageComponent, MessageTextareaComponent, CommonModule],
+    imports: [MessageComponent, MessageTextareaComponent],
     templateUrl: './thread.component.html',
     styleUrl: './thread.component.scss'
 })

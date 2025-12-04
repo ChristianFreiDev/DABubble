@@ -1,5 +1,5 @@
 import { Component, OnInit, Signal } from '@angular/core';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ChatService } from '../../core/services/chat/chat.service';
 import { LayoutService } from '../../core/services/layout/layout.service';
 import { HeaderComponent } from '../../shared/header/header.component';
@@ -21,20 +21,19 @@ import { UserService } from '../../core/services/user/user.service';
 @Component({
     selector: 'app-main',
     imports: [
-        HeaderComponent,
-        SideNavComponent,
-        ChatComponent,
-        CommonModule,
-        ThreadComponent,
-        NgIf,
-        CreateChannelComponent,
-        EditChannelComponent,
-        NewMessageComponent,
-        DirectMessageComponent,
-        ProfileViewUsersComponent,
-        ProfileViewLoggedUserComponent,
-        UploadErrorComponent
-    ],
+    HeaderComponent,
+    SideNavComponent,
+    ChatComponent,
+    CommonModule,
+    ThreadComponent,
+    CreateChannelComponent,
+    EditChannelComponent,
+    NewMessageComponent,
+    DirectMessageComponent,
+    ProfileViewUsersComponent,
+    ProfileViewLoggedUserComponent,
+    UploadErrorComponent
+],
     templateUrl: './main.component.html',
     styleUrl: './main.component.scss'
 })

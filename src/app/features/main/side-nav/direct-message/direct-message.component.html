@@ -6,7 +6,7 @@
           userService.allUsers()[chatService.contactIndex].userUID
         )
       "
-    >
+      >
       <div class="profil-status-container">
         <img class="avatar" [src]="userService.allUsers()[chatService.contactIndex].avatar"/>
         <div class="status-circle" [ngClass]="userService.allUsers()[chatService.contactIndex]['isOnline'] ? 'status-online' : 'status-offline'"></div>
@@ -15,17 +15,17 @@
         >@if(userService.allUsers()[chatService.contactIndex].name ==
         userService.currentOnlineUser().name) {
         {{ userService.allUsers()[chatService.contactIndex].name + " (Du)" }}
-        } @else{
+      } @else{
         {{ userService.allUsers()[chatService.contactIndex].name }}
-        }
-      </span>
-    </div>
+      }
+    </span>
   </div>
+</div>
 
-  @if (!(messages().length > 0) && !chatService.isLoadingMessages()) {
-    <div
+@if (!(messages().length > 0) && !chatService.isLoadingMessages()) {
+  <div
     class="dFlex-height100-aIFE-padding60px"
-  >
+    >
     <div class="div-parent-notice">
       <div
         class="div-notice cursor-pointer"
@@ -34,52 +34,55 @@
             userService.allUsers()[chatService.contactIndex].userUID
           )
         "
-      >
+        >
         <img
           class="avatar avatar-notice"
           [src]="userService.allUsers()[chatService.contactIndex].avatar"
-        />
-        <span class="hover-message-name-chat"
-          >@if(userService.allUsers()[chatService.contactIndex].name ==
-          userService.currentOnlineUser().name) {
-          {{ userService.allUsers()[chatService.contactIndex].name + " (Du)" }}
+          />
+          <span class="hover-message-name-chat"
+            >@if(userService.allUsers()[chatService.contactIndex].name ==
+            userService.currentOnlineUser().name) {
+            {{ userService.allUsers()[chatService.contactIndex].name + " (Du)" }}
           } @else{
-          {{ userService.allUsers()[chatService.contactIndex].name }}
-          }</span
-        >
-      </div>
-      <span *ngIf="chatService.chatDescription" class="private-message-notice">
-        Diese Unterhaltung findet nur zwischen
-        <span
-          class="link-to-profile cursor-pointer name-contact-link"
+            {{ userService.allUsers()[chatService.contactIndex].name }}
+            }</span
+            >
+          </div>
+          @if (chatService.chatDescription) {
+            <span class="private-message-notice">
+              Diese Unterhaltung findet nur zwischen
+              <span
+                class="link-to-profile cursor-pointer name-contact-link"
           (click)="
             chatService.openViewProfile(
               userService.allUsers()[chatService.contactIndex].userUID
             )
           "
-        >
-          {{
-            "@" + userService.allUsers()[chatService.contactIndex].name
-          }}</span
-        >
-        und dir statt.</span
-      >
-      <span
-        *ngIf="chatService.myChatDescription"
-        class="private-message-notice lightGrayText"
-        ><span class="grayText">Dieser Raum ist nur für dich da.</span> Mache
-        dir Notizen, liste deine To-dos auf oder bewahre Links und Dateien
-        griffbereit auf. Du kannst hier auch gerne Dinge mit dir selbst
-        besprechen.</span
-      >
-    </div>
-  </div>
-  <app-message-textarea type="directMessage"></app-message-textarea>
-  } @else if (messages().length > 0) {
-    <app-chat-bottom-container #messageContainer [channel]="channel" [messages]="messages" type="directMessage"></app-chat-bottom-container>
-    <app-message-textarea type="directMessage" [messagesContainerRef]="messageContainer.elementRef.nativeElement"></app-message-textarea>
-  } @else {
-    <div class="height100"></div>
-    <app-message-textarea type="directMessage"></app-message-textarea>
-  }
-</section>
+                >
+                {{
+                "@" + userService.allUsers()[chatService.contactIndex].name
+                }}</span
+                >
+                und dir statt.</span
+                >
+            }
+            @if (chatService.myChatDescription) {
+              <span
+                class="private-message-notice lightGrayText"
+                ><span class="grayText">Dieser Raum ist nur für dich da.</span> Mache
+                dir Notizen, liste deine To-dos auf oder bewahre Links und Dateien
+                griffbereit auf. Du kannst hier auch gerne Dinge mit dir selbst
+                besprechen.</span
+                >
+              }
+            </div>
+          </div>
+          <app-message-textarea type="directMessage"></app-message-textarea>
+        } @else if (messages().length > 0) {
+          <app-chat-bottom-container #messageContainer [channel]="channel" [messages]="messages" type="directMessage"></app-chat-bottom-container>
+          <app-message-textarea type="directMessage" [messagesContainerRef]="messageContainer.elementRef.nativeElement"></app-message-textarea>
+        } @else {
+          <div class="height100"></div>
+          <app-message-textarea type="directMessage"></app-message-textarea>
+        }
+      </section>

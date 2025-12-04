@@ -7,31 +7,32 @@
       type="text"
       class="search-input"
       (input)="updateSearchQuery(searchComponentInput.value)"
-    />
-    <span class="material-symbols-rounded search-icon">search</span>
-  </div>
+      />
+      <span class="material-symbols-rounded search-icon">search</span>
+    </div>
 
-  <!-- drop down menu -->
-  @if (showDropDown && filteredResults.length > 0) {
-    <div id="searchResultsDropdown" #searchResultsDropdown class="searchingResults" (click)="sideNavService.stopPropagation($event)">
-      <div *ngFor="let result of filteredResults" class="dFlexRowFlex-StartCenter width-100" (click)="chatService.closeDropDownMenu()">
-        @if(result.avatar) {
-          <div class="dFlexRowCenterCenter gap15 contactsDiv" (click)="chatService.openChat(result.userUID); resetInput()">
-            <img src={{result.avatar}} alt="avatar" class="avatar-50 avatar">
-            <span>{{ result.name }}</span>
-          </div>
-        } @else if(result.description) {
-          <div class="dFlexRowCenterCenter gap15 contactsDiv" (click)="chatService.openChannel(result.id); resetInput()">
-            <span id="tag" class="material-symbols-rounded cursor-pointer">tag</span>
-            <span>{{ result.name }}</span>
-          </div>
-        }
-        @else if(result.message) {
-          <div class="dFlexRowCenterCenter gap15 contactsDiv" (click)="chatService.openChatOrChannel(result); resetInput()">
-            <p>{{ result.message }}</p>
-          </div>
-        }
-      </div>
+    @if (showDropDown && filteredResults.length > 0) {
+      <div id="searchResultsDropdown" #searchResultsDropdown class="searchingResults" (click)="sideNavService.stopPropagation($event)">
+        @for (result of filteredResults; track result) {
+          <div class="dFlexRowFlex-StartCenter width-100" (click)="chatService.closeDropDownMenu()">
+            @if(result.avatar) {
+              <div class="dFlexRowCenterCenter gap15 contactsDiv" (click)="chatService.openChat(result.userUID); resetInput()">
+                <img src={{result.avatar}} alt="avatar" class="avatar-50 avatar">
+                <span>{{ result.name }}</span>
+              </div>
+            } @else if(result.description) {
+              <div class="dFlexRowCenterCenter gap15 contactsDiv" (click)="chatService.openChannel(result.id); resetInput()">
+                <span id="tag" class="material-symbols-rounded cursor-pointer">tag</span>
+                <span>{{ result.name }}</span>
+              </div>
+            }
+            @else if(result.message) {
+            <div class="dFlexRowCenterCenter gap15 contactsDiv" (click)="chatService.openChatOrChannel(result); resetInput()">
+              <p>{{ result.message }}</p>
+            </div>
+          }
+        </div>
+      }
     </div>
   }
 </section>

@@ -1,46 +1,56 @@
 <div class="overlayComponent fadeInFromOpacity0" (click)="onDiv1Click()">
   <section class="card dFlexColumn" (click)="onDiv2Click($event)">
-    <!-- Profile -->
     <div class="dFlexRowSpaceBetweenCenter width-100">
       <span class="profil">Profil</span>
-      <span class="material-symbols-rounded closeIcon" (click)="onDiv1Click()">close</span>
+      <span class="material-symbols-rounded closeIcon" (click)="onDiv1Click()"
+        >close</span
+      >
     </div>
 
-    <!-- avatar -->
     <div class="dFlexRowCenterCenter">
-      <img class="avatar avatar-200" [src]="userService.allUsers()[chatService.contactIndex].avatar" />
+      <img
+        class="avatar avatar-200"
+        [src]="userService.allUsers()[chatService.contactIndex].avatar"
+      />
     </div>
 
-    <!-- Bearbeiten -->
     <div class="dFlexColumnCenterFlexStart gap15 width-100">
       <div class="dFlexRowSpaceBetweenCenter width-100">
-        <span class="nameCard">{{userService.allUsers()[chatService.contactIndex].name}}</span>
+        <span class="nameCard">{{
+          userService.allUsers()[chatService.contactIndex].name
+        }}</span>
       </div>
       <div class="gap15 dFlexRowCenterCenter">
-        @if (userService.allUsers()[chatService.contactIndex].isOnline == true) {
-          <img src="assets/img/main/Aktiv.png"/>
-          <span class="f400w-20px-gray">Aktiv</span>
-        }
-        @if (userService.allUsers()[chatService.contactIndex].isOnline == false) {
-          <img src="assets/img/main/Abwesend.png"/>
-          <span class="f400w-20px-gray">Abwesend</span>
+        @if (userService.allUsers()[chatService.contactIndex].isOnline == true)
+        {
+        <img src="assets/img/main/Aktiv.png" />
+        <span class="f400w-20px-gray">Aktiv</span>
+        } @if (userService.allUsers()[chatService.contactIndex].isOnline ==
+        false) {
+        <img src="assets/img/main/Abwesend.png" />
+        <span class="f400w-20px-gray">Abwesend</span>
         }
       </div>
     </div>
 
-    <!-- Email Adresse -->
     <div class="width-100 gap15 dFlexColumn">
       <div class="dFlexRowFlex-StartCenter gap20 width-100">
         <img src="assets/img/main/mail.png" />
         <span class="email">E-Mail-Adresse</span>
       </div>
       <div class="width-100">
-        <span class="emailLink">{{userService.allUsers()[chatService.contactIndex].email}}</span>
+        <span class="emailLink">{{
+          userService.allUsers()[chatService.contactIndex].email
+        }}</span>
       </div>
     </div>
 
-    <!-- Nachricht Button -->
-    <div class="messageButton" (click)="openChat(userService.allUsers()[chatService.contactIndex].userUID)">
+    <div
+      class="messageButton"
+      (click)="
+        openChat(userService.allUsers()[chatService.contactIndex].userUID)
+      "
+    >
       <div class="dFlexRowFlex-EndCenter">
         <img src="assets/img/main/message-img.png" />
         <span>Nachricht</span>

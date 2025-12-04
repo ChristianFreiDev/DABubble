@@ -30,9 +30,13 @@
           (keyup)="checkInputs()"
         />
       </div>
-      <div *ngIf="channelNameExist">
-        <span class="warningAboutExistingChannel">Dieser Channel-Name existiert bereits!</span>
+      @if (channelNameExist) {
+      <div>
+        <span class="warningAboutExistingChannel"
+          >Dieser Channel-Name existiert bereits!</span
+        >
       </div>
+      }
     </div>
     <div class="dFlexColumnCenterFlexStart">
       <div class="fontStyle3">
@@ -59,18 +63,15 @@
     </div>
   </section>
 
-  <!-- add People to the channel -->
   <div
     id="addPeople"
     class="dFlexColumn dNone"
     (click)="sideNavService.stopPropagation($event)"
     (click)="closeWindowWithContacts()"
   >
-    <div
-      (click)="closeDiv('addPeople')"
-      *ngIf="mobile"
-      class="greyDiv cursor-pointer"
-    ></div>
+    @if (mobile) {
+    <div (click)="closeDiv('addPeople')" class="greyDiv cursor-pointer"></div>
+    }
     <div class="dFlexRowSpaceBetweenCenter">
       <span class="fontStyle9">Leute hinzufügen</span>
       <img
@@ -82,16 +83,14 @@
     <div class="dFlexColumn gap20">
       <div class="dFlexColumn gap20">
         <div class="dFlexRowFlex-StartCenter gap20">
-          <!-- checkbox1 -->
           <div
             id="checkbox1"
             class="dFlexRowCenterCenter checkbox cursor-pointer"
             (click)="addMembersFromDevspace()"
           >
-            <div
-              *ngIf="selectMembersFromDevspace"
-              class="checkBox-chosen"
-            ></div>
+            @if (selectMembersFromDevspace) {
+            <div class="checkBox-chosen"></div>
+            }
           </div>
           <span class="fontStyle2"
             >Alle Mitglieder von
@@ -99,18 +98,21 @@
           >
         </div>
         <div id="checkbox2" class="dFlexRowFlex-StartCenter gap20">
-          <!-- checkbox2 -->
           <div
             (click)="chooseSpecificMembers()"
             class="dFlexRowCenterCenter checkbox cursor-pointer"
           >
-            <div *ngIf="selectSpecificMembers" class="checkBox-chosen"></div>
+            @if (selectSpecificMembers) {
+            <div class="checkBox-chosen"></div>
+            }
           </div>
           <span class="fontStyle2">Bestimmte Leute hinzufügen</span>
         </div>
       </div>
 
-      <app-filter-name *ngIf="AddSpecificPeople"></app-filter-name>
+      @if (AddSpecificPeople) {
+      <app-filter-name></app-filter-name>
+      }
 
       <button
         (click)="createChannel()"
@@ -123,6 +125,5 @@
         Erstellen
       </button>
     </div>
-
   </div>
 </div>

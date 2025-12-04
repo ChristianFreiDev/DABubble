@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { ChatService } from '../../../core/services/chat/chat.service';
 import { UserService } from '../../../core/services/user/user.service';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
     selector: 'app-profile-view-users',
-    imports: [CommonModule],
+    imports: [],
     templateUrl: './profile-view-users.component.html',
     styleUrl: './profile-view-users.component.scss'
 })
