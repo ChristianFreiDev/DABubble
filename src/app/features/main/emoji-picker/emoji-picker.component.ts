@@ -2,11 +2,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { SideNavService } from '../../../core/services/sideNav/side-nav.service';
 
 @Component({
-  selector: 'app-emoji-picker',
-  standalone: true,
-  imports: [],
-  templateUrl: './emoji-picker.component.html',
-  styleUrl: './emoji-picker.component.scss'
+    selector: 'app-emoji-picker',
+    imports: [],
+    templateUrl: './emoji-picker.component.html',
+    styleUrl: './emoji-picker.component.scss'
 })
 export class EmojiPickerComponent {
   constructor(public sideNavService: SideNavService){}

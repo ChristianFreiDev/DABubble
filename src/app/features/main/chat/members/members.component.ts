@@ -5,11 +5,10 @@ import { CommonModule } from '@angular/common';
 import { DialogService } from '../../../../core/services/dialog/dialog.service';
 
 @Component({
-  selector: 'app-members',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './members.component.html',
-  styleUrl: './members.component.scss'
+    selector: 'app-members',
+    imports: [CommonModule],
+    templateUrl: './members.component.html',
+    styleUrl: './members.component.scss'
 })
 export class MembersComponent {
   members: Signal<ChatUser[]> = this.chatService.usersInCurrentChannel;

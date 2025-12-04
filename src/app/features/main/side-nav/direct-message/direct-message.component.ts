@@ -9,11 +9,10 @@ import { Channel } from '../../../../core/models/channel.class';
 
 
 @Component({
-  selector: 'app-direct-message',
-  standalone: true,
-  imports: [MessageTextareaComponent, CommonModule, ChatBottomContainerComponent],
-  templateUrl: './direct-message.component.html',
-  styleUrl: './direct-message.component.scss',
+    selector: 'app-direct-message',
+    imports: [MessageTextareaComponent, CommonModule, ChatBottomContainerComponent],
+    templateUrl: './direct-message.component.html',
+    styleUrl: './direct-message.component.scss'
 })
 export class DirectMessageComponent {
   channel: Signal<Channel> = this.chatService.currentDirectMessageChannel;

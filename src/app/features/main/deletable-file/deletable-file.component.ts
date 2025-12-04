@@ -3,11 +3,10 @@ import { FirebaseService } from '../../../core/services/firebase/firebase.servic
 import { ChatService } from '../../../core/services/chat/chat.service';
 
 @Component({
-  selector: 'app-deletable-file',
-  standalone: true,
-  imports: [],
-  templateUrl: './deletable-file.component.html',
-  styleUrl: './deletable-file.component.scss'
+    selector: 'app-deletable-file',
+    imports: [],
+    templateUrl: './deletable-file.component.html',
+    styleUrl: './deletable-file.component.scss'
 })
 export class DeletableFileComponent {
 

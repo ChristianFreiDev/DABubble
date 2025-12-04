@@ -3,14 +3,13 @@ import { LoginHeaderComponent } from '../../shared/login-header/login-header.com
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-imprint',
-  standalone: true,
-  imports: [LoginHeaderComponent],
-  templateUrl: './imprint.component.html',
-  styleUrls: [
-    './imprint.component.scss',
-    '../../../styles/login.scss'
-  ]
+    selector: 'app-imprint',
+    imports: [LoginHeaderComponent],
+    templateUrl: './imprint.component.html',
+    styleUrls: [
+        './imprint.component.scss',
+        '../../../styles/login.scss'
+    ]
 })
 export class ImprintComponent {
 

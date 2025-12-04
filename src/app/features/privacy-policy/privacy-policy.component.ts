@@ -3,14 +3,13 @@ import { LoginHeaderComponent } from "../../shared/login-header/login-header.com
 import { Location, ViewportScroller } from "@angular/common";
 
 @Component({
-  selector: 'app-privacy-policy',
-  standalone: true,
-  imports: [LoginHeaderComponent],
-  templateUrl: './privacy-policy.component.html',
-  styleUrls: [
-    './privacy-policy.component.scss',
-    '../../../styles/login.scss'
-  ]
+    selector: 'app-privacy-policy',
+    imports: [LoginHeaderComponent],
+    templateUrl: './privacy-policy.component.html',
+    styleUrls: [
+        './privacy-policy.component.scss',
+        '../../../styles/login.scss'
+    ]
 })
 export class PrivacyPolicyComponent {
 

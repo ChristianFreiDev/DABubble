@@ -16,11 +16,10 @@ import { EventService } from '../../../core/services/event/event.service';
 import { DialogService } from '../../../core/services/dialog/dialog.service';
 
 @Component({
-  selector: 'app-message-textarea',
-  standalone: true,
-  imports: [AtComponent, EmojiPickerComponent, DeletableFileComponent, FormsModule, CommonModule],
-  templateUrl: './message-textarea.component.html',
-  styleUrl: './message-textarea.component.scss'
+    selector: 'app-message-textarea',
+    imports: [AtComponent, EmojiPickerComponent, DeletableFileComponent, FormsModule, CommonModule],
+    templateUrl: './message-textarea.component.html',
+    styleUrl: './message-textarea.component.scss'
 })
 export class MessageTextareaComponent {
   @Input() placeholder: string = 'Nachricht an #';

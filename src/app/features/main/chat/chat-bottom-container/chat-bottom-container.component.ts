@@ -4,11 +4,10 @@ import { Channel } from '../../../../core/models/channel.class';
 import { Message } from '../../../../core/models/message.class';
 
 @Component({
-  selector: 'app-chat-bottom-container',
-  standalone: true,
-  imports: [MessageComponent],
-  templateUrl: './chat-bottom-container.component.html',
-  styleUrl: './chat-bottom-container.component.scss'
+    selector: 'app-chat-bottom-container',
+    imports: [MessageComponent],
+    templateUrl: './chat-bottom-container.component.html',
+    styleUrl: './chat-bottom-container.component.scss'
 })
 export class ChatBottomContainerComponent {
   @Input() type: string = 'chat';

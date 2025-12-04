@@ -8,14 +8,13 @@ import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 import { FirebaseService } from '../../core/services/firebase/firebase.service';
 
 @Component({
-  selector: 'app-choose-avatar',
-  standalone: true,
-  imports: [CommonModule, LoginHeaderComponent, FooterComponent],
-  templateUrl: './choose-avatar.component.html',
-  styleUrls: [
-    './choose-avatar.component.scss',
-    '../../../styles/login.scss'
-  ]
+    selector: 'app-choose-avatar',
+    imports: [CommonModule, LoginHeaderComponent, FooterComponent],
+    templateUrl: './choose-avatar.component.html',
+    styleUrls: [
+        './choose-avatar.component.scss',
+        '../../../styles/login.scss'
+    ]
 })
 export class ChooseAvatarComponent {
 

@@ -9,11 +9,10 @@ import { LayoutService } from '../../../core/services/layout/layout.service';
 import { UserService } from '../../../core/services/user/user.service';
 
 @Component({
-  selector: 'app-thread',
-  standalone: true,
-  imports: [MessageComponent, MessageTextareaComponent, CommonModule],
-  templateUrl: './thread.component.html',
-  styleUrl: './thread.component.scss'
+    selector: 'app-thread',
+    imports: [MessageComponent, MessageTextareaComponent, CommonModule],
+    templateUrl: './thread.component.html',
+    styleUrl: './thread.component.scss'
 })
 export class ThreadComponent {
   

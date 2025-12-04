@@ -4,11 +4,10 @@ import { UserService } from '../../../core/services/user/user.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-profile-view-users',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './profile-view-users.component.html',
-  styleUrl: './profile-view-users.component.scss',
+    selector: 'app-profile-view-users',
+    imports: [CommonModule],
+    templateUrl: './profile-view-users.component.html',
+    styleUrl: './profile-view-users.component.scss'
 })
 export class ProfileViewUsersComponent {
   constructor(public chatService: ChatService, public userService: UserService) {}

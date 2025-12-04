@@ -7,11 +7,10 @@ import { LayoutService } from '../../../core/services/layout/layout.service';
 import { SearchComponentComponent } from "../search-component/search-component.component";
 
 @Component({
-  selector: 'app-side-nav',
-  standalone: true,
-  imports: [CommonModule, SearchComponentComponent],
-  templateUrl: './side-nav.component.html',
-  styleUrl: './side-nav.component.scss',
+    selector: 'app-side-nav',
+    imports: [CommonModule, SearchComponentComponent],
+    templateUrl: './side-nav.component.html',
+    styleUrl: './side-nav.component.scss'
 })
 export class SideNavComponent {
   channelsOpened: boolean = true;

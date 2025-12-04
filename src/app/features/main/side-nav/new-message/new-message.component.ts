@@ -9,11 +9,10 @@ import { Channel } from '../../../../core/models/channel.class';
 import { LayoutService } from '../../../../core/services/layout/layout.service';
 
 @Component({
-  selector: 'app-new-message',
-  standalone: true,
-  imports: [MessageTextareaComponent, CommonModule],
-  templateUrl: './new-message.component.html',
-  styleUrl: './new-message.component.scss',
+    selector: 'app-new-message',
+    imports: [MessageTextareaComponent, CommonModule],
+    templateUrl: './new-message.component.html',
+    styleUrl: './new-message.component.scss'
 })
 export class NewMessageComponent {
   @ViewChild('input') inputElement!: ElementRef;

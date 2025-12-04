@@ -17,11 +17,10 @@ import {
 import { directMessage } from '../../../core/models/direct-message';
 
 @Component({
-  selector: 'app-search-component',
-  standalone: true,
-  imports: [FormsModule, CommonModule, ReactiveFormsModule],
-  templateUrl: './search-component.component.html',
-  styleUrl: './search-component.component.scss',
+    selector: 'app-search-component',
+    imports: [FormsModule, CommonModule, ReactiveFormsModule],
+    templateUrl: './search-component.component.html',
+    styleUrl: './search-component.component.scss'
 })
 export class SearchComponentComponent {
   public userService = inject(UserService);

@@ -11,11 +11,10 @@ import { ChatUser } from '../../../../core/models/user.class';
 import { FilterNameComponent } from '../../../../shared/filter-name/filter-name.component';
 
 @Component({
-  selector: 'app-create-channel',
-  standalone: true,
-  imports: [CommonModule, FormsModule, FilterNameComponent],
-  templateUrl: './create-channel.component.html',
-  styleUrl: './create-channel.component.scss',
+    selector: 'app-create-channel',
+    imports: [CommonModule, FormsModule, FilterNameComponent],
+    templateUrl: './create-channel.component.html',
+    styleUrl: './create-channel.component.scss'
 })
 export class CreateChannelComponent {
   constructor(

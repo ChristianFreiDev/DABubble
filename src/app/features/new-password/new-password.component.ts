@@ -7,14 +7,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { applyActionCode, Auth, confirmPasswordReset, verifyPasswordResetCode } from "@angular/fire/auth";
 
 @Component({
-  selector: 'app-new-password',
-  standalone: true,
-  imports: [CommonModule, FormsModule, LoginHeaderComponent, FooterComponent],
-  templateUrl: './new-password.component.html',
-  styleUrls: [
-    './new-password.component.scss',
-    '../../../styles/login.scss'
-  ]
+    selector: 'app-new-password',
+    imports: [CommonModule, FormsModule, LoginHeaderComponent, FooterComponent],
+    templateUrl: './new-password.component.html',
+    styleUrls: [
+        './new-password.component.scss',
+        '../../../styles/login.scss'
+    ]
 })
 export class NewPasswordComponent implements OnInit {
 

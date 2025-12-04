@@ -2,11 +2,10 @@ import { Component, ElementRef, Input } from '@angular/core';
 import { Channel } from '../../../../core/models/channel.class';
 
 @Component({
-  selector: 'app-channel-mention',
-  standalone: true,
-  imports: [],
-  templateUrl: './channel-mention.component.html',
-  styleUrl: './channel-mention.component.scss'
+    selector: 'app-channel-mention',
+    imports: [],
+    templateUrl: './channel-mention.component.html',
+    styleUrl: './channel-mention.component.scss'
 })
 export class ChannelMentionComponent {
   @Input() channel!: Channel;

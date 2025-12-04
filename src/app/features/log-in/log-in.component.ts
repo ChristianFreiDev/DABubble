@@ -10,14 +10,13 @@ import { Auth, browserSessionPersistence, GoogleAuthProvider, signInWithEmailAnd
 import { environment } from '../../../environments/environment.development';
 
 @Component({
-  selector: 'app-log-in',
-  standalone: true,
-  imports: [CommonModule, FormsModule, IntroComponent, LoginHeaderComponent, FooterComponent, RouterLink],
-  templateUrl: './log-in.component.html',
-  styleUrls: [
-    './log-in.component.scss',
-    '../../../styles/login.scss'
-  ]
+    selector: 'app-log-in',
+    imports: [CommonModule, FormsModule, IntroComponent, LoginHeaderComponent, FooterComponent, RouterLink],
+    templateUrl: './log-in.component.html',
+    styleUrls: [
+        './log-in.component.scss',
+        '../../../styles/login.scss'
+    ]
 })
 export class LogInComponent implements OnInit {
 

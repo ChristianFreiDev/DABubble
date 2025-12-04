@@ -8,14 +8,13 @@ import { UserService } from "../../core/services/user/user.service";
 
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [CommonModule, FormsModule, LoginHeaderComponent, FooterComponent, RouterLink],
-  templateUrl: './register.component.html',
-  styleUrls: [
-    './register.component.scss',
-    '../../../styles/login.scss'
-  ]
+    selector: 'app-register',
+    imports: [CommonModule, FormsModule, LoginHeaderComponent, FooterComponent, RouterLink],
+    templateUrl: './register.component.html',
+    styleUrls: [
+        './register.component.scss',
+        '../../../styles/login.scss'
+    ]
 })
 export class RegisterComponent {
   

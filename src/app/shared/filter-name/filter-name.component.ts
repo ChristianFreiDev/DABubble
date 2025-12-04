@@ -7,11 +7,10 @@ import { ChatService } from '../../core/services/chat/chat.service';
 import { LayoutService } from '../../core/services/layout/layout.service';
 
 @Component({
-  selector: 'app-filter-name',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './filter-name.component.html',
-  styleUrl: './filter-name.component.scss'
+    selector: 'app-filter-name',
+    imports: [CommonModule],
+    templateUrl: './filter-name.component.html',
+    styleUrl: './filter-name.component.scss'
 })
 export class FilterNameComponent {
   

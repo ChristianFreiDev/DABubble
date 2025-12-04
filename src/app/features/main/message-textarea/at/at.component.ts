@@ -4,11 +4,10 @@ import { ChatUser } from '../../../../core/models/user.class';
 import { Channel } from '../../../../core/models/channel.class';
 
 @Component({
-  selector: 'app-at',
-  standalone: true,
-  imports: [],
-  templateUrl: './at.component.html',
-  styleUrl: './at.component.scss'
+    selector: 'app-at',
+    imports: [],
+    templateUrl: './at.component.html',
+    styleUrl: './at.component.scss'
 })
 export class AtComponent {
 

@@ -10,10 +10,10 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^18.2.14",
+    "@angular/animations": "^19.2.17",
     "@angular/common": "^21.0.3",
     "@angular/compiler": "^21.0.3",
-    "@angular/core": "^18.2.14",
+    "@angular/core": "^19.2.17",
     "@angular/fire": "^20.0.1",
     "@angular/forms": "^21.0.3",
     "@angular/platform-browser": "^21.0.3",
@@ -23,7 +23,7 @@
     "firebaseui": "^6.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.2"
+    "zone.js": "~0.15.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^21.0.2",
@@ -36,6 +36,6 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.2.2"
+    "typescript": "^5.9.3"
   }
 }

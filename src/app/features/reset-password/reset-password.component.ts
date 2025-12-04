@@ -7,14 +7,13 @@ import { Router } from '@angular/router';
 import { Auth, sendPasswordResetEmail } from '@angular/fire/auth';
 
 @Component({
-  selector: 'app-reset-password',
-  standalone: true,
-  imports: [FormsModule, CommonModule, LoginHeaderComponent, FooterComponent],
-  templateUrl: './reset-password.component.html',
-  styleUrls: [
-    './reset-password.component.scss',
-    '../../../styles/login.scss'
-  ]
+    selector: 'app-reset-password',
+    imports: [FormsModule, CommonModule, LoginHeaderComponent, FooterComponent],
+    templateUrl: './reset-password.component.html',
+    styleUrls: [
+        './reset-password.component.scss',
+        '../../../styles/login.scss'
+    ]
 })
 export class ResetPasswordComponent {
 

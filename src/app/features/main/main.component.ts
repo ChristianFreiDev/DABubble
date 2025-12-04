@@ -19,26 +19,24 @@ import { DialogService } from '../../core/services/dialog/dialog.service';
 import { UserService } from '../../core/services/user/user.service';
 
 @Component({
-  selector: 'app-main',
-  standalone: true,
-  imports: [
-    HeaderComponent,
-    SideNavComponent,
-    ChatComponent,
-    CommonModule,
-    ThreadComponent,
-    NgIf,
-    CreateChannelComponent,
-    EditChannelComponent,
-    NewMessageComponent,
-    DirectMessageComponent,
-    ProfileViewUsersComponent,
-    ProfileViewLoggedUserComponent,
-    UploadErrorComponent
-],
-  templateUrl: './main.component.html',
-  styleUrl: './main.component.scss',
-  
+    selector: 'app-main',
+    imports: [
+        HeaderComponent,
+        SideNavComponent,
+        ChatComponent,
+        CommonModule,
+        ThreadComponent,
+        NgIf,
+        CreateChannelComponent,
+        EditChannelComponent,
+        NewMessageComponent,
+        DirectMessageComponent,
+        ProfileViewUsersComponent,
+        ProfileViewLoggedUserComponent,
+        UploadErrorComponent
+    ],
+    templateUrl: './main.component.html',
+    styleUrl: './main.component.scss'
 })
 export class MainComponent implements OnInit {
   layoutState: Signal<any> = this.layoutService.layoutState;

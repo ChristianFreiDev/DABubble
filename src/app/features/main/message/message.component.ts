@@ -13,11 +13,10 @@ import { FirebaseService } from '../../../core/services/firebase/firebase.servic
 import { DialogService } from '../../../core/services/dialog/dialog.service';
 
 @Component({
-  selector: 'app-message',
-  standalone: true,
-  imports: [EmojiPickerComponent, ReactionOptionsComponent, DeletableFileComponent, CommonModule, FormsModule],
-  templateUrl: './message.component.html',
-  styleUrl: './message.component.scss'
+    selector: 'app-message',
+    imports: [EmojiPickerComponent, ReactionOptionsComponent, DeletableFileComponent, CommonModule, FormsModule],
+    templateUrl: './message.component.html',
+    styleUrl: './message.component.scss'
 })
 export class MessageComponent {
   @Input() messageData: Message = new Message();

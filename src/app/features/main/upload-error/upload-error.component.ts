@@ -2,11 +2,10 @@ import { Component, Signal } from '@angular/core';
 import { DialogService } from '../../../core/services/dialog/dialog.service';
 
 @Component({
-  selector: 'app-upload-error',
-  standalone: true,
-  imports: [],
-  templateUrl: './upload-error.component.html',
-  styleUrl: './upload-error.component.scss'
+    selector: 'app-upload-error',
+    imports: [],
+    templateUrl: './upload-error.component.html',
+    styleUrl: './upload-error.component.scss'
 })
 export class UploadErrorComponent {
 

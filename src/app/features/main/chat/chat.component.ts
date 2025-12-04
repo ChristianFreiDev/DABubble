@@ -12,11 +12,10 @@ import { DialogService } from '../../../core/services/dialog/dialog.service';
 import { UserService } from '../../../core/services/user/user.service';
 
 @Component({
-  selector: 'app-chat',
-  standalone: true,
-  imports: [MessageTextareaComponent, AddPeopleComponent, MembersComponent, ChatBottomContainerComponent, SlicePipe],
-  templateUrl: './chat.component.html',
-  styleUrl: './chat.component.scss'
+    selector: 'app-chat',
+    imports: [MessageTextareaComponent, AddPeopleComponent, MembersComponent, ChatBottomContainerComponent, SlicePipe],
+    templateUrl: './chat.component.html',
+    styleUrl: './chat.component.scss'
 })
 export class ChatComponent {
   channel: Signal<Channel> = this.chatService.currentChannel;

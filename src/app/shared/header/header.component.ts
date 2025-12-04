@@ -9,11 +9,10 @@ import { CommonModule } from '@angular/common';
 import { LayoutService } from '../../core/services/layout/layout.service';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [FormsModule, SearchComponentComponent, CommonModule],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+    selector: 'app-header',
+    imports: [FormsModule, SearchComponentComponent, CommonModule],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
   userService = inject(UserService);

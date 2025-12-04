@@ -2,11 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-intro',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './intro.component.html',
-  styleUrl: './intro.component.scss'
+    selector: 'app-intro',
+    imports: [CommonModule],
+    templateUrl: './intro.component.html',
+    styleUrl: './intro.component.scss'
 })
 export class IntroComponent implements OnInit {
 

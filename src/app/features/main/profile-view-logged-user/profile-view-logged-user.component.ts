@@ -7,11 +7,10 @@ import { UserService } from '../../../core/services/user/user.service';
 import { environment } from '../../../../environments/environment.development';
 
 @Component({
-  selector: 'app-profile-view-logged-user',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './profile-view-logged-user.component.html',
-  styleUrl: './profile-view-logged-user.component.scss',
+    selector: 'app-profile-view-logged-user',
+    imports: [CommonModule, FormsModule],
+    templateUrl: './profile-view-logged-user.component.html',
+    styleUrl: './profile-view-logged-user.component.scss'
 })
 export class ProfileViewLoggedUserComponent {
   

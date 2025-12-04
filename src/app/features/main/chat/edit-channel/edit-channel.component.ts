@@ -8,11 +8,10 @@ import { DialogService } from '../../../../core/services/dialog/dialog.service';
 import { UserService } from '../../../../core/services/user/user.service';
 
 @Component({
-  selector: 'app-edit-channel',
-  standalone: true,
-  imports: [CommonModule, FormsModule, MembersComponent],
-  templateUrl: './edit-channel.component.html',
-  styleUrl: './edit-channel.component.scss'
+    selector: 'app-edit-channel',
+    imports: [CommonModule, FormsModule, MembersComponent],
+    templateUrl: './edit-channel.component.html',
+    styleUrl: './edit-channel.component.scss'
 })
 export class EditChannelComponent {
 

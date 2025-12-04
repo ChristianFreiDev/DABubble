@@ -5,11 +5,10 @@ import { FilterNameComponent } from '../../../../shared/filter-name/filter-name.
 import { DialogService } from '../../../../core/services/dialog/dialog.service';
 
 @Component({
-  selector: 'app-add-people',
-  standalone: true,
-  imports: [FilterNameComponent],
-  templateUrl: './add-people.component.html',
-  styleUrl: './add-people.component.scss'
+    selector: 'app-add-people',
+    imports: [FilterNameComponent],
+    templateUrl: './add-people.component.html',
+    styleUrl: './add-people.component.scss'
 })
 export class AddPeopleComponent {
   currentChannel: Signal<Channel> = this.chatService.currentChannel;
