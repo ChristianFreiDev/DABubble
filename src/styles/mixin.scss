@@ -1,4 +1,3 @@
-// functions:
 @mixin dFlex($fd: row, $jc: center, $ai: center) {
   display: flex;
   flex-direction: $fd;
@@ -6,7 +5,6 @@
   align-items: $ai;
 }
 
-// variables:
 $purple-1: #444df2;
 $purple-2: #797ef3;
 $purple-3: #535af1;
@@ -14,18 +12,15 @@ $text-gray: #686868;
 $bg-color: #eceefe;
 $light-purple: #adb0d9;
 $error-rosa: #ed1e79;
-$online-green: #92C83E;
-// a little lighter for the scrollbar:
+$online-green: #92c83e;
 $light-purple-scrollbar: #c7c9e5;
 $side-nav-width: 366px;
 $thread-width: 485px;
 $thread-width-small: $side-nav-width;
 $header-and-bottom-spacing: 135px;
-// main breakpoints:
 $mainBreakpoint1: 768px;
 $mainBreakpoint2: 1200px;
 
-// typography:
 @mixin fontStyle0 {
   font-size: 14px;
   font-weight: 400;
@@ -38,7 +33,6 @@ $mainBreakpoint2: 1200px;
   line-height: 23.19px;
 }
 
-// default font style
 @mixin fontStyle2 {
   font-size: 18px;
   font-weight: 400;

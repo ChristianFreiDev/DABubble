@@ -1,27 +1,27 @@
-@import '../../../../../styles/mixin.scss';
+@use "../../../../../styles/mixin.scss";
 
 :host {
-    position: absolute;
-    background-color: white;
-    bottom: 144px;
-    left: 112px;
-    padding: 20px;
-    gap: 20px;
-    border-radius: 30px 30px 30px 0px;
-    z-index: 999999;
-    box-shadow: 0px 6px 10px 0px #00000033;
-    max-height: 305px;
-    overflow-y: auto;
+  position: absolute;
+  background-color: white;
+  bottom: 144px;
+  left: 112px;
+  padding: 20px;
+  gap: 20px;
+  border-radius: 30px 30px 30px 0px;
+  z-index: 999999;
+  box-shadow: 0px 6px 10px 0px #00000033;
+  max-height: 305px;
+  overflow-y: auto;
 }
 
 .person {
-    &:hover {
-        background-color: $bg-color;
-    }
+  &:hover {
+    background-color: $bg-color;
+  }
 }
 
 @media (max-width: 768px) {
-    :host {
-        padding: 10px;
-    }
+  :host {
+    padding: 10px;
+  }
 }

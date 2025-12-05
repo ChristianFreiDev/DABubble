@@ -1,66 +1,65 @@
-@import '../../../styles/mixin.scss';
+@use "../../../styles/mixin.scss";
 
 :host {
-    @include dFlex();
-    width: 100%;
+  @include dFlex();
+  width: 100%;
 }
 
 header {
-    @include dFlex($jc: space-between);
-    width: 100%;
-    height: 80px
+  @include dFlex($jc: space-between);
+  width: 100%;
+  height: 80px;
 }
 
 .logo-container {
-    @include dFlex();
-    gap: 16px;
+  @include dFlex();
+  gap: 16px;
 
-    img {
-        height: 70px;
-        width: 70px;
-    }
+  img {
+    height: 70px;
+    width: 70px;
+  }
 
-    span {
-        @include fontStyle9;
-    }
+  span {
+    @include fontStyle9;
+  }
 }
 
 .create-account-container {
-    @include dFlex($fd: column, $ai: flex-end);
-    gap: 10px;
+  @include dFlex($fd: column, $ai: flex-end);
+  gap: 10px;
 }
 
-// Responsive Design:
-@media(max-width: 1968px) {
-    header {
-        padding: 0 24px;
-    }
+@media (max-width: 1968px) {
+  header {
+    padding: 0 24px;
+  }
 }
 
-@media(max-height: 920px) and (min-width: 654px) {
-    .create-account-container {
-        display: none;
-    }
+@media (max-height: 920px) and (min-width: 654px) {
+  .create-account-container {
+    display: none;
+  }
 }
 
-@media(max-width: 654px) {
-    header {
-        justify-content: center;
-        padding: 0;
+@media (max-width: 654px) {
+  header {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .logo-container {
+    img {
+      height: 56px;
+      width: 56px;
     }
 
-    .logo-container {
-        img {
-            height: 56px;
-            width: 56px;
-        }
+    span {
+      @include fontStyle6;
+    }
+  }
 
-        span {
-            @include fontStyle6;
-        }
-    }
-    
-    .create-account-container {
-        display: none;
-    }
+  .create-account-container {
+    display: none;
+  }
 }

@@ -1,281 +1,292 @@
-@import '../../../../styles/mixin.scss';
+@use "../../../../styles/mixin.scss";
 
-// variables:
 $header-height: 80px;
 $intro-content-width: 202px;
-$animation-config: 500ms ease-out 2000ms forwards; //700ms Pause (Verzögerung: 1300ms + 700ms)
+$animation-config: 500ms ease-out 2000ms forwards;
 
 .intro-content {
+  @include dFlex();
+  height: 100%;
+  overflow: hidden;
+  transform: translateX(200px);
+  animation: moveLeft 300ms ease-out 500ms forwards,
+    moveTopLeft $animation-config;
+
+  div {
     @include dFlex();
     height: 100%;
-    overflow: hidden;
-    transform: translateX(200px);
-    animation: moveLeft 300ms ease-out 500ms forwards, moveTopLeft $animation-config;
+    padding-right: 39px;
+    background-image: linear-gradient(#797ef3, #313ae5);
+    z-index: 5;
+    animation: reducePadding $animation-config;
+  }
 
-    div {
-        @include dFlex();
-        height: 100%;
-        padding-right: 39px;
-        background-image: linear-gradient(#797EF3, #313AE5);
-        z-index: 5;
-        animation: reducePadding $animation-config;
-    }
+  img {
+    height: 184px;
+    animation: shrinkLogo $animation-config;
+  }
 
-    img {
-        height: 184px;
-        animation: shrinkLogo $animation-config;
-    }
+  span {
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1;
+    color: white;
+    transform: translateX(-400px);
+    animation: moveRight 500ms ease-out 800ms forwards,
+      shrinkTitle $animation-config;
+  }
 
-    span {
-        font-size: 72px;
-        font-weight: 700;
-        line-height: 1;
-        color: white;
-        transform: translateX(-400px);
-        animation: moveRight 500ms ease-out 800ms forwards, shrinkTitle $animation-config;
-    }
-
-    .bg-img-unset {
-        background-image: unset;
-    }
+  .bg-img-unset {
+    background-image: unset;
+  }
 }
 
 .height-unset {
-    height: unset;
+  height: unset;
 }
 
-// Keyframes:
-// 1. Animationsreihe: Dauer 1300ms
-@keyframes moveLeft {   //für den intro-content-Container
+@keyframes moveLeft {
+  from {
+    transform: translateX(200px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveRight {
+  from {
+    transform: translateX(-400px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes shrinkLogo {
+  from {
+    height: 184px;
+  }
+
+  to {
+    height: 70px;
+  }
+}
+
+@keyframes shrinkTitle {
+  from {
+    font-size: 72px;
+    line-height: 1;
+    color: white;
+  }
+
+  to {
+    font-size: 24px;
+    line-height: 32.74px;
+    color: black;
+  }
+}
+
+@keyframes reducePadding {
+  from {
+    padding-right: 39px;
+  }
+
+  to {
+    padding-right: 16px;
+  }
+}
+
+@media (min-width: 1920px) and (min-height: 1100px) {
+  @keyframes moveTopLeft {
     from {
-        transform: translateX(200px);
+      transform: translateY(0) translateX(0);
     }
 
     to {
-        transform: translateX(0);
+      transform: translateY(calc(-50vh + 75px + $header-height / 2))
+        translateX(
+          calc(-50vw + $intro-content-width / 2 + (100vw - 1920px) / 2)
+        );
+      transform: translateY(calc(-50svh + 75px + $header-height / 2))
+        translateX(
+          calc(-50vw + $intro-content-width / 2 + (100vw - 1920px) / 2)
+        );
     }
+  }
 }
 
-@keyframes moveRight {  //für den Titel (DABubble)
+@media (min-width: 1920px) and (max-height: 1100px) {
+  @keyframes moveTopLeft {
     from {
-        transform: translateX(-400px);
+      transform: translateY(0) translateX(0);
     }
 
     to {
-        transform: translateX(0);
+      transform: translateY(calc(-50vh + 4px + $header-height / 2))
+        translateX(
+          calc(-50vw + $intro-content-width / 2 + (100vw - 1920px) / 2)
+        );
+      transform: translateY(calc(-50svh + 4px + $header-height / 2))
+        translateX(
+          calc(-50vw + $intro-content-width / 2 + (100vw - 1920px) / 2)
+        );
     }
+  }
 }
 
-// 2. Animationsreihe: Dauer 2500ms - 1300ms = 1200ms max.
-@keyframes shrinkLogo {  //für das Logo
+@media (max-width: 1920px) and (min-height: 1100px) {
+  @keyframes moveTopLeft {
     from {
-        height: 184px;
+      transform: translateY(0) translateX(0);
     }
 
     to {
-        height: 70px;
+      transform: translateY(calc(-50vh + 75px + $header-height / 2))
+        translateX(calc(-50vw + $intro-content-width / 2 + 24px));
+      transform: translateY(calc(-50svh + 75px + $header-height / 2))
+        translateX(calc(-50vw + $intro-content-width / 2 + 24px));
     }
+  }
 }
 
-@keyframes shrinkTitle {  //für den Titel (DABubble)
+@media (max-width: 1920px) and (min-height: 860px) and (max-height: 1100px) {
+  @keyframes moveTopLeft {
     from {
-        font-size: 72px;
-        line-height: 1;
-        color: white;
+      transform: translateY(0) translateX(0);
     }
 
     to {
-        font-size: 24px;
-        line-height: 32.74px;
-        color: black;
+      transform: translateY(calc(-50vh + 4px + $header-height / 2))
+        translateX(calc(-50vw + $intro-content-width / 2 + 24px));
+      transform: translateY(calc(-50svh + 4px + $header-height / 2))
+        translateX(calc(-50vw + $intro-content-width / 2 + 24px));
     }
+  }
 }
 
-@keyframes reducePadding {  //für den Logo-Container
+@media (max-width: 1920px) and (max-height: 860px) {
+  @keyframes moveTopLeft {
     from {
-        padding-right: 39px;
+      transform: translateY(0) translateX(0);
     }
 
     to {
-        padding-right: 16px;
+      transform: translateY(calc(-50vh + $header-height / 2))
+        translateX(calc(-50vw + $intro-content-width / 2 + 24px));
+      transform: translateY(calc(-50svh + $header-height / 2))
+        translateX(calc(-50vw + $intro-content-width / 2 + 24px));
     }
+  }
 }
 
-@media(min-width: 1920px) and (min-height: 1100px) { //nur für Bildschirmbreite > 1920px und -höhe > 1100px!
-    @keyframes moveTopLeft {    //für den intro-content-Container
-        from {
-            transform: translateY(0) translateX(0);
-        }
-    
-        to {
-            transform: translateY(calc(-50vh + 75px + $header-height / 2)) translateX(calc(-50vw + $intro-content-width / 2 + (100vw - 1920px) / 2));
-            transform: translateY(calc(-50svh + 75px + $header-height / 2)) translateX(calc(-50vw + $intro-content-width / 2 + (100vw - 1920px) / 2));
-            //plus Abstand nach oben und halbe Höhe des finalen Logos     //plus halbe Breite vom finalen logo-container und Abstand durch Content-Begrenzung
-        }
-    }
-}
-
-@media(min-width: 1920px) and (max-height: 1100px) { //nur für Bildschirmbreite > 1920px und -höhe <= 1100px!
-    @keyframes moveTopLeft {
-        from {
-            transform: translateY(0) translateX(0);
-        }
-    
-        to {
-            transform: translateY(calc(-50vh + 4px + $header-height / 2)) translateX(calc(-50vw + $intro-content-width / 2 + (100vw - 1920px) / 2));
-            transform: translateY(calc(-50svh + 4px + $header-height / 2)) translateX(calc(-50vw + $intro-content-width / 2 + (100vw - 1920px) / 2));
-        }
-    }
-}
-
-@media(max-width: 1920px) and (min-height: 1100px) { //nur für Bildschirmbreite < 1920px und -höhe > 1100px!
-    @keyframes moveTopLeft {    //für den intro-content-Container
-        from {
-            transform: translateY(0) translateX(0);
-        }
-    
-        to {
-            transform: translateY(calc(-50vh + 75px + $header-height / 2)) translateX(calc(-50vw + $intro-content-width / 2 + 24px));
-            transform: translateY(calc(-50svh + 75px + $header-height / 2)) translateX(calc(-50vw + $intro-content-width / 2 + 24px));
-            //plus Abstand nach oben und halbe Höhe des finalen Logos     //plus halbe Breite vom finalen logo-container und Abstand nach links
-        }
-    }
-}
-
-@media(max-width: 1920px) and (min-height: 860px) and (max-height: 1100px) { //nur für Bildschirmbreite < 1920px und -höhe 860px - 1100px!
-    @keyframes moveTopLeft {
-        from {
-            transform: translateY(0) translateX(0);
-        }
-    
-        to {
-            transform: translateY(calc(-50vh + 4px + $header-height / 2)) translateX(calc(-50vw + $intro-content-width / 2 + 24px));
-            transform: translateY(calc(-50svh + 4px + $header-height / 2)) translateX(calc(-50vw + $intro-content-width / 2 + 24px));
-        }
-    }
-}
-
-@media(max-width: 1920px) and (max-height: 860px) { //nur für Bildschirmbreite < 1920px und -höhe < 860px!
-    @keyframes moveTopLeft {
-        from {
-            transform: translateY(0) translateX(0);
-        }
-    
-        to {
-            transform: translateY(calc(-50vh + $header-height / 2)) translateX(calc(-50vw + $intro-content-width / 2 + 24px));
-            transform: translateY(calc(-50svh + $header-height / 2)) translateX(calc(-50vw + $intro-content-width / 2 + 24px));
-        }
-    }
-}
-
-// Responsive Design:
 @keyframes shrinkLogoMobile {
-    from {
-        height: 70px;
-    }
+  from {
+    height: 70px;
+  }
 
-    to {
-        height: 56px;
-    }
+  to {
+    height: 56px;
+  }
 }
 
 @keyframes shrinkTitleMobile {
+  from {
+    font-size: 32px;
+    line-height: 1;
+    color: white;
+  }
+
+  to {
+    font-size: 20px;
+    line-height: 24px;
+    color: black;
+  }
+}
+
+@keyframes reducePaddingMobile {
+  from {
+    padding-right: 24px;
+  }
+
+  to {
+    padding-right: 16px;
+  }
+}
+
+@media (min-width: 450px) and (max-width: 654px) and (min-height: 848px) {
+  @keyframes moveTopMobile {
     from {
-        font-size: 32px;
-        line-height: 1;
-        color: white;
+      transform: translateY(0) translateX(0);
     }
 
     to {
-        font-size: 20px;
-        line-height: 24px;
-        color: black;
+      transform: translateY(calc(-50vh + (100vh - 848px) / 2 + 40px));
+      transform: translateY(calc(-50svh + (100svh - 848px) / 2 + 40px));
     }
+  }
 }
 
-@keyframes reducePaddingMobile {  //für den Logo-Container
+@media (min-width: 450px) and (max-width: 654px) and (max-height: 848px) {
+  @keyframes moveTopMobile {
     from {
-        padding-right: 24px;
+      transform: translateY(0) translateX(0);
     }
 
     to {
-        padding-right: 16px;
+      transform: translateY(calc(-50vh + 40px));
+      transform: translateY(calc(-50svh + 40px));
     }
+  }
 }
 
-@media(min-width: 450px) and (max-width: 654px) and (min-height: 848px) {   //für Bildschirmbreite 450px - 654px und -höhe > 848px
-    @keyframes moveTopMobile {    //für den intro-content-Container
-        from {
-            transform: translateY(0) translateX(0);
-        }
-    
-        to {
-            transform: translateY(calc(-50vh + (100vh - 848px) / 2 + 40px));
-            transform: translateY(calc(-50svh + (100svh - 848px) / 2 + 40px));
-            //-50vh + (100vh - Content)/2 + halbe Header-Höhe
-        }
+@media (max-width: 450px) and (min-height: 877px) {
+  @keyframes moveTopMobile {
+    from {
+      transform: translateY(0) translateX(0);
     }
+
+    to {
+      transform: translateY(calc(-50vh + (100vh - 877px) / 2 + 40px));
+      transform: translateY(calc(-50svh + (100svh - 877px) / 2 + 40px));
+    }
+  }
 }
 
-@media(min-width: 450px) and (max-width: 654px) and (max-height: 848px) {   //für Bildschirmbreite 450px - 654px und -höhe < 848px
-    @keyframes moveTopMobile {    //für den intro-content-Container
-        from {
-            transform: translateY(0) translateX(0);
-        }
-    
-        to {
-            transform: translateY(calc(-50vh + 40px));
-            transform: translateY(calc(-50svh + 40px));
-            //-50vh + (100vh - Content)/2 + halbe Header-Höhe
-        }
+@media (max-width: 450px) and (max-height: 877px) {
+  @keyframes moveTopMobile {
+    from {
+      transform: translateY(0) translateX(0);
     }
+
+    to {
+      transform: translateY(calc(-50vh + 40px));
+      transform: translateY(calc(-50svh + 40px));
+    }
+  }
 }
 
-@media(max-width: 450px) and (min-height: 877px) {   //für Bildschirmbreite < 450px und -höhe > 877px
-    @keyframes moveTopMobile {    //für den intro-content-Container
-        from {
-            transform: translateY(0) translateX(0);
-        }
-    
-        to {
-            transform: translateY(calc(-50vh + (100vh - 877px) / 2 + 40px));
-            transform: translateY(calc(-50svh + (100svh - 877px) / 2 + 40px));
-            //-50vh + (100vh - Content)/2 + halbe Header-Höhe
-        }
+@media (max-width: 654px) {
+  .intro-content {
+    animation: moveLeft 300ms ease-out 500ms forwards,
+      moveTopMobile $animation-config;
+
+    div {
+      padding-right: 24px;
+      animation: reducePaddingMobile $animation-config;
     }
-}
 
-@media(max-width: 450px) and (max-height: 877px) {   //für Bildschirmbreite < 450px und -höhe < 877px
-    @keyframes moveTopMobile {    //für den intro-content-Container
-        from {
-            transform: translateY(0) translateX(0);
-        }
-    
-        to {
-            transform: translateY(calc(-50vh + 40px));
-            transform: translateY(calc(-50svh + 40px));
-            //-50vh + (100vh - Content)/2 + halbe Header-Höhe
-        }
+    img {
+      height: 70px;
+      animation: shrinkLogoMobile $animation-config;
     }
-}
 
-@media(max-width: 654px) {
-    .intro-content {
-        animation: moveLeft 300ms ease-out 500ms forwards, moveTopMobile $animation-config;
-
-        div {
-            padding-right: 24px;
-            animation: reducePaddingMobile $animation-config;
-        }
-        
-        img {
-            height: 70px;
-            animation: shrinkLogoMobile $animation-config;
-        }
-
-        span {
-            font-size: 32px;
-            animation: moveRight 500ms ease-out 800ms forwards, shrinkTitleMobile $animation-config;
-        }
+    span {
+      font-size: 32px;
+      animation: moveRight 500ms ease-out 800ms forwards,
+        shrinkTitleMobile $animation-config;
     }
+  }
 }

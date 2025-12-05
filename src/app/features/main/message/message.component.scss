@@ -1,408 +1,408 @@
-@import '../../../../styles/mixin.scss';
+@use "../../../../styles/mixin.scss";
 
 .message {
-    position: relative;
-    @include dFlex($jc: flex-start, $ai: normal);
-    padding-top: 10px;
-    padding-left: 45px;
-    padding-right: 146px;
-    padding-bottom: 10px;
-    gap: 30px;
-    background-color: white;
-    transition: background-color 100ms ease-out;
-    @media (hover: hover) {
-        &:hover {
-            background-color: $bg-color;
-            .message-content {
-                background-color: white;
-            }
-            .message-menu {
-                visibility: visible;
-                opacity: 1;
-            }
-            .chat-message-menu {
-                right: 63px;
-            }
-            .chat-message-menu-alternative {
-                right: unset;
-                left: 63px;
-            }
-        }
+  position: relative;
+  @include dFlex($jc: flex-start, $ai: normal);
+  padding-top: 10px;
+  padding-left: 45px;
+  padding-right: 146px;
+  padding-bottom: 10px;
+  gap: 30px;
+  background-color: white;
+  transition: background-color 100ms ease-out;
+  @media (hover: hover) {
+    &:hover {
+      background-color: $bg-color;
+      .message-content {
+        background-color: white;
+      }
+      .message-menu {
+        visibility: visible;
+        opacity: 1;
+      }
+      .chat-message-menu {
+        right: 63px;
+      }
+      .chat-message-menu-alternative {
+        right: unset;
+        left: 63px;
+      }
     }
+  }
 }
 
 .touch-message {
-    background-color: $bg-color;
-    .message-content {
-        background-color: white;
-    }
-    .message-menu {
-        visibility: visible;
-        opacity: 1;
-    }
-    .chat-message-menu {
-        right: 63px;
-    }
-    .chat-message-menu-alternative {
-        right: unset;
-        left: 63px;
-    }
+  background-color: $bg-color;
+  .message-content {
+    background-color: white;
+  }
+  .message-menu {
+    visibility: visible;
+    opacity: 1;
+  }
+  .chat-message-menu {
+    right: 63px;
+  }
+  .chat-message-menu-alternative {
+    right: unset;
+    left: 63px;
+  }
 }
 
 .message-alternative {
-    padding-top: 10px;
-    padding-left: 146px;
-    padding-right: 45px;
-    padding-bottom: 10px;
-    @include dFlex($fd: row-reverse, $jc: flex-start, $ai: normal);
-    @media (hover: hover) {
-        &:hover {
-            .message-content {
-                background-color: $purple-2;
-            }
-        }
+  padding-top: 10px;
+  padding-left: 146px;
+  padding-right: 45px;
+  padding-bottom: 10px;
+  @include dFlex($fd: row-reverse, $jc: flex-start, $ai: normal);
+  @media (hover: hover) {
+    &:hover {
+      .message-content {
+        background-color: $purple-2;
+      }
     }
+  }
 }
 
 .touch-message-alternative {
-    .message-content {
-        background-color: $purple-2;
-    }
+  .message-content {
+    background-color: $purple-2;
+  }
 }
 
 .app-reaction-options-alternative {
-    left: 90%;
-    border-radius: 0px 30px 30px 30px;
+  left: 90%;
+  border-radius: 0px 30px 30px 30px;
 }
 
 .app-reaction-options-alternative2 {
-    left: -64px;
+  left: -64px;
 }
 
 .app-reaction-options-alternative3 {
-    top: 44px;
-    border-radius: 0px 30px 30px 30px;
-    left: -20px;
+  top: 44px;
+  border-radius: 0px 30px 30px 30px;
+  left: -20px;
 }
 
-
 .thread-message {
-    padding-right: 40px;
+  padding-right: 40px;
 }
 
 .thread-message-alternative {
-    padding-left: 40px;
+  padding-left: 40px;
 }
 
 .main-message-container {
-    @include dFlex($fd: column, $jc: flex-start, $ai: normal);
-    gap: 8px;
+  @include dFlex($fd: column, $jc: flex-start, $ai: normal);
+  gap: 8px;
 }
 
 .main-message-container-alternative {
-    @include dFlex($fd: column, $jc: flex-start, $ai: flex-end);
+  @include dFlex($fd: column, $jc: flex-start, $ai: flex-end);
 }
 
 .message-content {
-    @include dFlex;
-    transition: background-color 100ms ease-out;
-    background-color: $bg-color;
-    padding: 15px;
-    border-radius: 0px 30px 30px 30px;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    hyphens: auto;
+  @include dFlex;
+  transition: background-color 100ms ease-out;
+  background-color: $bg-color;
+  padding: 15px;
+  border-radius: 0px 30px 30px 30px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
 }
 
 .message-content-alternative {
-    background-color: $purple-2;
-    color: white;
-    border-radius: 30px 0px 30px 30px;
+  background-color: $purple-2;
+  color: white;
+  border-radius: 30px 0px 30px 30px;
 }
 
 .edit-message-container {
-    padding: 20px;
-    gap: 16px;
-    border-radius: 20px;
-    border: 1px solid #ADB0D9;
-    width: 70%;
-    background-color: white;
-    width: 100%;
+  padding: 20px;
+  gap: 16px;
+  border-radius: 20px;
+  border: 1px solid #adb0d9;
+  width: 70%;
+  background-color: white;
+  width: 100%;
 }
 
 .edit-message-container-bottom {
-    @include dFlex($jc: space-between);
+  @include dFlex($jc: space-between);
 }
 
 .edit-message-button-container {
-    @include dFlex($jc: normal);
-    gap: 32px;
+  @include dFlex($jc: normal);
+  gap: 32px;
 }
 
 .edit-message-textarea {
-    resize: none;
-    width: 100%;
-    height: 75px;
-    border: unset;
-    &:focus {
-        outline: unset;
-    }
+  resize: none;
+  width: 100%;
+  height: 75px;
+  border: unset;
+  &:focus {
+    outline: unset;
+  }
 }
 
 .user-name {
-        @include fontStyle3;
+  @include fontStyle3;
 }
 
-.message-header, .bottom-message-container {
-    @include dFlex($jc: flex-start);
-    gap: 20px;
+.message-header,
+.bottom-message-container {
+  @include dFlex($jc: flex-start);
+  gap: 20px;
 }
 
-.message-posted-at, .last-reply-at {
-    @include fontStyle0;
+.message-posted-at,
+.last-reply-at {
+  @include fontStyle0;
 }
 
 .number-of-replies {
-    color: $purple-3;
-    cursor: pointer;
+  color: $purple-3;
+  cursor: pointer;
 }
 
 .reactions-container {
-    @include dFlex($jc: flex-end, $ai: center);
-    flex-wrap: wrap;
-    gap: 12.34px;
+  @include dFlex($jc: flex-end, $ai: center);
+  flex-wrap: wrap;
+  gap: 12.34px;
 }
 
 .reaction {
-    @include dFlex($jc: normal, $ai: normal);
-    background-color: white;
-    padding: 5px 10px;
-    gap: 10px;
-    border-radius: 20px;
-    border: 1px solid $light-purple;
-    cursor: pointer;
+  @include dFlex($jc: normal, $ai: normal);
+  background-color: white;
+  padding: 5px 10px;
+  gap: 10px;
+  border-radius: 20px;
+  border: 1px solid $light-purple;
+  cursor: pointer;
 }
 
 .reaction-img {
-    height: 24px;
-    width: 24px;
+  height: 24px;
+  width: 24px;
 }
 
 .reaction-container {
-    position: relative;
-    @media (hover: hover) {
-        &:hover {
-            .reaction-bubble {
-                display: flex;
-            }
-        }
+  position: relative;
+  @media (hover: hover) {
+    &:hover {
+      .reaction-bubble {
+        display: flex;
+      }
     }
+  }
 }
 
 .reaction-bubble {
-    position: absolute;
-    z-index: 9999;
-    background-color: $purple-1;
-    @include dFlex($fd: column);
-    display: none;
-    text-align: center;
-    min-width: 158px;
-    bottom: 36.5px;
-    left: 32px;
-    padding: 15px 10px;
-    gap: 5px;
-    border-radius: 30px 30px 30px 0px;
-    img {
-        height: 30px;
-        width: 30px;
-    }
+  position: absolute;
+  z-index: 9999;
+  background-color: $purple-1;
+  @include dFlex($fd: column);
+  display: none;
+  text-align: center;
+  min-width: 158px;
+  bottom: 36.5px;
+  left: 32px;
+  padding: 15px 10px;
+  gap: 5px;
+  border-radius: 30px 30px 30px 0px;
+  img {
+    height: 30px;
+    width: 30px;
+  }
 }
 
 .reaction-bubble-username {
-    text-wrap: nowrap;
-    @include fontStyle3;
-    color: white;
+  text-wrap: nowrap;
+  @include fontStyle3;
+  color: white;
 }
 
 .add-reaction-btn {
-    margin-left: -1.92px;
+  margin-left: -1.92px;
 }
 
 .has-reacted {
-    @include fontStyle12;
-    color: white;
+  @include fontStyle12;
+  color: white;
 }
 
 .material-symbols-rounded {
-    padding: 0 4px;
+  padding: 0 4px;
 }
 
 .message-menu {
-    position: absolute;
-    z-index: 1;
-    @include dFlex($jc: normal, $ai: normal);
-    visibility: hidden;
-    opacity: 0;
-    margin-top: -27px;
-    padding: 2px 15px 2px 20px;
-    gap: 5px;
-    border-radius: 25px 25px 0px 25px;
-    border: 1px solid $light-purple;
-    background-color: white;
-    transition: all 100ms ease-out;
+  position: absolute;
+  z-index: 1;
+  @include dFlex($jc: normal, $ai: normal);
+  visibility: hidden;
+  opacity: 0;
+  margin-top: -27px;
+  padding: 2px 15px 2px 20px;
+  gap: 5px;
+  border-radius: 25px 25px 0px 25px;
+  border: 1px solid $light-purple;
+  background-color: white;
+  transition: all 100ms ease-out;
 }
 
 .chat-message-menu {
-    right: 43px;
+  right: 43px;
 }
 
 .chat-message-menu-alternative {
-    right: unset;
-    left: 83px;
+  right: unset;
+  left: 83px;
 }
 
 .more-menu {
-    position: absolute;
-    z-index: 1;
-    top: 20px;
-    left: 90%;
-    padding: 10px 20px 10px 20px;
-    border-radius: 0px 30px 30px 30px;
-    border: 1px solid $light-purple;
-    background-color: white;
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  left: 90%;
+  padding: 10px 20px 10px 20px;
+  border-radius: 0px 30px 30px 30px;
+  border: 1px solid $light-purple;
+  background-color: white;
 }
 
 .edit-message {
-    @include fontStyle8;
-    padding: 10px 20px 10px 20px;
-    border-radius: 100px;
-    cursor: pointer;
-    @media (hover: hover) {
-        &:hover {
-            @include fontStyle19;
-            background-color: $bg-color;
-            color: $purple-3;
-        }
+  @include fontStyle8;
+  padding: 10px 20px 10px 20px;
+  border-radius: 100px;
+  cursor: pointer;
+  @media (hover: hover) {
+    &:hover {
+      @include fontStyle19;
+      background-color: $bg-color;
+      color: $purple-3;
     }
+  }
 }
 
 .icon-btn {
-    position: relative;
+  position: relative;
 }
 
 .file-name {
-    @include dFlex();
-    padding: 4px 4px 4px 12px;
-    border: 1px solid $purple-2;
-    border-radius: 10px;
-    cursor: pointer;
-    background-color: $light-purple-scrollbar;
+  @include dFlex();
+  padding: 4px 4px 4px 12px;
+  border: 1px solid $purple-2;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: $light-purple-scrollbar;
 }
 
 app-emoji-picker {
-    left: 0px;
-    bottom: 44px;
+  left: 0px;
+  bottom: 44px;
 }
 
 .low-emoji-picker {
-     bottom: -220px;
-     border-radius: 0 30px 30px 30px;
+  bottom: -220px;
+  border-radius: 0 30px 30px 30px;
 }
-       
+
 .small-message {
-    padding-right: 50px;
-    padding-left: 50px;
-    .chat-message-menu {
-        right: 0px;
-    }
-    .chat-message-menu-alternative {
+  padding-right: 50px;
+  padding-left: 50px;
+  .chat-message-menu {
+    right: 0px;
+  }
+  .chat-message-menu-alternative {
+    right: unset;
+    left: 24px;
+  }
+  .more-menu {
+    top: 48px;
+    left: 82px;
+  }
+  .edit-message-button-container {
+    gap: 8px;
+  }
+  @media (hover: hover) {
+    &:hover {
+      .chat-message-menu {
+        right: 12px;
+      }
+      .chat-message-menu-alternative {
         right: unset;
-        left: 24px;
+        left: 12px;
+      }
     }
-    .more-menu {
-        top: 48px;
-        left: 82px;
-    }
-    .edit-message-button-container {
-        gap: 8px;
-    }
-    @media (hover: hover) {
-        &:hover {
-            .chat-message-menu {
-                right: 12px;
-            }
-            .chat-message-menu-alternative {
-                right: unset;
-                left: 12px;
-            }
-        }
-    }
+  }
 }
 
 .touch-small-message {
-    .chat-message-menu {
-        right: 12px;
-    }
-    .chat-message-menu-alternative {
-        right: unset;
-        left: 12px;
-    }
+  .chat-message-menu {
+    right: 12px;
+  }
+  .chat-message-menu-alternative {
+    right: unset;
+    left: 12px;
+  }
 }
 
 .very-small-message {
-    .more-menu {
-        left: 18px;
-    }
-    .edit-message-container-bottom .icon-btn {
-        align-self: flex-end;
-    }
-    .edit-message-button-container {
-        @include dFlex($fd: column);
-    }
+  .more-menu {
+    left: 18px;
+  }
+  .edit-message-container-bottom .icon-btn {
+    align-self: flex-end;
+  }
+  .edit-message-button-container {
+    @include dFlex($fd: column);
+  }
 }
 
 @media (max-width: 1200px) {
-    .message {
-        padding-right: 50px;
-    }
-    .message-alternative {
-        padding-left: 50px;
-    }
+  .message {
+    padding-right: 50px;
+  }
+  .message-alternative {
+    padding-left: 50px;
+  }
 }
 
 @media (max-width: 768px) {
-    .reactions-container {
-        gap: 8px;
-    }
-    .add-reaction-btn {
-        margin-left: unset;
-    }
-    .message {
-        padding-right: 50px;
-        padding-left: 16px;
-        gap: 20px;
-    }
-    .message-alternative {
-        padding-left: 50px;
-        padding-right: 16px;
-    }
-    .message-content {
-        @include fontStyle1;
-    }
-    .avatar {
-        height: 50px;
-        width: 50px;
-    }
+  .reactions-container {
+    gap: 8px;
+  }
+  .add-reaction-btn {
+    margin-left: unset;
+  }
+  .message {
+    padding-right: 50px;
+    padding-left: 16px;
+    gap: 20px;
+  }
+  .message-alternative {
+    padding-left: 50px;
+    padding-right: 16px;
+  }
+  .message-content {
+    @include fontStyle1;
+  }
+  .avatar {
+    height: 50px;
+    width: 50px;
+  }
 }
 
 @media (max-width: 360px) {
-    .message {
-        padding-right: 16px;
-    }
-    .message-alternative {
-        padding-left: 16px;
-    }
+  .message {
+    padding-right: 16px;
+  }
+  .message-alternative {
+    padding-left: 16px;
+  }
 }
-

@@ -1,7 +1,6 @@
-@import '../../../../../styles/mixin.scss';
-@import '../../../../../styles/styles2.scss';
-
-@import '../../../../../styles/animations.scss';
+@use "../../../../../styles/mixin.scss";
+@use "../../../../../styles/styles2.scss";
+@use "../../../../../styles/animations.scss";
 
 :host {
   z-index: 999;
@@ -11,68 +10,68 @@
 }
 
 .inside {
-    @include dFlex($fd: column, $jc: normal, $ai: normal);
-    max-width: 398px;
-    position: absolute;
-    right: 128px;
-    top: 72px;
-    padding: 40px;
-    gap: 20px;
-    border-radius: 30px 0px 30px 30px;
-    background-color: white;
-    box-shadow: 0px 6px 10px 0px #00000033;
-    z-index: 9999;
-    max-height: calc(100vh - 192px);
-    max-height: calc(100svh - 192px);
-    @media (max-width: 1500px) {
-        position: fixed;
-        top: 176px;
-        left: 16px;
-        right: 16px;
-        margin: auto;
-    }
-    @media (max-width: 768px) {
-        padding: 20px 16px;
-    }
+  @include dFlex($fd: column, $jc: normal, $ai: normal);
+  max-width: 398px;
+  position: absolute;
+  right: 128px;
+  top: 72px;
+  padding: 40px;
+  gap: 20px;
+  border-radius: 30px 0px 30px 30px;
+  background-color: white;
+  box-shadow: 0px 6px 10px 0px #00000033;
+  z-index: 9999;
+  max-height: calc(100vh - 192px);
+  max-height: calc(100svh - 192px);
+  @media (max-width: 1500px) {
+    position: fixed;
+    top: 176px;
+    left: 16px;
+    right: 16px;
+    margin: auto;
+  }
+  @media (max-width: 768px) {
+    padding: 20px 16px;
+  }
 }
 
 .members-header {
-    @include dFlex($jc: space-between, $ai: center);
+  @include dFlex($jc: space-between, $ai: center);
 }
 
 .members-heading {
-    @include fontStyle9;
+  @include fontStyle9;
 }
 
 .persons-container {
-    @include dFlex($fd: column, $jc: unset, $ai: flex-start);
-    gap: 20px;
-    overflow-y: auto;
+  @include dFlex($fd: column, $jc: unset, $ai: flex-start);
+  gap: 20px;
+  overflow-y: auto;
 }
 
 .add-members-button {
-    @include dFlex($jc: space-between);
-    gap: 15px;
-    padding: 12px 29px;
-    border-radius: 100px;
-    border: unset;
-    background-color: white;
-    cursor: pointer;
-    &:hover {
-        background-color: $bg-color;
-        span {
-            color: $purple-3;
-        }
-        .material-symbols-rounded {
-            color: $purple-3;
-        }
+  @include dFlex($jc: space-between);
+  gap: 15px;
+  padding: 12px 29px;
+  border-radius: 100px;
+  border: unset;
+  background-color: white;
+  cursor: pointer;
+  &:hover {
+    background-color: $bg-color;
+    span {
+      color: $purple-3;
     }
+    .material-symbols-rounded {
+      color: $purple-3;
+    }
+  }
 }
 
 .edit-channel-members {
-    position: static;
-    max-width: unset;
-    box-shadow: unset;
-    border: 1px solid $light-purple;
-    border-radius: 20px;
+  position: static;
+  max-width: unset;
+  box-shadow: unset;
+  border: 1px solid $light-purple;
+  border-radius: 20px;
 }

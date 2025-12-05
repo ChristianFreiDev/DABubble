@@ -1,8 +1,8 @@
-@import "../../../../../styles/mixin.scss";
-@import "../../../../../styles/styles2.scss";
-@import "../../../../../styles/fontStyles.scss";
-@import "../../../../../styles/gap.scss";
-@import "../../../../../styles/animations.scss";
+@use "../../../../../styles/mixin.scss";
+@use "../../../../../styles/styles2.scss";
+@use "../../../../../styles/fontStyles.scss";
+@use "../../../../../styles/gap.scss";
+@use "../../../../../styles/animations.scss";
 
 * {
   @include fontStyle2;
@@ -215,4 +215,3 @@ section {
 .warningAboutExistingChannel {
   color: red;
 }
-

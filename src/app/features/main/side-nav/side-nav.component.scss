@@ -1,4 +1,4 @@
-@import "../../../../styles/mixin.scss";
+@use "../../../../styles/mixin.scss";
 
 $max-search-bar-width: 560px;
 
@@ -9,14 +9,12 @@ $max-search-bar-width: 560px;
 
 .dFlex1 {
   @include dFlex(row, space-between, center);
-  // width: 176px;
   height: 40px;
   padding: 5px 10px 5px 0px;
   gap: 15px;
   border-radius: 15px 0px 0px 0px;
 
   div {
-    // width: 121px;
     height: 27px;
     gap: 10px;
     @include dFlex(row, space-between, center);
@@ -125,7 +123,6 @@ $max-search-bar-width: 560px;
   display: flex;
   align-items: center;
   border-radius: 30px;
-  
 
   &:hover {
     background: rgba(236, 238, 254, 1);

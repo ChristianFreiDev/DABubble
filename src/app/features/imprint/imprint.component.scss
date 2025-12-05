@@ -1,83 +1,84 @@
-@import '../../../styles/mixin.scss';
+@use "../../../styles/mixin.scss";
 
 :host {
-    @include dFlex();
-    height: 100vh;
-    height: 100svh;
-    width: 100%;
+  @include dFlex();
+  height: 100vh;
+  height: 100svh;
+  width: 100%;
 }
 
 .content-wrapper {
-    app-login-header {
-        top: 25px;
-    }
+  app-login-header {
+    top: 25px;
+  }
 }
 
 .imprint-text-container {
-    @include dFlex($fd: column, $ai: flex-start);
-    padding: 48px 56px;
-    background-color: white;
-    border-radius: 30px;
+  @include dFlex($fd: column, $ai: flex-start);
+  padding: 48px 56px;
+  background-color: white;
+  border-radius: 30px;
 }
 
 .material-symbols-rounded {
-    padding: 8px;
-    border-radius: 50%;
+  padding: 8px;
+  border-radius: 50%;
 
-    &:hover {
-        cursor: pointer;
-        background-color: $bg-color;
-        color: $purple-3;
-        font-variation-settings: "GRAD" 200;
-    }
+  &:hover {
+    cursor: pointer;
+    background-color: $bg-color;
+    color: $purple-3;
+    font-variation-settings: "GRAD" 200;
+  }
 }
 
-p, a {
-    @include fontStyle7;
-    line-height: 24px;
+p,
+a {
+  @include fontStyle7;
+  line-height: 24px;
 }
 
 .source {
-    font-size: 16px;
+  font-size: 16px;
 
-    > a {
-        font-size: 16px;
-    }
+  > a {
+    font-size: 16px;
+  }
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-// Responsive Design:
-@media(max-width: 654px) {
-    .imprint-text-container {
-        width: auto;
-        padding: 35px 20px;
-    }
+@media (max-width: 654px) {
+  .imprint-text-container {
+    width: auto;
+    padding: 35px 20px;
+  }
 }
 
-@media(max-width: 450px) {
-    p, a {
-        font-size: 17px;
-        line-height: 22px
-    }
-    
-    .imprint-text-container {
-        width: 100%;
-        padding: 24px 16px;
-    }
+@media (max-width: 450px) {
+  p,
+  a {
+    font-size: 17px;
+    line-height: 22px;
+  }
 
-    .material-symbols-rounded {
-        padding: 4px;
-        font-size: 20px;
-    }
+  .imprint-text-container {
+    width: 100%;
+    padding: 24px 16px;
+  }
 
-    .source {
-        font-size: 15px;
-    
-        > a {
-            font-size: 15px;
-        }
+  .material-symbols-rounded {
+    padding: 4px;
+    font-size: 20px;
+  }
+
+  .source {
+    font-size: 15px;
+
+    > a {
+      font-size: 15px;
     }
+  }
 }

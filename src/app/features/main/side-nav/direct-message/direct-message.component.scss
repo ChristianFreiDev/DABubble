@@ -1,6 +1,6 @@
-@import "../../../../../styles/mixin.scss";
-@import "../../../../../styles/styles2.scss";
-@import "../../../../../styles/fontStyles.scss";
+@use "../../../../../styles/mixin.scss";
+@use "../../../../../styles/styles2.scss";
+@use "../../../../../styles/fontStyles.scss";
 
 section {
   width: 100%;
@@ -14,10 +14,10 @@ section {
   background: rgba(255, 255, 255, 1);
   @include dFlex($fd: column, $jc: space-between, $ai: space-between);
   @media (max-width: $mainBreakpoint1) {
-        height: calc(100vh - 80px);
-        height: calc(100svh - 80px);
-        border-radius: unset;
-        padding-bottom: 30px;
+    height: calc(100vh - 80px);
+    height: calc(100svh - 80px);
+    border-radius: unset;
+    padding-bottom: 30px;
   }
 
   img {

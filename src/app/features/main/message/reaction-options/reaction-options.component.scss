@@ -1,17 +1,17 @@
-@import '../../../../../styles/mixin.scss';
+@use "../../../../../styles/mixin.scss";
 
 :host {
-    position: absolute;
-    z-index: 2;
-    top: 20px;
-    left: -90%;
-    padding: 10px 20px 10px 20px;
-    border-radius: 30px 0 30px 30px;
-    border: 1px solid $light-purple;
-    background-color: white;
+  position: absolute;
+  z-index: 2;
+  top: 20px;
+  left: -90%;
+  padding: 10px 20px 10px 20px;
+  border-radius: 30px 0 30px 30px;
+  border: 1px solid $light-purple;
+  background-color: white;
 }
 
 .reaction-img {
-    height: 24px;
-    width: 24px;
+  height: 24px;
+  width: 24px;
 }

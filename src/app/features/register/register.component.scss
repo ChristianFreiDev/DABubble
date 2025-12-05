@@ -1,97 +1,96 @@
-@import '../../../styles/mixin.scss';
+@use "../../../styles/mixin.scss";
 
 :host {
-    @include dFlex();
-    min-height: 100vh;
-    min-height: 100svh;
-    width: 100%;
+  @include dFlex();
+  min-height: 100vh;
+  min-height: 100svh;
+  width: 100%;
 }
 
-@media(max-height: 560px) {
-    :host {
-        max-height: 100vh;
-        max-height: 100svh;
-    }
+@media (max-height: 560px) {
+  :host {
+    max-height: 100vh;
+    max-height: 100svh;
+  }
 }
 
 .register-text {
-    @include fontStyle7;
-    width: 486px;
-    line-height: 24px;
-    text-align: center;
-    margin-bottom: 41px;
+  @include fontStyle7;
+  width: 486px;
+  line-height: 24px;
+  text-align: center;
+  margin-bottom: 41px;
 }
 
 .privacy-policy-container {
-    @include dFlex($jc: flex-start);
-    gap: 8px;
-    width: 100%;
-    margin-bottom: 40px;
+  @include dFlex($jc: flex-start);
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 40px;
+
+  &:hover {
+    > span {
+      background-color: $bg-color;
+      color: $purple-1;
+    }
+  }
+
+  > span {
+    color: $purple-2;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  a {
+    color: $purple-2;
+    line-height: 21.6px;
+    padding: 5px;
+    border-radius: 30px;
 
     &:hover {
-        > span {
-            background-color: $bg-color;
-            color: $purple-1;
-        }
+      color: $purple-1;
+      background-color: $bg-color;
+      font-weight: 500;
+      cursor: pointer;
     }
+  }
+}
 
-    > span {
-        color: $purple-2;
-        border-radius: 50%;
-        cursor: pointer;
+@media (max-width: 654px) {
+  .content-window {
+    .arrow-back {
+      top: 24px;
+    }
+  }
+
+  .register-text {
+    font-size: 17px;
+    line-height: 20.4px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 450px) {
+  .content-window {
+    .arrow-back {
+      top: 29px;
+    }
+  }
+
+  .privacy-policy-container {
+    margin-bottom: 30px;
+
+    > p {
+      font-size: 17px;
+      line-height: 22px;
     }
 
     a {
-        color: $purple-2;
-        line-height: 21.6px;
-        padding: 5px;
-        border-radius: 30px;
-    
-        &:hover {
-            color: $purple-1;
-            background-color: $bg-color;
-            font-weight: 500;
-            cursor: pointer;
-        }
+      font-size: 17px;
+      line-height: 20.4px;
+      padding: 2px;
+      display: inline-block;
     }
-}
-
-// Responsive Design:
-@media(max-width: 654px) {
-    .content-window {
-        .arrow-back {
-            top: 24px
-        }
-    }
-    
-    .register-text {
-        font-size: 17px;
-        line-height: 20.4px;
-        width: 100%;
-        margin-bottom: 20px;
-    }
-}
-
-@media(max-width: 450px) {
-    .content-window {
-        .arrow-back {
-            top: 29px
-        }
-    }
-
-    .privacy-policy-container {
-        margin-bottom: 30px;
-
-        > p {
-            font-size: 17px;
-            line-height: 22px
-        }
-
-        a {
-            font-size: 17px;
-            line-height: 20.4px;
-            padding: 2px;
-            display: inline-block;
-        }
-    }
+  }
 }

@@ -1,8 +1,8 @@
-@import '../../../styles/mixin.scss';
-@import '../../../styles/styles2.scss';
-@import '../../../styles/fontStyles.scss';
-@import '../../../styles/gap.scss';
-@import '../../../styles/animations.scss';
+@use "../../../styles/mixin.scss";
+@use "../../../styles/styles2.scss";
+@use "../../../styles/fontStyles.scss";
+@use "../../../styles/gap.scss";
+@use "../../../styles/animations.scss";
 
 :host {
   width: 100%;
@@ -102,26 +102,26 @@
 }
 
 .people {
-    position: absolute;
-    padding: 20px 21px;
-    @include dFlex($fd: column, $jc: normal, $ai: flex-start);
-    gap: 15px;
-    border-radius: 0px 20px 20px 20px;
-    border: 1px solid $light-purple;
-    box-shadow: 0px 2px 10px 0px #00000014;
-    background-color: white;
-    top: -30px;
-    overflow-y: auto;
-    max-height: 250px;
-  }
+  position: absolute;
+  padding: 20px 21px;
+  @include dFlex($fd: column, $jc: normal, $ai: flex-start);
+  gap: 15px;
+  border-radius: 0px 20px 20px 20px;
+  border: 1px solid $light-purple;
+  box-shadow: 0px 2px 10px 0px #00000014;
+  background-color: white;
+  top: -30px;
+  overflow-y: auto;
+  max-height: 250px;
+}
 
-  .inputElement {
-    padding: 15px 20px;
-    text-indent: 0px;
-  }
+.inputElement {
+  padding: 15px 20px;
+  text-indent: 0px;
+}
 
-  .results-create-channel {
-    @media (max-width: 768px) {
-      max-height: 160px;
-    }
+.results-create-channel {
+  @media (max-width: 768px) {
+    max-height: 160px;
   }
+}

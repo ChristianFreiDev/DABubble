@@ -1,107 +1,110 @@
-@import '../../../../styles/mixin.scss';
+@use "../../../../styles/mixin.scss";
 
 :host {
-    padding: 0 45px;
-    background-color: white;
-    @media (max-width: 768px) {
-        padding: 0 16px;
-    }
+  padding: 0 45px;
+  background-color: white;
+  @media (max-width: 768px) {
+    padding: 0 16px;
+  }
 }
 
 .textarea-container {
-    @include dFlex($fd: column, $jc: normal, $ai: normal);
-    position: relative;
-    height: 145px;
-    cursor: pointer;
-    border: 1px solid $light-purple;
-    resize: none;
-    transition: all 80ms ease-in;
-    padding: 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    &::placeholder {
-        color: $text-gray;
-    }
-    &:hover {
-        border-color: $purple-2;
-    }
+  @include dFlex($fd: column, $jc: normal, $ai: normal);
+  position: relative;
+  height: 145px;
+  cursor: pointer;
+  border: 1px solid $light-purple;
+  resize: none;
+  transition: all 80ms ease-in;
+  padding: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  &::placeholder {
+    color: $text-gray;
+  }
+  &:hover {
+    border-color: $purple-2;
+  }
 }
 
 .textarea-container-inside {
-    @include dFlex($jc: space-between);
-    padding-top: 0;
-    width: 100%;
-    background-color: white;
+  @include dFlex($jc: space-between);
+  padding-top: 0;
+  width: 100%;
+  background-color: white;
 }
 
 .textarea {
-    flex-grow: 1;
-    width: 100%;
-    resize: none;
-    &:focus {
-        border-color: $purple-1;
-        outline: unset;
-    }
+  flex-grow: 1;
+  width: 100%;
+  resize: none;
+  &:focus {
+    border-color: $purple-1;
+    outline: unset;
+  }
 }
 
 .textarea-and-image-container {
-    @include dFlex($fd: column, $jc: normal, $ai: normal);
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
+  @include dFlex($fd: column, $jc: normal, $ai: normal);
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
 }
 
 textarea {
-    width: 100%;
-    border: unset;
-    resize: none;
-    &:hover, &:focus {
-        outline: none;
-    }
+  width: 100%;
+  border: unset;
+  resize: none;
+  &:hover,
+  &:focus {
+    outline: none;
+  }
 }
 
 .small-divider {
-    background-color: $light-purple;
-    width: 1px;
-    height: 40px;
+  background-color: $light-purple;
+  width: 1px;
+  height: 40px;
 }
 
 .textarea-symbols-left {
-    @include dFlex();
-    gap: 5px;
+  @include dFlex();
+  gap: 5px;
 }
 
 .material-symbols-rounded {
-    color: $text-gray;
+  color: $text-gray;
 }
 
 .send-icon {
-    color: $purple-1;
-    font-variation-settings: 'FILL' 1;
-    &:hover {
-        color: $purple-2;
-    }
+  color: $purple-1;
+  font-variation-settings: "FILL" 1;
+  &:hover {
+    color: $purple-2;
+  }
 }
 
-.icon-btn:has(app-at:hover):hover, .icon-btn:has(app-emoji-picker:hover):hover  {
-    background-color: unset;
-    .material-symbols-rounded {
-        color: $text-gray;
-        font-variation-settings: "GRAD" 100;
-    }
+.icon-btn:has(app-at:hover):hover,
+.icon-btn:has(app-emoji-picker:hover):hover {
+  background-color: unset;
+  .material-symbols-rounded {
+    color: $text-gray;
+    font-variation-settings: "GRAD" 100;
+  }
 }
 
 label {
-    cursor: pointer;
-    transition: transform 100ms ease-in-out;
+  cursor: pointer;
+  transition: transform 100ms ease-in-out;
 }
 
 .img-x {
-    transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 @media (max-width: 1440px) {
-    app-at, app-emoji-picker {
-        left: 0;
-    }
+  app-at,
+  app-emoji-picker {
+    left: 0;
+  }
 }

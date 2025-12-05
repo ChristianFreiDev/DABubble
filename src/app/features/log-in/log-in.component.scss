@@ -1,261 +1,262 @@
-@import '../../../styles/mixin.scss';
+@use "../../../styles/mixin.scss";
 
 :host {
-    @include dFlex();
-    min-height: 100vh;
-    min-height: 100svh;
-    width: 100%;
+  @include dFlex();
+  min-height: 100vh;
+  min-height: 100svh;
+  width: 100%;
 }
 
-@media(max-height: 560px) {
-    :host {
-        max-height: 100vh;
-        max-height: 100svh;
-    }
+@media (max-height: 560px) {
+  :host {
+    max-height: 100vh;
+    max-height: 100svh;
+  }
 }
 
 h1 {
-    text-align: center;
+  text-align: center;
 }
 
 app-intro {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 100vh;
-    height: 100svh;
-    width: 100%;
-    background-image: linear-gradient(#797EF3,#313AE5);
-    z-index: 50;
-    opacity: 1;
-    transition: all 500ms ease-out;
-    @include dFlex();
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  height: 100svh;
+  width: 100%;
+  background-image: linear-gradient(#797ef3, #313ae5);
+  z-index: 50;
+  opacity: 1;
+  transition: all 500ms ease-out;
+  @include dFlex();
 }
 
 .opacity {
-    opacity: 0;
+  opacity: 0;
 }
 
 .login-text {
-    @include fontStyle7;
-    line-height: 24px;
-    text-align: center;
-    margin-bottom: 46px;
+  @include fontStyle7;
+  line-height: 24px;
+  text-align: center;
+  margin-bottom: 46px;
 }
 
 .forgot-password {
-    text-align: center;
-    color: $purple-2;
-    line-height: 21.6px;
-    padding: 5px 15px;
-    border-radius: 30px;
-    width: fit-content;
-    margin-bottom: 33px;
+  text-align: center;
+  color: $purple-2;
+  line-height: 21.6px;
+  padding: 5px 15px;
+  border-radius: 30px;
+  width: fit-content;
+  margin-bottom: 33px;
 
-    &:hover {
-        color: $purple-1;
-        background-color: $bg-color;
-        font-weight: 500;
-        cursor: pointer;
-    }
+  &:hover {
+    color: $purple-1;
+    background-color: $bg-color;
+    font-weight: 500;
+    cursor: pointer;
+  }
 }
 
 .or-separator {
-    @include dFlex();
-    gap: 15px;
-    width: 100%;
-    margin-bottom: 43px;
+  @include dFlex();
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 43px;
 }
 
 .line {
-    height: 1px;
-    background-color: $light-purple;
-    flex: 1;
+  height: 1px;
+  background-color: $light-purple;
+  flex: 1;
 }
 
 .google-btn {
-    @include dFlex();
-    gap: 20px;
-    width: 100%;
-    background-color: $bg-color;
-    padding: 11px 32px;
-    border-radius: 100px;
-    border: 1px solid $bg-color;
-    margin-bottom: 6px;
-    transition: all 100ms ease-out;
+  @include dFlex();
+  gap: 20px;
+  width: 100%;
+  background-color: $bg-color;
+  padding: 11px 32px;
+  border-radius: 100px;
+  border: 1px solid $bg-color;
+  margin-bottom: 6px;
+  transition: all 100ms ease-out;
 
-    &:hover {
-        border: 1px solid $purple-1;
-        cursor: pointer;
-
-        > span {
-            font-weight: 700;
-        }
-    }
-
-    &:active {
-        border: 1px solid $text-gray;
-
-        > span {
-            font-weight: 500;
-        }
-    }
-
-    > img {
-        height: 38px;
-        width: 38px;
-    }
+  &:hover {
+    border: 1px solid $purple-1;
+    cursor: pointer;
 
     > span {
-        color: $purple-1;
-        line-height: 21.6px;
+      font-weight: 700;
     }
+  }
+
+  &:active {
+    border: 1px solid $text-gray;
+
+    > span {
+      font-weight: 500;
+    }
+  }
+
+  > img {
+    height: 38px;
+    width: 38px;
+  }
+
+  > span {
+    color: $purple-1;
+    line-height: 21.6px;
+  }
 }
 
 .google-login-info {
-    @include dFlex($jc: flex-start);
-    width: 100%;
-    margin-bottom: 18px;
+  @include dFlex($jc: flex-start);
+  width: 100%;
+  margin-bottom: 18px;
 
-    > span {
-        @include fontStyle0;
-        color: $error-rosa;
-    }
+  > span {
+    @include fontStyle0;
+    color: $error-rosa;
+  }
 }
 
 .login-btn-container {
-    @include dFlex();
-    gap: 30px;
+  @include dFlex();
+  gap: 30px;
 }
 
 .create-account-container {
-    @include dFlex($fd: column);
-    gap: 20px;
-    display: none;
+  @include dFlex($fd: column);
+  gap: 20px;
+  display: none;
 
-    > a {
-        padding: 7px 18px;
-        background-color: unset;
+  > a {
+    padding: 7px 18px;
+    background-color: unset;
 
-        &:hover {
-            border: 1px solid $purple-3;
-            background-color: $purple-3;
-            color: white;
-        }
-        
-        &:active {
-            border: 1px solid $purple-1;
-            background-color: $purple-1;
-            color: white;
-            transition: none;
-        }
+    &:hover {
+      border: 1px solid $purple-3;
+      background-color: $purple-3;
+      color: white;
     }
+
+    &:active {
+      border: 1px solid $purple-1;
+      background-color: $purple-1;
+      color: white;
+      transition: none;
+    }
+  }
 }
 
-// Responsive Design:
-@media(max-width: 654px) or (max-height: 920px) {
-    .login-text {
-        font-size: 17px;
-        line-height: 20.4px;
-        margin-bottom: 20px;
+@media (max-width: 654px) or (max-height: 920px) {
+  .login-text {
+    font-size: 17px;
+    line-height: 20.4px;
+    margin-bottom: 20px;
+  }
+
+  .forgot-password {
+    font-size: 17px;
+    line-height: 20.4px;
+    margin-bottom: 20px;
+  }
+
+  .or-separator {
+    margin-bottom: 20px;
+
+    span {
+      font-size: 17px;
+      line-height: 23.2px;
     }
+  }
 
-    .forgot-password {
-        font-size: 17px;
-        line-height: 20.4px;
-        margin-bottom: 20px;
+  .google-btn {
+    padding: 6px 32px;
+
+    > span {
+      font-size: 17px;
+      line-height: 20.4px;
     }
+  }
 
-    .or-separator {
-        margin-bottom: 20px;
+  .google-login-info {
+    margin-bottom: 8px;
+  }
 
-        span {
-            font-size: 17px;
-            line-height: 23.2px;
-        }
-    }
-
-    .google-btn {
-        padding: 6px 32px;
-
-        > span {
-            font-size: 17px;
-            line-height: 20.4px;
-        }
-    }
-
-    .google-login-info {
-        margin-bottom: 8px;
-    }
-
-    .create-account-container {
-        display: flex;
-    }
+  .create-account-container {
+    display: flex;
+  }
 }
 
-@media(max-height: 920px) and (min-width: 654px) {
-    .m-btm-32 {
-        margin-bottom: 15px;
-    }
+@media (max-height: 920px) and (min-width: 654px) {
+  .m-btm-32 {
+    margin-bottom: 15px;
+  }
 
-    app-login-header {
-        position: unset !important;
-    }
+  app-login-header {
+    position: unset !important;
+  }
 
-    .content-wrapper {
-        gap: 12px;
-    }
+  .content-wrapper {
+    gap: 12px;
+  }
 
-    .content-window {
-        padding: 24px 16px !important;
-    }
+  .content-window {
+    padding: 24px 16px !important;
+  }
 
-    app-footer {
-        position: unset !important;
-        margin-bottom: 8px;
-    }
+  app-footer {
+    position: unset !important;
+    margin-bottom: 8px;
+  }
 }
 
-@media(max-width: 654px) and (max-height: 800px) {
-    .login-text, .forgot-password, .or-separator {
-        margin-bottom: 12px;
-    }
+@media (max-width: 654px) and (max-height: 800px) {
+  .login-text,
+  .forgot-password,
+  .or-separator {
+    margin-bottom: 12px;
+  }
 
-    .create-account-container {
-        gap: 12px;
-    }
+  .create-account-container {
+    gap: 12px;
+  }
 }
 
-@media(max-width: 450px) {
-    .login-text {
-        height: 61px;
-    }
+@media (max-width: 450px) {
+  .login-text {
+    height: 61px;
+  }
 
-    .content-window {
-        .error-text {
-            height: 38px;
-            margin-bottom: 0;
-        }
+  .content-window {
+    .error-text {
+      height: 38px;
+      margin-bottom: 0;
     }
-    
-    .google-btn {
-        padding: 6px 16px;
-    }
+  }
 
-    .google-login-info {
-        justify-content: center;
+  .google-btn {
+    padding: 6px 16px;
+  }
 
-        > span {
-            text-align: center;
-            height: 38px;
-        }
-    }
+  .google-login-info {
+    justify-content: center;
 
-    .login-btn-container {
-        width: 100%;
-        gap: unset;
-        justify-content: space-between;
+    > span {
+      text-align: center;
+      height: 38px;
     }
+  }
+
+  .login-btn-container {
+    width: 100%;
+    gap: unset;
+    justify-content: space-between;
+  }
 }

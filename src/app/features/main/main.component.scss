@@ -1,4 +1,4 @@
-@import "../../../styles/mixin.scss";
+@use "../../../styles/mixin.scss";
 
 :host {
   @include dFlex($fd: column, $jc: flex-start, $ai: normal);
@@ -99,7 +99,7 @@ app-new-message {
 @media screen and (max-width: 480px) {
   #menuButton {
     height: 28px;
-  }  
+  }
 }
 
 @media (max-width: 768px) {

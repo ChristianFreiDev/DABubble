@@ -1,46 +1,46 @@
-@import '../../../../styles/mixin.scss';
-@import '../../../../styles/styles2.scss';
-@import '../../../../styles/animations.scss';
+@use "../../../../styles/mixin.scss";
+@use "../../../../styles/styles2.scss";
+@use "../../../../styles/animations.scss";
 
 :host {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .upload-error {
-    @include dFlex($fd: column);
-    border-radius: 30px;
-    min-height: 200px;
-    max-width: 500px;
-    padding: 40px;
-    margin: 0 16px;
-    background-color: white;
+  @include dFlex($fd: column);
+  border-radius: 30px;
+  min-height: 200px;
+  max-width: 500px;
+  padding: 40px;
+  margin: 0 16px;
+  background-color: white;
 }
 
 .upload-error-header {
-    width: 100%;
-    @include dFlex($jc: space-between);
-    span {
-        @include fontStyle9;
-        @media (max-width: $mainBreakpoint1) {
-            @include fontStyle19;
-        }
+  width: 100%;
+  @include dFlex($jc: space-between);
+  span {
+    @include fontStyle9;
+    @media (max-width: $mainBreakpoint1) {
+      @include fontStyle19;
     }
+  }
 }
 
 .error-message {
-    color: $error-rosa;
-    font-weight: 500;
-    padding: 20px 0;
+  color: $error-rosa;
+  font-weight: 500;
+  padding: 20px 0;
 }
 
 .icon-btn {
-    align-self: flex-end;
+  align-self: flex-end;
 }
 
 .overlayComponent {
-    position: absolute;
+  position: absolute;
 }

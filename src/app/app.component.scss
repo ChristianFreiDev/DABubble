@@ -1,24 +1,24 @@
-@import '../styles/mixin.scss';
+@use "../styles/mixin.scss";
 
 .mobile-overlay {
-    width: 100%;
-    height: 100%;
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 999999;
-    padding: 0 16px;
-    background-color: $bg-color;
-    text-align: center;
-    span {
-        @include fontStyle3;
-        color: $purple-1;
-    }
-    @media (max-height: 560px) {
-        @include dFlex($fd: column);
-        gap: 16px;
-    }
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999999;
+  padding: 0 16px;
+  background-color: $bg-color;
+  text-align: center;
+  span {
+    @include fontStyle3;
+    color: $purple-1;
+  }
+  @media (max-height: 560px) {
+    @include dFlex($fd: column);
+    gap: 16px;
+  }
 }

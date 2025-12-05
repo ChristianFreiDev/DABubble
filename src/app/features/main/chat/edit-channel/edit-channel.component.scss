@@ -1,226 +1,229 @@
-@import '../../../../../styles/mixin.scss';
-@import '../../../../../styles/styles2.scss';
-@import '../../../../../styles/animations.scss';
+@use "../../../../../styles/mixin.scss";
+@use "../../../../../styles/styles2.scss";
+@use "../../../../../styles/animations.scss";
 
 .edit-channel-container {
-    display: grid;
-    max-height: 100%;
-    width: 100%;
-    padding: 12px 16px;
-    overflow-y: auto;
-    @media (max-width: $mainBreakpoint1) {
-        max-height: unset;
-        height: 100%;
-        padding: 0;
-    }
+  display: grid;
+  max-height: 100%;
+  width: 100%;
+  padding: 12px 16px;
+  overflow-y: auto;
+  @media (max-width: $mainBreakpoint1) {
+    max-height: unset;
+    height: 100%;
+    padding: 0;
+  }
 }
 
 .edit-channel {
-    min-width: 0;
-    @include dFlex($fd: column, $jc: normal, $ai: normal);
-    background-color: white;
-    max-width: 872px;
+  min-width: 0;
+  @include dFlex($fd: column, $jc: normal, $ai: normal);
+  background-color: white;
+  max-width: 872px;
+  width: 100%;
+  min-height: 616px;
+  border-radius: 0px 30px 30px 30px;
+  overflow-y: auto;
+  justify-self: center;
+  @media (max-width: $mainBreakpoint1) {
+    min-height: unset;
     width: 100%;
-    min-height: 616px;
-    border-radius: 0px 30px 30px 30px;
-    overflow-y: auto;
-    justify-self: center;
-    @media (max-width: $mainBreakpoint1) {
-        min-height: unset;
-        width: 100%;
-        height: 100%;
-        border-radius: 0;
-        margin: 0;
-        overflow-y: unset;
-    }
+    height: 100%;
+    border-radius: 0;
+    margin: 0;
+    overflow-y: unset;
+  }
 }
 
 .edit-channel-header {
-    min-width: 0;
-    @include dFlex($jc: space-between, $ai: center);
-    margin-bottom: 20px;
-    padding: 40px 40px 0;
-    @media (max-width: $mainBreakpoint1) {
-        padding: 40px 16px 10px 16px;
-        box-shadow: 0px 2px 10px 0px #00000014;
-    }
+  min-width: 0;
+  @include dFlex($jc: space-between, $ai: center);
+  margin-bottom: 20px;
+  padding: 40px 40px 0;
+  @media (max-width: $mainBreakpoint1) {
+    padding: 40px 16px 10px 16px;
+    box-shadow: 0px 2px 10px 0px #00000014;
+  }
 }
 
 .edit-channel-main {
-    @include dFlex($fd: column, $jc: normal, $ai: normal);
-    gap: 20px;
-    padding: 0 40px 40px;
-    @media (max-width: $mainBreakpoint1) {
-        padding: 16px;
-    }
+  @include dFlex($fd: column, $jc: normal, $ai: normal);
+  gap: 20px;
+  padding: 0 40px 40px;
+  @media (max-width: $mainBreakpoint1) {
+    padding: 16px;
+  }
 }
 
 .edit-channel-header-left {
-    min-width: 0;
-    @include dFlex($jc: normal, $ai: center);
-    gap: 6.5px;
+  min-width: 0;
+  @include dFlex($jc: normal, $ai: center);
+  gap: 6.5px;
 }
 
 .edit-channel-header-tag {
-    font-size: 30px;
-    @media (max-width: $mainBreakpoint1) {
-        font-size: 24px;
-    }
+  font-size: 30px;
+  @media (max-width: $mainBreakpoint1) {
+    font-size: 24px;
+  }
 }
 
 .edit-channel-header-channel-name {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    @include fontStyle9;
-    @media (max-width: $mainBreakpoint1) {
-        @include fontStyle19;
-    }
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  @include fontStyle9;
+  @media (max-width: $mainBreakpoint1) {
+    @include fontStyle19;
+  }
 }
 
 .edit-channel-name {
-    @include dFlex($jc: normal, $ai: center);
-    gap: 4.5px;
-    position: relative;
+  @include dFlex($jc: normal, $ai: center);
+  gap: 4.5px;
+  position: relative;
 }
 
-.edit-channel-heading  {
-    @include fontStyle3;
+.edit-channel-heading {
+  @include fontStyle3;
 }
 
 .edit-channel-name-container {
-    @include dFlex($fd: column, $jc: normal, $ai: normal);
-    padding: 20px;
-    gap: 20px;
-    border-radius: 20px;
-    border: 1px solid $light-purple;
+  @include dFlex($fd: column, $jc: normal, $ai: normal);
+  padding: 20px;
+  gap: 20px;
+  border-radius: 20px;
+  border: 1px solid $light-purple;
 }
 
-.edit-channel-name-header, .edit-channel-description-header {
-    @include dFlex($jc: space-between);
+.edit-channel-name-header,
+.edit-channel-description-header {
+  @include dFlex($jc: space-between);
 }
 
 .edit-channel-lower-container {
-    @include dFlex($fd: column, $jc: normal, $ai: normal);
-    padding: 20px;
-    gap: 30px;
-    border-radius: 20px;
-    border: 1px solid $light-purple;
+  @include dFlex($fd: column, $jc: normal, $ai: normal);
+  padding: 20px;
+  gap: 30px;
+  border-radius: 20px;
+  border: 1px solid $light-purple;
 }
 
 .edit-channel-description-container {
-    @include dFlex($fd: column, $jc: normal, $ai: normal);
-    gap: 20px;
+  @include dFlex($fd: column, $jc: normal, $ai: normal);
+  gap: 20px;
 }
 
 .edit-channel-created-by {
-    @include dFlex($fd: column, $jc: normal, $ai: normal);
-    gap: 20px;
+  @include dFlex($fd: column, $jc: normal, $ai: normal);
+  gap: 20px;
 }
 
 .edit-channel-created-by-name {
-    @include fontStyle17;
-    color: $purple-3;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  @include fontStyle17;
+  color: $purple-3;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .edit-btn {
-    background-color: transparent;
-    border: unset;
-    padding: 0;
-    @include fontStyle16;
-    color: $purple-3;
-    cursor: pointer;
-    display: block;
-    @media (max-width: $mainBreakpoint1) {
-        display: none;
-    }
+  background-color: transparent;
+  border: unset;
+  padding: 0;
+  @include fontStyle16;
+  color: $purple-3;
+  cursor: pointer;
+  display: block;
+  @media (max-width: $mainBreakpoint1) {
+    display: none;
+  }
 }
 
 .edit-btn-mobile {
-    height: 30px;
-    width: 30px;
-    background-color: $bg-color;
-    display: none;
-    &:active {
-        color: $purple-3;
-    }
-    @media (max-width: $mainBreakpoint1) {
-        display: block;
-    }
+  height: 30px;
+  width: 30px;
+  background-color: $bg-color;
+  display: none;
+  &:active {
+    color: $purple-3;
+  }
+  @media (max-width: $mainBreakpoint1) {
+    display: block;
+  }
 }
 
-input, textarea {
-    width: 100%;
-    outline: none;
-    &:hover {
-        border: 1px solid $purple-2;
-    }
-    &:focus {
-        border: 1px solid $purple-1;
-    }
+input,
+textarea {
+  width: 100%;
+  outline: none;
+  &:hover {
+    border: 1px solid $purple-2;
+  }
+  &:focus {
+    border: 1px solid $purple-1;
+  }
 }
 
-input:disabled, textarea:disabled {
-    border: unset;
-    background-color: transparent;
+input:disabled,
+textarea:disabled {
+  border: unset;
+  background-color: transparent;
 }
 
 textarea {
-    resize: none;
+  resize: none;
 }
 
 .channel-name-input {
-    border: unset;
-    padding-left: 34px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  border: unset;
+  padding-left: 34px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .channel-tag {
-    position: absolute;
+  position: absolute;
 }
 
 .editable-channel-tag {
-    left: 20px;
+  left: 20px;
 }
 
 .editable-section {
-    padding-top: 0;
-    padding-left: 0;
-    border: unset;
+  padding-top: 0;
+  padding-left: 0;
+  border: unset;
 }
 
 .editable-field {
-    padding: 20px;
-    border-radius: 30px;
-    border: 1px solid $light-purple;
+  padding: 20px;
+  border-radius: 30px;
+  border: 1px solid $light-purple;
 }
 
 .editable-channel-name-input {
-    padding: 20px 20px 20px 58px;
-    border-radius: 30px;
-    border: 1px solid $light-purple;
+  padding: 20px 20px 20px 58px;
+  border-radius: 30px;
+  border: 1px solid $light-purple;
 }
 
 .editable-hr {
-    margin: 0 26.5px;
+  margin: 0 26.5px;
 }
 
 .leave-channel-btn {
-    align-self: flex-end;
+  align-self: flex-end;
 }
 
 .channel-name-error {
-    @include fontStyle0;
-    color: $error-rosa;
+  @include fontStyle0;
+  color: $error-rosa;
 }
 
 @media (min-width: 769px) {
-    app-members {
-        display: none;
-    }
+  app-members {
+    display: none;
+  }
 }

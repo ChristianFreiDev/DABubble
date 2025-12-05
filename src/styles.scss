@@ -1,4 +1,4 @@
-@import "./styles/mixin.scss";
+@use "./styles/mixin.scss";
 
 * {
   margin: 0;
@@ -332,7 +332,6 @@ hr {
   background-color: $text-gray;
 }
 
-// Responsive Design:
 @media (max-width: 1968px) {
   .content-wrapper {
     max-width: unset;
