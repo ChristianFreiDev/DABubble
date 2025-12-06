@@ -10,7 +10,7 @@
 }
 
 .inside {
-  @include dFlex($fd: column, $jc: normal, $ai: normal);
+  @include mixin.dFlex($fd: column, $jc: normal, $ai: normal);
   max-width: 398px;
   position: absolute;
   right: 128px;
@@ -36,21 +36,21 @@
 }
 
 .members-header {
-  @include dFlex($jc: space-between, $ai: center);
+  @include mixin.dFlex($jc: space-between, $ai: center);
 }
 
 .members-heading {
-  @include fontStyle9;
+  @include mixin.fontStyle9;
 }
 
 .persons-container {
-  @include dFlex($fd: column, $jc: unset, $ai: flex-start);
+  @include mixin.dFlex($fd: column, $jc: unset, $ai: flex-start);
   gap: 20px;
   overflow-y: auto;
 }
 
 .add-members-button {
-  @include dFlex($jc: space-between);
+  @include mixin.dFlex($jc: space-between);
   gap: 15px;
   padding: 12px 29px;
   border-radius: 100px;
@@ -58,12 +58,12 @@
   background-color: white;
   cursor: pointer;
   &:hover {
-    background-color: $bg-color;
+    background-color: mixin.$bg-color;
     span {
-      color: $purple-3;
+      color: mixin.$purple-3;
     }
     .material-symbols-rounded {
-      color: $purple-3;
+      color: mixin.$purple-3;
     }
   }
 }
@@ -72,6 +72,6 @@
   position: static;
   max-width: unset;
   box-shadow: unset;
-  border: 1px solid $light-purple;
+  border: 1px solid mixin.$light-purple;
   border-radius: 20px;
 }

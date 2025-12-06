@@ -1,3 +1,5 @@
+@use "../styles/mixin.scss";
+
 .f400w-20px-gray {
   font-size: 20px;
   font-weight: 400;
@@ -6,11 +8,11 @@
 }
 
 .fontStyle2 {
-  @include fontStyle2;
+  @include mixin.fontStyle2;
 }
 
 .fontStyle9 {
-  @include fontStyle9;
+  @include mixin.fontStyle9;
 }
 
 .blueColor {

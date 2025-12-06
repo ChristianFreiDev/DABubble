@@ -5,7 +5,7 @@ $intro-content-width: 202px;
 $animation-config: 500ms ease-out 2000ms forwards;
 
 .intro-content {
-  @include dFlex();
+  @include mixin.dFlex();
   height: 100%;
   overflow: hidden;
   transform: translateX(200px);
@@ -13,7 +13,7 @@ $animation-config: 500ms ease-out 2000ms forwards;
     moveTopLeft $animation-config;
 
   div {
-    @include dFlex();
+    @include mixin.dFlex();
     height: 100%;
     padding-right: 39px;
     background-image: linear-gradient(#797ef3, #313ae5);

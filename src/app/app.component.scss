@@ -11,14 +11,14 @@
   bottom: 0;
   z-index: 999999;
   padding: 0 16px;
-  background-color: $bg-color;
+  background-color: mixin.$bg-color;
   text-align: center;
   span {
-    @include fontStyle3;
-    color: $purple-1;
+    @include mixin.fontStyle3;
+    color: mixin.$purple-1;
   }
   @media (max-height: 560px) {
-    @include dFlex($fd: column);
+    @include mixin.dFlex($fd: column);
     gap: 16px;
   }
 }

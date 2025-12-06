@@ -1,12 +1,12 @@
 @use "../../../styles/mixin.scss";
 
 :host {
-  @include dFlex();
+  @include mixin.dFlex();
   width: 100%;
 }
 
 .imprint-privacy-policy-container {
-  @include dFlex();
+  @include mixin.dFlex();
   gap: 16px;
 }
 

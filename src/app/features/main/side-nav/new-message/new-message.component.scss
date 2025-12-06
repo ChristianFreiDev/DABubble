@@ -13,9 +13,9 @@
 }
 
 #newMessageSpan {
-  @include fontStyle9;
+  @include mixin.fontStyle9;
   @media (max-width: 768px) {
-    @include fontStyle19;
+    @include mixin.fontStyle19;
   }
 }
 
@@ -28,7 +28,7 @@ section {
   padding-bottom: 40px;
   border-radius: 30px;
   background: rgba(255, 255, 255, 1);
-  @include dFlex($fd: column, $jc: space-between, $ai: space-between);
+  @include mixin.dFlex($fd: column, $jc: space-between, $ai: space-between);
 
   input {
     width: 100%;
@@ -36,14 +36,14 @@ section {
     padding: 15px 20px 15px 20px;
     gap: 10px;
     border-radius: 30px;
-    border: 1px solid $light-purple;
+    border: 1px solid mixin.$light-purple;
     outline: none;
     transition: border 100ms ease-in;
     &:hover {
-      border: 1px solid $purple-2;
+      border: 1px solid mixin.$purple-2;
     }
     &:focus {
-      border: 1px solid $purple-1;
+      border: 1px solid mixin.$purple-1;
     }
   }
 
@@ -88,7 +88,7 @@ section {
 }
 
 .fade-in {
-  @include dFlex($fd: column, $jc: center, $ai: 0);
+  @include mixin.dFlex($fd: column, $jc: center, $ai: 0);
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.08);
   height: 160px;
   padding: 32px 45px 20px 45px;

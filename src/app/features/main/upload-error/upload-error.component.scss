@@ -11,7 +11,7 @@
 }
 
 .upload-error {
-  @include dFlex($fd: column);
+  @include mixin.dFlex($fd: column);
   border-radius: 30px;
   min-height: 200px;
   max-width: 500px;
@@ -22,17 +22,17 @@
 
 .upload-error-header {
   width: 100%;
-  @include dFlex($jc: space-between);
+  @include mixin.dFlex($jc: space-between);
   span {
-    @include fontStyle9;
-    @media (max-width: $mainBreakpoint1) {
-      @include fontStyle19;
+    @include mixin.fontStyle9;
+    @media (max-width: mixin.$mainBreakpoint1) {
+      @include mixin.fontStyle19;
     }
   }
 }
 
 .error-message {
-  color: $error-rosa;
+  color: mixin.$error-pink;
   font-weight: 500;
   padding: 20px 0;
 }

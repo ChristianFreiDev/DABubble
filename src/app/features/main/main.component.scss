@@ -1,20 +1,20 @@
 @use "../../../styles/mixin.scss";
 
 :host {
-  @include dFlex($fd: column, $jc: flex-start, $ai: normal);
+  @include mixin.dFlex($fd: column, $jc: flex-start, $ai: normal);
   height: 100vh;
   height: 100svh;
   padding: 0 20px;
   position: relative;
   overflow: hidden;
 
-  @media screen and (max-width: $mainBreakpoint1) {
+  @media screen and (max-width: mixin.$mainBreakpoint1) {
     padding: 0;
   }
 }
 
 .main {
-  @include dFlex($jc: flex-start, $ai: flex-start);
+  @include mixin.dFlex($jc: flex-start, $ai: flex-start);
   gap: 20px;
   width: 100%;
 }
@@ -35,13 +35,13 @@
   gap: 10px;
   rotate: -180deg;
   cursor: pointer;
-  @include dFlex($fd: column, $jc: center, $ai: center);
+  @include mixin.dFlex($fd: column, $jc: center, $ai: center);
   box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   span {
     writing-mode: vertical-rl;
     text-orientation: mixed;
-    @include fontStyle5;
+    @include mixin.fontStyle5;
   }
   @media (max-width: 768px) {
     display: none;
@@ -51,7 +51,7 @@
 .purpleHover:hover {
   span {
     scale: 1.05;
-    color: $purple-3;
+    color: mixin.$purple-3;
   }
 
   img {
@@ -59,11 +59,11 @@
   }
 
   .changeMenuImg {
-    @include changeImgElement("../../../assets/img/main/blueMenu.png");
+    @include mixin.changeImgElement("../assets/img/main/blueMenu.png");
   }
 
   .changeMenuImgBlue {
-    @include changeImgElement("../../../assets/img/main/displayMenuBlue.png");
+    @include mixin.changeImgElement("../assets/img/main/displayMenuBlue.png");
   }
 }
 
@@ -83,14 +83,14 @@ app-new-message {
 
 .width100 {
   flex-shrink: 0;
-  width: $thread-width;
+  width: mixin.$thread-width;
   transition: width 150ms ease-in-out;
   @media (max-width: 1440px) {
-    width: $thread-width-small;
+    width: mixin.$thread-width-small;
   }
 }
 
-@media screen and (max-width: $mainBreakpoint1) {
+@media screen and (max-width: mixin.$mainBreakpoint1) {
   app-side-nav {
     width: 100%;
   }

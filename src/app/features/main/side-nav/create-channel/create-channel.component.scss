@@ -5,7 +5,7 @@
 @use "../../../../../styles/animations.scss";
 
 * {
-  @include fontStyle2;
+  @include mixin.fontStyle2;
 }
 
 section {
@@ -15,7 +15,7 @@ section {
   gap: 20px;
   border-radius: 30px;
   background-color: white;
-  @include dFlex($fd: column, $jc: center, $ai: center);
+  @include mixin.dFlex($fd: column, $jc: center, $ai: center);
   box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.2);
 
   div {
@@ -29,11 +29,11 @@ section {
 }
 
 .fontStyle9 {
-  @include fontStyle9;
+  @include mixin.fontStyle9;
 }
 
 .fontStyle3 {
-  @include fontStyle3;
+  @include mixin.fontStyle3;
 }
 
 .icon {
@@ -90,10 +90,10 @@ section {
 .people {
   position: absolute;
   padding: 20px 21px;
-  @include dFlex($fd: column, $jc: normal, $ai: flex-start);
+  @include mixin.dFlex($fd: column, $jc: normal, $ai: flex-start);
   gap: 15px;
   border-radius: 0px 20px 20px 20px;
-  border: 1px solid $light-purple;
+  border: 1px solid mixin.$light-purple;
   box-shadow: 0px 2px 10px 0px #00000014;
   background-color: white;
   top: -30px;
@@ -104,7 +104,7 @@ section {
 .person {
   cursor: pointer;
   &:hover {
-    background-color: $bg-color;
+    background-color: mixin.$bg-color;
   }
 }
 
@@ -138,7 +138,7 @@ section {
 }
 
 .members-header {
-  @include dFlex($jc: space-between, $ai: center);
+  @include mixin.dFlex($jc: space-between, $ai: center);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -162,7 +162,7 @@ section {
 }
 
 .members-heading {
-  @include fontStyle9;
+  @include mixin.fontStyle9;
 }
 
 .dFlex {

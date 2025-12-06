@@ -3,14 +3,14 @@
 .message-img-container,
 .file-name {
   padding: 12px;
-  border: 1px solid $bg-color;
+  border: 1px solid mixin.$bg-color;
   border-radius: 10px;
   gap: 12px;
   width: fit-content;
 }
 
 .message-img-container {
-  @include dFlex($jc: normal, $ai: normal);
+  @include mixin.dFlex($jc: normal, $ai: normal);
   margin-bottom: 8px;
 }
 
@@ -20,11 +20,11 @@
 
 .file-name {
   padding: 4px 4px 4px 12px;
-  border: 1px solid $purple-2;
-  background-color: $light-purple-scrollbar;
-  @include dFlex($jc: normal);
+  border: 1px solid mixin.$purple-2;
+  background-color: mixin.$light-purple-scrollbar;
+  @include mixin.dFlex($jc: normal);
   margin-bottom: 4px;
   .icon-btn:hover {
-    background-color: $light-purple;
+    background-color: mixin.$light-purple;
   }
 }

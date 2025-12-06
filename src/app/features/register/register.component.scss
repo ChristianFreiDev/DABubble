@@ -1,7 +1,7 @@
 @use "../../../styles/mixin.scss";
 
 :host {
-  @include dFlex();
+  @include mixin.dFlex();
   min-height: 100vh;
   min-height: 100svh;
   width: 100%;
@@ -15,7 +15,7 @@
 }
 
 .register-text {
-  @include fontStyle7;
+  @include mixin.fontStyle7;
   width: 486px;
   line-height: 24px;
   text-align: center;
@@ -23,33 +23,33 @@
 }
 
 .privacy-policy-container {
-  @include dFlex($jc: flex-start);
+  @include mixin.dFlex($jc: flex-start);
   gap: 8px;
   width: 100%;
   margin-bottom: 40px;
 
   &:hover {
     > span {
-      background-color: $bg-color;
-      color: $purple-1;
+      background-color: mixin.$bg-color;
+      color: mixin.$purple-1;
     }
   }
 
   > span {
-    color: $purple-2;
+    color: mixin.$purple-2;
     border-radius: 50%;
     cursor: pointer;
   }
 
   a {
-    color: $purple-2;
+    color: mixin.$purple-2;
     line-height: 21.6px;
     padding: 5px;
     border-radius: 30px;
 
     &:hover {
-      color: $purple-1;
-      background-color: $bg-color;
+      color: mixin.$purple-1;
+      background-color: mixin.$bg-color;
       font-weight: 500;
       cursor: pointer;
     }

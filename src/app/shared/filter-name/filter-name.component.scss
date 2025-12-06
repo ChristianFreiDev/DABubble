@@ -16,7 +16,7 @@
 }
 
 .members {
-  @include dFlex($fd: column, $jc: space-between, $ai: flex-start);
+  @include mixin.dFlex($fd: column, $jc: space-between, $ai: flex-start);
   max-width: 300px;
   position: absolute;
   background-color: white;
@@ -39,6 +39,12 @@
 }
 
 .members-chat {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  margin: auto;
+  top: 440px;
+  bottom: unset;
   @media (min-width: 1501px) {
     position: fixed;
     bottom: unset;
@@ -47,12 +53,6 @@
   @media (min-width: 481px) {
     min-width: 300px;
   }
-  position: fixed;
-  left: 16px;
-  right: 16px;
-  margin: auto;
-  top: 440px;
-  bottom: unset;
   @media (max-width: 344px) {
     top: 460px;
   }
@@ -61,11 +61,11 @@
 .members-heading {
   width: 100%;
   text-align: center;
-  @include fontStyle9;
+  @include mixin.fontStyle9;
 }
 
 .member {
-  @include dFlex();
+  @include mixin.dFlex();
 }
 
 .input-wrapper {
@@ -104,10 +104,10 @@
 .people {
   position: absolute;
   padding: 20px 21px;
-  @include dFlex($fd: column, $jc: normal, $ai: flex-start);
+  @include mixin.dFlex($fd: column, $jc: normal, $ai: flex-start);
   gap: 15px;
   border-radius: 0px 20px 20px 20px;
-  border: 1px solid $light-purple;
+  border: 1px solid mixin.$light-purple;
   box-shadow: 0px 2px 10px 0px #00000014;
   background-color: white;
   top: -30px;

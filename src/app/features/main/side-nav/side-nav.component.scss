@@ -3,12 +3,12 @@
 $max-search-bar-width: 560px;
 
 .dFlex {
-  @include dFlex(row, space-between, center);
+  @include mixin.dFlex(row, space-between, center);
   width: 100%;
 }
 
 .dFlex1 {
-  @include dFlex(row, space-between, center);
+  @include mixin.dFlex(row, space-between, center);
   height: 40px;
   padding: 5px 10px 5px 0px;
   gap: 15px;
@@ -17,20 +17,20 @@ $max-search-bar-width: 560px;
   div {
     height: 27px;
     gap: 10px;
-    @include dFlex(row, space-between, center);
+    @include mixin.dFlex(row, space-between, center);
   }
 }
 
 .dFlex2 {
-  @include dFlex(row, center, center);
+  @include mixin.dFlex(row, center, center);
 }
 
 :host {
   background-color: white;
   max-width: 366px;
   overflow: hidden;
-  height: calc(100vh - $header-and-bottom-spacing);
-  height: calc(100svh - $header-and-bottom-spacing);
+  height: calc(100vh - mixin.$header-and-bottom-spacing);
+  height: calc(100svh - mixin.$header-and-bottom-spacing);
   border-radius: 30px;
 
   @media (max-width: 768px) {
@@ -39,7 +39,7 @@ $max-search-bar-width: 560px;
     border-radius: unset;
   }
 
-  @media screen and (max-width: $mainBreakpoint1) {
+  @media screen and (max-width: mixin.$mainBreakpoint1) {
     max-width: unset;
     width: 100%;
   }
@@ -49,23 +49,23 @@ $max-search-bar-width: 560px;
   padding: 32px 30px 32px 30px;
   gap: 25px;
   height: 100%;
-  @include fontStyle2;
-  @include dFlex($fd: column, $jc: unset, $ai: center);
+  @include mixin.fontStyle2;
+  @include mixin.dFlex($fd: column, $jc: unset, $ai: center);
 }
 
 .font-size1 {
-  @include fontStyle9;
+  @include mixin.fontStyle9;
   @media (max-width: 1440px) {
-    @include fontStyle19;
+    @include mixin.fontStyle19;
   }
 }
 
 .font-size2 {
-  @include fontStyle6;
+  @include mixin.fontStyle6;
 }
 
 .font-size4 {
-  @include fontStyle2;
+  @include mixin.fontStyle2;
 }
 
 .devSpace {
@@ -132,14 +132,14 @@ $max-search-bar-width: 560px;
 
 .gap25 {
   max-width: $max-search-bar-width;
-  @include flex-gap(25px);
+  @include mixin.flexGap(25px);
   @media (max-width: 768px) {
     align-items: flex-start;
   }
 }
 
 .gap13 {
-  @include flex-gap(13px);
+  @include mixin.flexGap(13px);
 }
 
 .divWidth {
@@ -172,25 +172,25 @@ $max-search-bar-width: 560px;
 }
 
 .purpleHover:hover svg path {
-  fill: $purple-3;
+  fill: mixin.$purple-3;
   transition: 0.2s ease;
 }
 
 .purpleHover:hover span {
-  color: $purple-3;
+  color: mixin.$purple-3;
   transition: 0.2s ease;
 }
 
 .purpleHover:hover span.material-symbols-rounded {
-  color: $purple-3;
+  color: mixin.$purple-3;
   scale: 1.1;
   transition: 0.2s ease;
 }
 
 .purpleHover:hover {
   .changeArrowRightBlue {
-    @include changeImgElement(
-      "../../../../assets/img/main/arrow_right_blue.png"
+    @include mixin.changeImgElement(
+      "../assets/img/main/arrow_right_blue.png"
     );
   }
 }
@@ -208,7 +208,7 @@ $max-search-bar-width: 560px;
 }
 
 #searchMobileDiv {
-  @include dFlex($fd: row, $jc: space-between, $ai: center);
+  @include mixin.dFlex($fd: row, $jc: space-between, $ai: center);
   position: relative;
   width: 100%;
   max-width: $max-search-bar-width;
@@ -244,7 +244,7 @@ $max-search-bar-width: 560px;
   right: 16px;
   width: 60px;
   height: 60px;
-  background-color: $purple-1;
+  background-color: mixin.$purple-1;
   box-shadow: 0px 6px 10px 0px #00000033;
   span {
     color: white;

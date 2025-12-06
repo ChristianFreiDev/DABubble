@@ -14,7 +14,7 @@
 }
 
 .profil {
-  @include fontStyle9;
+  @include mixin.fontStyle9;
 }
 
 section {
@@ -22,25 +22,25 @@ section {
 }
 
 .nameCard {
-  @include fontStyle10;
+  @include mixin.fontStyle10;
 }
 
 .edit {
-  @include fontStyle18;
+  @include mixin.fontStyle18;
   cursor: pointer;
-  color: $purple-1;
+  color: mixin.$purple-1;
   &:hover {
-    color: $purple-1;
+    color: mixin.$purple-1;
     font-weight: 700;
   }
 }
 
 .email {
-  @include fontStyle6;
+  @include mixin.fontStyle6;
 }
 
 .emailLink {
-  @include fontStyle2;
+  @include mixin.fontStyle2;
   color: rgba(19, 129, 255, 1);
   padding: 0 10px 0 50px;
 }

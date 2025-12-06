@@ -2,7 +2,7 @@
 
 .message {
   position: relative;
-  @include dFlex($jc: flex-start, $ai: normal);
+  @include mixin.dFlex($jc: flex-start, $ai: normal);
   padding-top: 10px;
   padding-left: 45px;
   padding-right: 146px;
@@ -12,7 +12,7 @@
   transition: background-color 100ms ease-out;
   @media (hover: hover) {
     &:hover {
-      background-color: $bg-color;
+      background-color: mixin.$bg-color;
       .message-content {
         background-color: white;
       }
@@ -32,7 +32,7 @@
 }
 
 .touch-message {
-  background-color: $bg-color;
+  background-color: mixin.$bg-color;
   .message-content {
     background-color: white;
   }
@@ -54,11 +54,11 @@
   padding-left: 146px;
   padding-right: 45px;
   padding-bottom: 10px;
-  @include dFlex($fd: row-reverse, $jc: flex-start, $ai: normal);
+  @include mixin.dFlex($fd: row-reverse, $jc: flex-start, $ai: normal);
   @media (hover: hover) {
     &:hover {
       .message-content {
-        background-color: $purple-2;
+        background-color: mixin.$purple-2;
       }
     }
   }
@@ -66,7 +66,7 @@
 
 .touch-message-alternative {
   .message-content {
-    background-color: $purple-2;
+    background-color: mixin.$purple-2;
   }
 }
 
@@ -94,18 +94,18 @@
 }
 
 .main-message-container {
-  @include dFlex($fd: column, $jc: flex-start, $ai: normal);
+  @include mixin.dFlex($fd: column, $jc: flex-start, $ai: normal);
   gap: 8px;
 }
 
 .main-message-container-alternative {
-  @include dFlex($fd: column, $jc: flex-start, $ai: flex-end);
+  @include mixin.dFlex($fd: column, $jc: flex-start, $ai: flex-end);
 }
 
 .message-content {
-  @include dFlex;
+  @include mixin.dFlex;
   transition: background-color 100ms ease-out;
-  background-color: $bg-color;
+  background-color: mixin.$bg-color;
   padding: 15px;
   border-radius: 0px 30px 30px 30px;
   word-break: break-word;
@@ -116,7 +116,7 @@
 }
 
 .message-content-alternative {
-  background-color: $purple-2;
+  background-color: mixin.$purple-2;
   color: white;
   border-radius: 30px 0px 30px 30px;
 }
@@ -132,11 +132,11 @@
 }
 
 .edit-message-container-bottom {
-  @include dFlex($jc: space-between);
+  @include mixin.dFlex($jc: space-between);
 }
 
 .edit-message-button-container {
-  @include dFlex($jc: normal);
+  @include mixin.dFlex($jc: normal);
   gap: 32px;
 }
 
@@ -151,38 +151,38 @@
 }
 
 .user-name {
-  @include fontStyle3;
+  @include mixin.fontStyle3;
 }
 
 .message-header,
 .bottom-message-container {
-  @include dFlex($jc: flex-start);
+  @include mixin.dFlex($jc: flex-start);
   gap: 20px;
 }
 
 .message-posted-at,
 .last-reply-at {
-  @include fontStyle0;
+  @include mixin.fontStyle0;
 }
 
 .number-of-replies {
-  color: $purple-3;
+  color: mixin.$purple-3;
   cursor: pointer;
 }
 
 .reactions-container {
-  @include dFlex($jc: flex-end, $ai: center);
+  @include mixin.dFlex($jc: flex-end, $ai: center);
   flex-wrap: wrap;
   gap: 12.34px;
 }
 
 .reaction {
-  @include dFlex($jc: normal, $ai: normal);
+  @include mixin.dFlex($jc: normal, $ai: normal);
   background-color: white;
   padding: 5px 10px;
   gap: 10px;
   border-radius: 20px;
-  border: 1px solid $light-purple;
+  border: 1px solid mixin.$light-purple;
   cursor: pointer;
 }
 
@@ -205,8 +205,8 @@
 .reaction-bubble {
   position: absolute;
   z-index: 9999;
-  background-color: $purple-1;
-  @include dFlex($fd: column);
+  background-color: mixin.$purple-1;
+  @include mixin.dFlex($fd: column);
   display: none;
   text-align: center;
   min-width: 158px;
@@ -223,7 +223,7 @@
 
 .reaction-bubble-username {
   text-wrap: nowrap;
-  @include fontStyle3;
+  @include mixin.fontStyle3;
   color: white;
 }
 
@@ -232,7 +232,7 @@
 }
 
 .has-reacted {
-  @include fontStyle12;
+  @include mixin.fontStyle12;
   color: white;
 }
 
@@ -243,14 +243,14 @@
 .message-menu {
   position: absolute;
   z-index: 1;
-  @include dFlex($jc: normal, $ai: normal);
+  @include mixin.dFlex($jc: normal, $ai: normal);
   visibility: hidden;
   opacity: 0;
   margin-top: -27px;
   padding: 2px 15px 2px 20px;
   gap: 5px;
   border-radius: 25px 25px 0px 25px;
-  border: 1px solid $light-purple;
+  border: 1px solid mixin.$light-purple;
   background-color: white;
   transition: all 100ms ease-out;
 }
@@ -271,20 +271,20 @@
   left: 90%;
   padding: 10px 20px 10px 20px;
   border-radius: 0px 30px 30px 30px;
-  border: 1px solid $light-purple;
+  border: 1px solid mixin.$light-purple;
   background-color: white;
 }
 
 .edit-message {
-  @include fontStyle8;
+  @include mixin.fontStyle8;
   padding: 10px 20px 10px 20px;
   border-radius: 100px;
   cursor: pointer;
   @media (hover: hover) {
     &:hover {
-      @include fontStyle19;
-      background-color: $bg-color;
-      color: $purple-3;
+      @include mixin.fontStyle19;
+      background-color: mixin.$bg-color;
+      color: mixin.$purple-3;
     }
   }
 }
@@ -294,12 +294,12 @@
 }
 
 .file-name {
-  @include dFlex();
+  @include mixin.dFlex();
   padding: 4px 4px 4px 12px;
-  border: 1px solid $purple-2;
+  border: 1px solid mixin.$purple-2;
   border-radius: 10px;
   cursor: pointer;
-  background-color: $light-purple-scrollbar;
+  background-color: mixin.$light-purple-scrollbar;
 }
 
 app-emoji-picker {
@@ -360,7 +360,7 @@ app-emoji-picker {
     align-self: flex-end;
   }
   .edit-message-button-container {
-    @include dFlex($fd: column);
+    @include mixin.dFlex($fd: column);
   }
 }
 
@@ -390,7 +390,7 @@ app-emoji-picker {
     padding-right: 16px;
   }
   .message-content {
-    @include fontStyle1;
+    @include mixin.fontStyle1;
   }
   .avatar {
     height: 50px;

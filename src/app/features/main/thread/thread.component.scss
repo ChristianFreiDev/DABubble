@@ -3,10 +3,10 @@
 :host {
   background-color: white;
   width: 100%;
-  height: calc(100vh - $header-and-bottom-spacing);
-  height: calc(100svh - $header-and-bottom-spacing);
+  height: calc(100vh - mixin.$header-and-bottom-spacing);
+  height: calc(100svh - mixin.$header-and-bottom-spacing);
   border-radius: 30px;
-  @include dFlex($fd: column, $jc: normal, $ai: normal);
+  @include mixin.dFlex($fd: column, $jc: normal, $ai: normal);
   overflow: hidden;
   position: relative;
   padding-bottom: 40px;
@@ -15,17 +15,17 @@
 .thread-header {
   width: 100%;
   position: relative;
-  @include dFlex($jc: space-between);
+  @include mixin.dFlex($jc: space-between);
   padding: 35.5px 40px;
   box-shadow: 0px 2px 10px 0px #00000014;
-  @media (max-width: $mainBreakpoint1) {
+  @media (max-width: mixin.$mainBreakpoint1) {
     padding: 10px 16px;
   }
 }
 
 .thread-header-left {
   max-width: calc(100% - 40px);
-  @include dFlex($jc: flex-start);
+  @include mixin.dFlex($jc: flex-start);
   gap: 5px;
   .material-symbols-rounded {
     min-width: 14px;
@@ -37,9 +37,9 @@
 }
 
 .thread-heading {
-  @include fontStyle9;
+  @include mixin.fontStyle9;
   @media (max-width: 1440px) {
-    @include fontStyle19;
+    @include mixin.fontStyle19;
   }
 }
 
@@ -51,15 +51,15 @@
 }
 
 .channel {
-  @include fontStyle0;
-  color: $purple-2;
+  @include mixin.fontStyle0;
+  color: mixin.$purple-2;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
 .thread-hr-container {
-  @include dFlex($jc: normal);
+  @include mixin.dFlex($jc: normal);
   padding: 8px 32px 20px 33px;
 }
 
@@ -88,7 +88,7 @@ app-message-textarea {
   }
 }
 
-@media (max-width: $mainBreakpoint1) {
+@media (max-width: mixin.$mainBreakpoint1) {
   :host {
     height: calc(100vh - 80px);
     height: calc(100svh - 80px);

@@ -16,7 +16,7 @@
 
 .person {
   &:hover {
-    background-color: $bg-color;
+    background-color: mixin.$bg-color;
   }
 }
 

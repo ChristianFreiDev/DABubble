@@ -8,7 +8,7 @@
   width: 100%;
   padding: 12px 16px;
   overflow-y: auto;
-  @media (max-width: $mainBreakpoint1) {
+  @media (max-width: mixin.$mainBreakpoint1) {
     max-height: unset;
     height: 100%;
     padding: 0;
@@ -17,7 +17,7 @@
 
 .edit-channel {
   min-width: 0;
-  @include dFlex($fd: column, $jc: normal, $ai: normal);
+  @include mixin.dFlex($fd: column, $jc: normal, $ai: normal);
   background-color: white;
   max-width: 872px;
   width: 100%;
@@ -25,7 +25,7 @@
   border-radius: 0px 30px 30px 30px;
   overflow-y: auto;
   justify-self: center;
-  @media (max-width: $mainBreakpoint1) {
+  @media (max-width: mixin.$mainBreakpoint1) {
     min-height: unset;
     width: 100%;
     height: 100%;
@@ -37,33 +37,33 @@
 
 .edit-channel-header {
   min-width: 0;
-  @include dFlex($jc: space-between, $ai: center);
+  @include mixin.dFlex($jc: space-between, $ai: center);
   margin-bottom: 20px;
   padding: 40px 40px 0;
-  @media (max-width: $mainBreakpoint1) {
+  @media (max-width: mixin.$mainBreakpoint1) {
     padding: 40px 16px 10px 16px;
     box-shadow: 0px 2px 10px 0px #00000014;
   }
 }
 
 .edit-channel-main {
-  @include dFlex($fd: column, $jc: normal, $ai: normal);
+  @include mixin.dFlex($fd: column, $jc: normal, $ai: normal);
   gap: 20px;
   padding: 0 40px 40px;
-  @media (max-width: $mainBreakpoint1) {
+  @media (max-width: mixin.$mainBreakpoint1) {
     padding: 16px;
   }
 }
 
 .edit-channel-header-left {
   min-width: 0;
-  @include dFlex($jc: normal, $ai: center);
+  @include mixin.dFlex($jc: normal, $ai: center);
   gap: 6.5px;
 }
 
 .edit-channel-header-tag {
   font-size: 30px;
-  @media (max-width: $mainBreakpoint1) {
+  @media (max-width: mixin.$mainBreakpoint1) {
     font-size: 24px;
   }
 }
@@ -72,56 +72,56 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  @include fontStyle9;
-  @media (max-width: $mainBreakpoint1) {
-    @include fontStyle19;
+  @include mixin.fontStyle9;
+  @media (max-width: mixin.$mainBreakpoint1) {
+    @include mixin.fontStyle19;
   }
 }
 
 .edit-channel-name {
-  @include dFlex($jc: normal, $ai: center);
+  @include mixin.dFlex($jc: normal, $ai: center);
   gap: 4.5px;
   position: relative;
 }
 
 .edit-channel-heading {
-  @include fontStyle3;
+  @include mixin.fontStyle3;
 }
 
 .edit-channel-name-container {
-  @include dFlex($fd: column, $jc: normal, $ai: normal);
+  @include mixin.dFlex($fd: column, $jc: normal, $ai: normal);
   padding: 20px;
   gap: 20px;
   border-radius: 20px;
-  border: 1px solid $light-purple;
+  border: 1px solid mixin.$light-purple;
 }
 
 .edit-channel-name-header,
 .edit-channel-description-header {
-  @include dFlex($jc: space-between);
+  @include mixin.dFlex($jc: space-between);
 }
 
 .edit-channel-lower-container {
-  @include dFlex($fd: column, $jc: normal, $ai: normal);
+  @include mixin.dFlex($fd: column, $jc: normal, $ai: normal);
   padding: 20px;
   gap: 30px;
   border-radius: 20px;
-  border: 1px solid $light-purple;
+  border: 1px solid mixin.$light-purple;
 }
 
 .edit-channel-description-container {
-  @include dFlex($fd: column, $jc: normal, $ai: normal);
+  @include mixin.dFlex($fd: column, $jc: normal, $ai: normal);
   gap: 20px;
 }
 
 .edit-channel-created-by {
-  @include dFlex($fd: column, $jc: normal, $ai: normal);
+  @include mixin.dFlex($fd: column, $jc: normal, $ai: normal);
   gap: 20px;
 }
 
 .edit-channel-created-by-name {
-  @include fontStyle17;
-  color: $purple-3;
+  @include mixin.fontStyle17;
+  color: mixin.$purple-3;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -131,11 +131,11 @@
   background-color: transparent;
   border: unset;
   padding: 0;
-  @include fontStyle16;
-  color: $purple-3;
+  @include mixin.fontStyle16;
+  color: mixin.$purple-3;
   cursor: pointer;
   display: block;
-  @media (max-width: $mainBreakpoint1) {
+  @media (max-width: mixin.$mainBreakpoint1) {
     display: none;
   }
 }
@@ -143,12 +143,12 @@
 .edit-btn-mobile {
   height: 30px;
   width: 30px;
-  background-color: $bg-color;
+  background-color: mixin.$bg-color;
   display: none;
   &:active {
-    color: $purple-3;
+    color: mixin.$purple-3;
   }
-  @media (max-width: $mainBreakpoint1) {
+  @media (max-width: mixin.$mainBreakpoint1) {
     display: block;
   }
 }
@@ -158,10 +158,10 @@ textarea {
   width: 100%;
   outline: none;
   &:hover {
-    border: 1px solid $purple-2;
+    border: 1px solid mixin.$purple-2;
   }
   &:focus {
-    border: 1px solid $purple-1;
+    border: 1px solid mixin.$purple-1;
   }
 }
 
@@ -200,13 +200,13 @@ textarea {
 .editable-field {
   padding: 20px;
   border-radius: 30px;
-  border: 1px solid $light-purple;
+  border: 1px solid mixin.$light-purple;
 }
 
 .editable-channel-name-input {
   padding: 20px 20px 20px 58px;
   border-radius: 30px;
-  border: 1px solid $light-purple;
+  border: 1px solid mixin.$light-purple;
 }
 
 .editable-hr {
@@ -218,8 +218,8 @@ textarea {
 }
 
 .channel-name-error {
-  @include fontStyle0;
-  color: $error-rosa;
+  @include mixin.fontStyle0;
+  color: mixin.$error-pink;
 }
 
 @media (min-width: 769px) {

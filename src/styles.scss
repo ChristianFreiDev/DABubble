@@ -5,7 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: Nunito, sans-serif;
-  @include fontStyle2;
+  @include mixin.fontStyle2;
   color: black;
 }
 
@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  background-color: $bg-color;
+  background-color: mixin.$bg-color;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -27,28 +27,28 @@ a {
 }
 
 h1 {
-  @include fontStyle11;
-  color: $purple-1;
+  @include mixin.fontStyle11;
+  color: mixin.$purple-1;
 }
 
 h2 {
-  @include fontStyle10;
+  @include mixin.fontStyle10;
   line-height: 38.4px;
-  color: $purple-1;
+  color: mixin.$purple-1;
 }
 
 h3 {
-  @include fontStyle10;
+  @include mixin.fontStyle10;
 }
 
 hr {
   border: none;
-  background-color: $light-purple;
+  background-color: mixin.$light-purple;
   height: 1px;
 }
 
 .btn {
-  @include fontStyle3;
+  @include mixin.fontStyle3;
   border: unset;
   border-radius: 25px;
   padding: 12px 25px;
@@ -58,43 +58,43 @@ hr {
 }
 
 .btn-prim {
-  background-color: $purple-1;
+  background-color: mixin.$purple-1;
 
   &:hover {
-    background-color: $purple-2;
+    background-color: mixin.$purple-2;
   }
 
   &:active {
-    background-color: $purple-1;
+    background-color: mixin.$purple-1;
   }
 
   &:disabled {
-    background-color: $text-gray;
+    background-color: mixin.$text-gray;
   }
 }
 
 .btn-sec {
-  border: 1px solid $purple-2;
+  border: 1px solid mixin.$purple-2;
   background-color: white;
-  color: $purple-1;
+  color: mixin.$purple-1;
 
   &:hover {
-    border: 1px solid $purple-3;
-    background-color: $purple-3;
+    border: 1px solid mixin.$purple-3;
+    background-color: mixin.$purple-3;
     color: white;
   }
 
   &:active {
-    border: 1px solid $purple-1;
-    background-color: $purple-1;
+    border: 1px solid mixin.$purple-1;
+    background-color: mixin.$purple-1;
     color: white;
     transition: none;
   }
 
   &:disabled {
-    border: 1px solid $text-gray;
+    border: 1px solid mixin.$text-gray;
     background-color: white;
-    color: $text-gray;
+    color: mixin.$text-gray;
   }
 }
 
@@ -128,9 +128,9 @@ hr {
   background-color: unset;
   cursor: pointer;
   &:hover {
-    background-color: $bg-color;
+    background-color: mixin.$bg-color;
     .material-symbols-rounded {
-      color: $purple-3;
+      color: mixin.$purple-3;
       font-variation-settings: "GRAD" 200;
     }
   }
@@ -180,19 +180,19 @@ hr {
 }
 
 .person {
-  @include dFlex($jc: normal);
+  @include mixin.dFlex($jc: normal);
   gap: 15px;
   border-radius: 35px;
   padding: 4px 20px;
   width: fit-content;
   cursor: pointer;
   &:hover {
-    background-color: $bg-color;
+    background-color: mixin.$bg-color;
   }
 }
 
 .mention {
-  color: $purple-3;
+  color: mixin.$purple-3;
 }
 
 .d-none {
@@ -204,7 +204,7 @@ hr {
   width: 100%;
   min-height: 100vh;
   min-height: 100svh;
-  @include dFlex($fd: column, $jc: flex-start);
+  @include mixin.dFlex($fd: column, $jc: flex-start);
 }
 
 ::-webkit-scrollbar {
@@ -214,11 +214,11 @@ hr {
 
 ::-webkit-scrollbar-track {
   border-radius: 4px;
-  background-color: $light-purple-scrollbar;
+  background-color: mixin.$light-purple-scrollbar;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $purple-2;
+  background: mixin.$purple-2;
   border-radius: 4px;
 }
 
@@ -254,35 +254,35 @@ hr {
 }
 
 .dFlexRowFlex-StartCenter {
-  @include dFlex($fd: row, $jc: flex-start, $ai: center);
+  @include mixin.dFlex($fd: row, $jc: flex-start, $ai: center);
 }
 
 .dFlexRowFlex-EndCenter {
-  @include dFlex($fd: row, $jc: flex-end, $ai: center);
+  @include mixin.dFlex($fd: row, $jc: flex-end, $ai: center);
 }
 
 .dFlexRowSpaceBetweenCenter {
-  @include dFlex($fd: row, $jc: space-between, $ai: center);
+  @include mixin.dFlex($fd: row, $jc: space-between, $ai: center);
 }
 
 .dFlexColumn {
-  @include dFlex($fd: column, $jc: center, $ai: center);
+  @include mixin.dFlex($fd: column, $jc: center, $ai: center);
 }
 
 .dFlexColumnCenterFlexStart {
-  @include dFlex($fd: column, $jc: center, $ai: flex-start);
+  @include mixin.dFlex($fd: column, $jc: center, $ai: flex-start);
 }
 
 .dFlexRowFlexEndCenter {
-  @include dFlex($fd: row, $jc: flex-end, $ai: center);
+  @include mixin.dFlex($fd: row, $jc: flex-end, $ai: center);
 }
 
 .dFlexRowCenterCenter {
-  @include dFlex($fd: row, $jc: center, $ai: center);
+  @include mixin.dFlex($fd: row, $jc: center, $ai: center);
 }
 
 .dFlexRowFlexEndCenter {
-  @include dFlex($fd: row, $jc: flex-end, $ai: center);
+  @include mixin.dFlex($fd: row, $jc: flex-end, $ai: center);
 }
 
 .sectionHidden {
@@ -311,7 +311,7 @@ hr {
 
 .profil-status-container {
   position: relative;
-  @include dFlex();
+  @include mixin.dFlex();
 }
 
 .status-circle {
@@ -325,11 +325,11 @@ hr {
 }
 
 .status-online {
-  background-color: $online-green;
+  background-color: mixin.$online-green;
 }
 
 .status-offline {
-  background-color: $text-gray;
+  background-color: mixin.$text-gray;
 }
 
 @media (max-width: 1968px) {

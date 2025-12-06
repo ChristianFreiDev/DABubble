@@ -43,17 +43,17 @@
 }
 
 .profil {
-  @include fontStyle9;
+  @include mixin.fontStyle9;
 }
 
 .nameCard {
-  @include fontStyle10;
+  @include mixin.fontStyle10;
 }
 
 .edit {
-  @include fontStyle18;
+  @include mixin.fontStyle18;
   cursor: pointer;
-  color: $purple-1;
+  color: mixin.$purple-1;
   &:hover {
     font-weight: 700;
   }
@@ -63,19 +63,19 @@
   display: none;
   padding: 3px;
   border-radius: 50%;
-  background-color: $bg-color;
+  background-color: mixin.$bg-color;
   &:active {
-    color: $purple-3;
+    color: mixin.$purple-3;
     font-variation-settings: "GRAD" 200;
   }
 }
 
 .emailAndName {
-  @include fontStyle19;
+  @include mixin.fontStyle19;
 }
 
 .emailLink {
-  @include fontStyle2;
+  @include mixin.fontStyle2;
   color: rgba(19, 129, 255, 1);
   padding: 0 10px 0 50px;
 }
@@ -122,7 +122,7 @@
 }
 
 .online-green {
-  color: $online-green;
+  color: mixin.$online-green;
 }
 
 .jc-center {
@@ -135,21 +135,21 @@
 }
 
 .change-profile-img {
-  @include dFlex();
+  @include mixin.dFlex();
 }
 
 .upload-info-container {
-  @include dFlex($jc: flex-start);
+  @include mixin.dFlex($jc: flex-start);
   width: 100%;
   gap: 16px;
 
   span {
-    @include fontStyle0;
+    @include mixin.fontStyle0;
   }
 }
 
 .upload-error {
-  color: $error-rosa;
+  color: mixin.$error-pink;
 }
 
 .email-sent-overlay {
@@ -167,21 +167,21 @@
   z-index: 999;
   transition: all 200ms ease-out;
   transform: translateX(100vw);
-  @include dFlex($jc: flex-end, $ai: flex-end);
+  @include mixin.dFlex($jc: flex-end, $ai: flex-end);
 }
 
 .email-sent-content {
-  @include fontStyle13;
-  @include dFlex();
+  @include mixin.fontStyle13;
+  @include mixin.dFlex();
   gap: 28px;
   color: white;
   padding: 50px;
   border-radius: 30px 30px 0 30px;
-  background-color: $purple-1;
+  background-color: mixin.$purple-1;
   box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.2);
 
   > span:last-child {
-    @include fontStyle13;
+    @include mixin.fontStyle13;
     color: white;
   }
 }

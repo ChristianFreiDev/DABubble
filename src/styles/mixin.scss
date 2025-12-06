@@ -11,7 +11,7 @@ $purple-3: #535af1;
 $text-gray: #686868;
 $bg-color: #eceefe;
 $light-purple: #adb0d9;
-$error-rosa: #ed1e79;
+$error-pink: #ed1e79;
 $online-green: #92c83e;
 $light-purple-scrollbar: #c7c9e5;
 $side-nav-width: 366px;
@@ -141,7 +141,7 @@ $mainBreakpoint2: 1200px;
   line-height: 27.28px;
 }
 
-@mixin flex-gap($gap-size) {
+@mixin flexGap($gap-size) {
   display: flex;
   flex-direction: column;
   align-items: center;

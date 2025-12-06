@@ -6,9 +6,9 @@
   overflow: hidden;
   position: relative;
   width: 100%;
-  height: calc(100vh - $header-and-bottom-spacing);
-  height: calc(100svh - $header-and-bottom-spacing);
-  @include dFlex($fd: column, $jc: normal, $ai: normal);
+  height: calc(100vh - mixin.$header-and-bottom-spacing);
+  height: calc(100svh - mixin.$header-and-bottom-spacing);
+  @include mixin.dFlex($fd: column, $jc: normal, $ai: normal);
   background-color: white;
   padding-bottom: 40px;
 }
@@ -17,24 +17,24 @@
   min-height: 96px;
   flex-shrink: 1;
   position: relative;
-  @include dFlex($jc: space-between);
+  @include mixin.dFlex($jc: space-between);
   padding: 25px 45px;
   box-shadow: 0px 2px 10px 0px #00000014;
-  @media (max-width: $mainBreakpoint1) {
+  @media (max-width: mixin.$mainBreakpoint1) {
     padding: 10px 16px;
     min-height: unset;
   }
 }
 
 .chat-header-avatars {
-  @include dFlex();
+  @include mixin.dFlex();
   padding: 3px 10px 3px 10px;
   margin-right: 10px;
   gap: 10px;
   border-radius: 100px;
   cursor: pointer;
   &:hover {
-    background-color: $bg-color;
+    background-color: mixin.$bg-color;
   }
   .avatar-40 {
     &:nth-child(2),
@@ -52,14 +52,14 @@
 
 .channel-name,
 .channel-name-chat {
-  @include fontStyle9;
+  @include mixin.fontStyle9;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .channel-name {
   @media (max-width: 1440px) {
-    @include fontStyle19;
+    @include mixin.fontStyle19;
   }
 }
 
@@ -69,7 +69,7 @@
 }
 
 .small-tag {
-  color: $purple-3;
+  color: mixin.$purple-3;
   font-size: 20px;
   vertical-align: sub;
   display: inline;
@@ -81,10 +81,10 @@
   cursor: pointer;
   &:hover {
     .channel-name {
-      color: $purple-3;
+      color: mixin.$purple-3;
     }
     .material-symbols-rounded {
-      color: $purple-3;
+      color: mixin.$purple-3;
       font-variation-settings: "GRAD" 200;
     }
   }
@@ -98,11 +98,11 @@
 
 .chat-header-left,
 .chat-header-right {
-  @include dFlex($jc: flex-start);
+  @include mixin.dFlex($jc: flex-start);
 }
 
 .chat-header-right-span {
-  @include fontStyle8;
+  @include mixin.fontStyle8;
   margin-right: 10px;
   @media (max-width: 960px) {
     display: none;
@@ -111,7 +111,7 @@
 
 .add-people-btn {
   @media (max-width: 960px) {
-    background-color: $bg-color;
+    background-color: mixin.$bg-color;
   }
 }
 
@@ -119,7 +119,7 @@
   height: 100%;
   padding: 60px;
   gap: 13px;
-  @include dFlex($fd: column, $jc: flex-end, $ai: flex-start);
+  @include mixin.dFlex($fd: column, $jc: flex-end, $ai: flex-start);
   flex-wrap: wrap;
   @media (max-width: 768px) {
     padding: 0 16px 45px;
@@ -127,20 +127,20 @@
 }
 
 .empty-chat-container-header {
-  @include dFlex($jc: flex-start);
+  @include mixin.dFlex($jc: flex-start);
   gap: 10px;
   width: 100%;
 }
 
 .empty-chat-container-second-channel-name {
-  color: $purple-3;
+  color: mixin.$purple-3;
 }
 
 .channel-notice {
-  @include fontStyle7;
+  @include mixin.fontStyle7;
 }
 
-@media (max-width: $mainBreakpoint1) {
+@media (max-width: mixin.$mainBreakpoint1) {
   :host {
     height: calc(100vh - 80px);
     height: calc(100svh - 80px);
