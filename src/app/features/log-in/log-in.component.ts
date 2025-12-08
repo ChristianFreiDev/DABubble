@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, EnvironmentInjector, inject, OnInit, runInInjectionContext } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -24,6 +24,7 @@ export class LogInComponent implements OnInit {
   passwordFalse: boolean = false;
   userService = inject(UserService);
   private auth = inject(Auth);
+  private environmentInjector = inject(EnvironmentInjector);
   forwardedEmail: string | null = null;
   googleLoginError: boolean = false;
   
@@ -75,8 +76,9 @@ export class LogInComponent implements OnInit {
 
 
   async signInUser() {
-    await signInWithEmailAndPassword(this.auth, this.loginData.email, this.loginData.password)
-      .then((userCredential) => {
+    await runInInjectionContext(this.environmentInjector, () => {
+      return signInWithEmailAndPassword(this.auth, this.loginData.email, this.loginData.password)
+    }).then((userCredential) => {
         const user = userCredential.user;
         this.userService.currentUserUIDSignal.set(user.uid);
         this.router.navigateByUrl('main');

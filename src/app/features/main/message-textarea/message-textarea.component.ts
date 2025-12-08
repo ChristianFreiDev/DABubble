@@ -46,7 +46,7 @@ export class MessageTextareaComponent {
     public sideNavService: SideNavService, private dialogService: DialogService
   ) { 
     effect(() => {
-      if (this.eventService.focusEvent()) {
+      if (this.eventService.focusEvent() && this.editableTextarea && this.editableTextarea.nativeElement) {
         this.editableTextarea.nativeElement.focus();
         setTimeout(() => {
           this.scrollToBottom('auto');

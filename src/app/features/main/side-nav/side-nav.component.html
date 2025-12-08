@@ -128,7 +128,7 @@
 
       @if (sideNavService.contactsOpened) {
       <div class="gap13">
-        @for (user of userService.allUsers(); track user; let i = $index) {
+        @for (user of userService.allUsers(); track user.userUID; let i = $index) {
         <div class="contactsDiv" (click)="chatService.openChat(user.userUID)">
           <div class="profil-status-container">
             <img class="avatar avatar-50" [src]="user.avatar" />
