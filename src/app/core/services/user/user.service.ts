@@ -91,10 +91,12 @@ export class UserService implements OnDestroy {
   }
 
   async addUser(userUID: string, data: object) {
-    await setDoc(
-      doc(this.firebaseService.getCollectionRef('users'), userUID),
-      data
-    ).catch((err) => {
+    runInInjectionContext(this.environmentInjector, async () => {
+      await setDoc(
+        doc(this.firebaseService.getCollectionRef('users'), userUID),
+        data
+      );
+    }).catch((err) => {
       console.error('User hinzufügen error:', err);
     });
     this.addInitialChannels();
@@ -142,9 +144,11 @@ export class UserService implements OnDestroy {
 
   addInitialChannels() {
     this.initialChannelNames.forEach(async (channelName) => {
-      const q = query(
-        this.firebaseService.getCollectionRef('channels'),
-        where('name', '==', channelName)
+      const q = runInInjectionContext(this.environmentInjector, () =>
+        query(
+          this.firebaseService.getCollectionRef('channels'),
+          where('name', '==', channelName)
+        )
       );
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => this.updateUserIdsInChannel(doc.id));

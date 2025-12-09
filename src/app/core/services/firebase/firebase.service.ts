@@ -127,15 +127,17 @@ export class FirebaseService {
     subSubCollectionName: string,
     docId3: string
   ) {
-    return doc(
-      this.firestore,
-      collectionName,
-      docId1,
-      subcollectionName,
-      docId2,
-      subSubCollectionName,
-      docId3
-    );
+    return runInInjectionContext(this.environmentInjector, () => {
+      return doc(
+        this.firestore,
+        collectionName,
+        docId1,
+        subcollectionName,
+        docId2,
+        subSubCollectionName,
+        docId3
+      );
+    });
   }
 
   async updateDocData(collectionName: string, docId: string, data: any) {

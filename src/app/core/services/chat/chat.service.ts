@@ -167,16 +167,18 @@ export class ChatService {
 
   async addDirectMessageChannel() {
     const dmChannelId = this.getDirectMessageChannelId(this.contactUUID);
-    await setDoc(
-      this.firebaseService.getDocRef(dmChannelId, 'directMessageChannels'),
-      {
-        id: dmChannelId,
-        userIds: [
-          this.contactUUID,
-          this.userService.currentOnlineUser().userUID,
-        ],
-      }
-    );
+    runInInjectionContext(this.environmentInjector, async () => {
+      await setDoc(
+        this.firebaseService.getDocRef(dmChannelId, 'directMessageChannels'),
+        {
+          id: dmChannelId,
+          userIds: [
+            this.contactUUID,
+            this.userService.currentOnlineUser().userUID,
+          ],
+        }
+      );
+    });
   }
 
   async addChatMessage(
@@ -688,45 +690,51 @@ export class ChatService {
   }
 
   subThread() {
-    const q = query(
-      this.firebaseService.getSubSubcollectionRef(
-        this.currentMainChatCollectionSignal(),
-        this.getMainChatChannelId(),
-        'messages',
-        this.topThreadMessageId,
-        'thread'
-      ),
-      orderBy('postedAt')
+    const q = runInInjectionContext(this.environmentInjector, () =>
+      query(
+        this.firebaseService.getSubSubcollectionRef(
+          this.currentMainChatCollectionSignal(),
+          this.getMainChatChannelId(),
+          'messages',
+          this.topThreadMessageId,
+          'thread'
+        ),
+        orderBy('postedAt')
+      )
     );
-    return onSnapshot(q, (snapshot) => {
-      const tempMessages: any[] = [];
-      snapshot.forEach((doc) => {
-        const message = this.createMessageFromDocumentSnapshot(doc);
-        if (message) {
-          tempMessages.push(message);
-        }
+    return runInInjectionContext(this.environmentInjector, () => {
+      return onSnapshot(q, (snapshot) => {
+        const tempMessages: any[] = [];
+        snapshot.forEach((doc) => {
+          const message = this.createMessageFromDocumentSnapshot(doc);
+          if (message) {
+            tempMessages.push(message);
+          }
+        });
+        this.threadRepliesSignal.set(tempMessages);
       });
-      this.threadRepliesSignal.set(tempMessages);
     });
   }
 
   subTopThreadMessage(collection: string) {
-    return onSnapshot(
-      this.firebaseService.getDocRefInSubcollection(
-        this.getMainChatChannelId(),
-        collection,
-        'messages',
-        this.topThreadMessageId
-      ),
-      (doc) => {
-        if (doc) {
-          const message = this.createMessageFromDocumentSnapshot(doc);
-          if (message) {
-            this.topThreadMessageSignal.set(message);
+    return runInInjectionContext(this.environmentInjector, () => {
+      return onSnapshot(
+        this.firebaseService.getDocRefInSubcollection(
+          this.getMainChatChannelId(),
+          collection,
+          'messages',
+          this.topThreadMessageId
+        ),
+        (doc) => {
+          if (doc) {
+            const message = this.createMessageFromDocumentSnapshot(doc);
+            if (message) {
+              this.topThreadMessageSignal.set(message);
+            }
           }
         }
-      }
-    );
+      );
+    });
   }
 
   setContactIndexFromUID(userUID: string) {
