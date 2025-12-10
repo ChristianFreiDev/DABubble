@@ -7,7 +7,7 @@ import { LayoutStateSignal } from '../../models/layout-state-signal.interface';
 export class LayoutService {
   public selectedCollection = signal<string>('newMessages');
   private isThreadSelected = signal<boolean>(false);
-  private isSideNavSelected = signal<boolean>(true);
+  public isSideNavSelected = signal<boolean>(true);
 
   constructor() {}
 

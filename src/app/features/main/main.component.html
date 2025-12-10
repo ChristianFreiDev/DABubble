@@ -1,4 +1,4 @@
-<div id="mainDiv" (click)="chatService.closeDropDownMenu()">
+<div id="main-div" (click)="chatService.closeDropDownMenu()">
   <app-header></app-header>
   <div class="main">
     <app-side-nav
@@ -30,17 +30,16 @@
     <app-upload-error></app-upload-error>
     }
   </div>
-  <div class="closeMenu purpleHover" (click)="closeSection()">
-    @if (sectionIsVisible) {
-    <span>Workspace-Menü schließen</span>
-    } @if (!sectionIsVisible) {
-    <span>Workspace-Menü öffnen</span>
-    }
+  <div class="close-menu purple-hover" (click)="closeSection()">
+    <span>
+      @if (this.isSideNavSelected()) { Workspace-Menü schließen } @else {
+      Workspace-Menü öffnen }</span
+    >
     <img
-      id="menuButton"
-      class="rotate-180deg changeMenuImg"
+      id="menu-button"
+      class="rotate-180deg change-menu-img"
       src="assets/img/main/blackMenu.png"
-      [class.changeMenuImgBlue]="!sectionIsVisible"
+      [class.change-menu-img-blue]="!this.isSideNavSelected()"
     />
   </div>
   @if (sideNavService.createChannelsDivOpened) {

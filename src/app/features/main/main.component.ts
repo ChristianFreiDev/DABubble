@@ -40,40 +40,24 @@ import { UserService } from '../../core/services/user/user.service';
 export class MainComponent implements OnInit {
   layoutState: Signal<any> = this.layoutService.layoutState;
   isEditChannelVisible: Signal<boolean> = this.dialogService.openEditChannel;
+  isSideNavSelected: Signal<boolean> = this.layoutService.isSideNavSelected;
   constructor(public chatService: ChatService, public sideNavService: SideNavService, public firebaseService: FirebaseService, private layoutService: LayoutService, public dialogService: DialogService, private userService: UserService) {}
   sectionIsVisible: boolean = true;
 
   closeSection() {
-    let section: HTMLElement | null = document.getElementById('section');
-    if (section) {
-      if (this.sectionIsVisible) {
-        this.addSectionHiddenClass(section);
+      if (this.layoutService.isSideNavSelected()) {
         this.changeImage(
-          'menuButton',
+          'menu-button',
           '../../../../assets/img/main/displayMenu.png'
         );
 
       } else {
-        this.addSectionDisplayedClass(section);
         this.changeImage(
-          'menuButton',
+          'menu-button',
           '../../../../assets/img/main/blackMenu.png'
         );
       }
-    }
     this.layoutService.toggleSideNavVisbility();
-  }
-
-  addSectionHiddenClass(div: any) {
-    div.classList.remove('sectionDisplayed');
-    div.classList.add('sectionHidden');
-    this.sectionIsVisible = false;
-  }
-
-  addSectionDisplayedClass(div: any) {
-    div.classList.remove('sectionHidden');
-    div.classList.add('sectionDisplayed');
-    this.sectionIsVisible = true;
   }
 
   changeImage(imgId: any, newImgSrc: any) {

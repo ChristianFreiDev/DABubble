@@ -23,7 +23,7 @@
   position: relative;
 }
 
-.closeMenu {
+.close-menu {
   background: rgb(255, 255, 255);
   position: fixed;
   z-index: 1;
@@ -48,7 +48,7 @@
   }
 }
 
-.purpleHover:hover {
+.purple-hover:hover {
   span {
     scale: 1.05;
     color: mixin.$purple-3;
@@ -58,11 +58,11 @@
     scale: 1.01;
   }
 
-  .changeMenuImg {
+  .change-menu-img {
     @include mixin.changeImgElement("../assets/img/main/blueMenu.png");
   }
 
-  .changeMenuImgBlue {
+  .change-menu-img-blue {
     @include mixin.changeImgElement("../assets/img/main/displayMenuBlue.png");
   }
 }
@@ -97,13 +97,13 @@ app-new-message {
 }
 
 @media screen and (max-width: 480px) {
-  #menuButton {
+  #menu-button {
     height: 28px;
   }
 }
 
 @media (max-width: 768px) {
-  #mainDiv {
+  #main-div {
     height: 100%;
   }
 

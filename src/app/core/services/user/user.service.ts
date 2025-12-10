@@ -129,17 +129,21 @@ export class UserService implements OnDestroy {
     if (this.auth.currentUser) {
       await this.updateUserDoc(this.auth.currentUser.uid, { isOnline: false });
     }
-    await signOut(this.auth).catch((error) => {
-      console.log('Error:', error);
+    runInInjectionContext(this.environmentInjector, async () => {
+      await signOut(this.auth).catch((error) => {
+        console.log('Error:', error);
+      });
     });
   }
 
   async updateUserIdsInChannel(channelId: string) {
-    if (this.auth.currentUser) {
-      await updateDoc(this.firebaseService.getDocRef(channelId, 'channels'), {
-        userUIDs: arrayUnion(this.auth.currentUser.uid),
-      });
-    }
+    runInInjectionContext(this.environmentInjector, async () => {
+      if (this.auth.currentUser) {
+        await updateDoc(this.firebaseService.getDocRef(channelId, 'channels'), {
+          userUIDs: arrayUnion(this.auth.currentUser.uid),
+        });
+      }
+    });
   }
 
   addInitialChannels() {
