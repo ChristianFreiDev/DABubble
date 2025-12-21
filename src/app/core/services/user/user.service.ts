@@ -45,7 +45,7 @@ export class UserService implements OnDestroy {
   unsubUserCol!: Unsubscribe;
   user$ = user(this.auth);
   userSubscription!: Subscription;
-  currentUserUIDSignal = signal<string>(environment.guestUid);
+  currentUserUIDSignal = signal<string>('');
   readonly currentUserUID = this.currentUserUIDSignal.asReadonly();
   initialChannelNames: string[] = ['Entwicklerteam', 'Angular'];
   readonly allUsersMap = computed(
@@ -97,7 +97,7 @@ export class UserService implements OnDestroy {
         data
       );
     }).catch((err) => {
-      console.error('User hinzufügen error:', err);
+      console.error('Error when trying to add a user');
     });
     this.addInitialChannels();
   }
@@ -112,7 +112,7 @@ export class UserService implements OnDestroy {
           this.updateUserDoc(userUID, data);
         })
         .catch((error) => {
-          console.log('Email Update Error:', error);
+          console.error('Email update error');
         });
     }
   }
@@ -121,17 +121,15 @@ export class UserService implements OnDestroy {
     await this.firebaseService
       .updateDocData('users', userUID, data)
       .catch((error) => {
-        console.log('Update User Error:', error);
+        console.error('User update error');
       });
   }
 
   async signOutUser() {
-    if (this.auth.currentUser) {
-      await this.updateUserDoc(this.auth.currentUser.uid, { isOnline: false });
-    }
-    runInInjectionContext(this.environmentInjector, async () => {
-      await signOut(this.auth).catch((error) => {
-        console.log('Error:', error);
+    this.currentUserUIDSignal.set('');
+    return await runInInjectionContext(this.environmentInjector, () => {
+      return signOut(this.auth).catch((error) => {
+        console.error('Error when signing out');
       });
     });
   }
@@ -170,8 +168,12 @@ export class UserService implements OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  unsub() {
     this.userSubscription.unsubscribe();
     this.unsubUserCol();
+  }
+
+  ngOnDestroy(): void {
+    this.unsub();
   }
 }

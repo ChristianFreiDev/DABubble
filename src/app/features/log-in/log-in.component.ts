@@ -1,4 +1,10 @@
-import { Component, EnvironmentInjector, inject, OnInit, runInInjectionContext } from '@angular/core';
+import {
+  Component,
+  EnvironmentInjector,
+  inject,
+  OnInit,
+  runInInjectionContext,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -6,20 +12,30 @@ import { IntroComponent } from './intro/intro.component';
 import { LoginHeaderComponent } from '../../shared/login-header/login-header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { UserService } from '../../core/services/user/user.service';
-import { Auth, browserSessionPersistence, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, User } from '@angular/fire/auth';
+import {
+  Auth,
+  browserSessionPersistence,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  User,
+} from '@angular/fire/auth';
 import { environment } from '../../../environments/environment.development';
 
 @Component({
-    selector: 'app-log-in',
-    imports: [CommonModule, FormsModule, IntroComponent, LoginHeaderComponent, FooterComponent, RouterLink],
-    templateUrl: './log-in.component.html',
-    styleUrls: [
-        './log-in.component.scss',
-        '../../../styles/login.scss'
-    ]
+  selector: 'app-log-in',
+  imports: [
+    CommonModule,
+    FormsModule,
+    IntroComponent,
+    LoginHeaderComponent,
+    FooterComponent,
+    RouterLink,
+  ],
+  templateUrl: './log-in.component.html',
+  styleUrls: ['./log-in.component.scss', '../../../styles/login.scss'],
 })
 export class LogInComponent implements OnInit {
-
   hideIntroScreen: boolean = false;
   passwordFalse: boolean = false;
   userService = inject(UserService);
@@ -27,15 +43,13 @@ export class LogInComponent implements OnInit {
   private environmentInjector = inject(EnvironmentInjector);
   forwardedEmail: string | null = null;
   googleLoginError: boolean = false;
-  
+
   loginData = {
     email: '',
-    password: ''
-  }
+    password: '',
+  };
 
-
-  constructor(private router: Router, private activeRoute: ActivatedRoute) { }
-
+  constructor(private router: Router, private activeRoute: ActivatedRoute) {}
 
   async ngOnInit() {
     if (this.auth.currentUser) {
@@ -48,15 +62,11 @@ export class LogInComponent implements OnInit {
     }
   }
 
-
   setAuthStatePersistence() {
-    this.auth.setPersistence(browserSessionPersistence)
-      .catch((error) => {
-        console.log('Error-Code:', error.code);
-        console.log('Error-Message:', error.message);
-      });
+    this.auth.setPersistence(browserSessionPersistence).catch((error) => {
+      console.error('Error when trying to set auth state persistence');
+    });
   }
-
 
   setIntroVariable(event: boolean) {
     this.hideIntroScreen = event;
@@ -64,7 +74,6 @@ export class LogInComponent implements OnInit {
       this.userService.introDone = true;
     }, 500);
   }
-
 
   async onSubmit(ngForm: NgForm) {
     if (ngForm.submitted && ngForm.form.valid) {
@@ -74,22 +83,24 @@ export class LogInComponent implements OnInit {
     }
   }
 
-
   async signInUser() {
     await runInInjectionContext(this.environmentInjector, () => {
-      return signInWithEmailAndPassword(this.auth, this.loginData.email, this.loginData.password)
-    }).then((userCredential) => {
+      return signInWithEmailAndPassword(
+        this.auth,
+        this.loginData.email,
+        this.loginData.password
+      );
+    })
+      .then((userCredential) => {
         const user = userCredential.user;
         this.userService.currentUserUIDSignal.set(user.uid);
         this.router.navigateByUrl('main');
       })
       .catch((error) => {
         this.passwordFalse = true;
-        console.log('Login fehlgeschlagen, Error-Code:', error.code);
-        console.log('Login fehlgeschlagen, Error-Message:', error.message);
+        console.error('Login error');
       });
   }
-
 
   signInWithGoogle() {
     const provider = new GoogleAuthProvider();
@@ -99,36 +110,34 @@ export class LogInComponent implements OnInit {
         const user = result.user;
         await this.saveGoogleUser(user);
         this.userService.currentUserUIDSignal.set(user.uid);
-        await this.userService.updateUserDoc(user.uid, {isOnline: true});
+        await this.userService.updateUserDoc(user.uid, { isOnline: true });
         this.router.navigateByUrl('main');
-      }).catch((error) => {
+      })
+      .catch((error) => {
         this.googleLoginError = true;
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log('Error-Code:', error.code);
-        console.log('Error-Message:', error.message);
-        console.log('Error-Email:', error.customData.email);
-        console.log('Error-Credential:', credential);
+        console.error('Google auth error');
       });
   }
-
 
   async saveGoogleUser(user: User) {
     const userExists = this.userService.allUsersMap().has(user.uid);
     if (!userExists) {
-      this.userService.newUser.name = user.displayName ? user.displayName : 'Google User';
+      this.userService.newUser.name = user.displayName
+        ? user.displayName
+        : 'Google User';
       this.userService.newUser.email = user.email ? user.email : 'Google Mail';
       this.userService.newUser.avatar = 'assets/img/google.svg';
       this.userService.newUser.userUID = user.uid;
-      await this.userService.addUser(user.uid, this.userService.newUser.toJSON());
+      await this.userService.addUser(
+        user.uid,
+        this.userService.newUser.toJSON()
+      );
     }
   }
-
 
   async signInWithGuest() {
     this.loginData.email = environment.guestEmail;
     this.loginData.password = environment.guestPassword;
-    await this.signInUser()
+    await this.signInUser();
   }
-
-
 }

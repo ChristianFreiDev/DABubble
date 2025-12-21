@@ -7,7 +7,7 @@
   <div class="chat-header-right">
     @if (usersInCurrentChannel().length > 0) {
     <div class="chat-header-avatars" (click)="toggleMembersVisibility()">
-      @for (user of usersInCurrentChannel() | slice:0:3; track user) {
+      @for (user of usersInCurrentChannel() | slice:0:3; track user.userUID) {
       <img class="avatar avatar-40" src="{{ user.avatar }}" alt="user avatar" />
       }
     </div>

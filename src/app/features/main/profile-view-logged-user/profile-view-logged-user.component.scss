@@ -196,7 +196,7 @@
   transform: translateX(0);
 }
 
-@media (max-width: 580px) {
+@media (max-width: 580px), (max-height: 720px) {
   .overlayComponent {
     justify-content: center;
     align-items: center;

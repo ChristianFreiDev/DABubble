@@ -68,8 +68,12 @@ export class FirebaseService {
   }
 
   async uploadFileToStorage(file: File, path: string) {
-    const storageRef = ref(this.storage, path);
-    const uploadTask = uploadBytesResumable(storageRef, file);
+    const storageRef = runInInjectionContext(this.environmentInjector, () =>
+      ref(this.storage, path)
+    );
+    const uploadTask = runInInjectionContext(this.environmentInjector, () =>
+      uploadBytesResumable(storageRef, file)
+    );
 
     await new Promise((resolve, reject) => {
       uploadTask.on(
@@ -84,7 +88,10 @@ export class FirebaseService {
         },
         async () => {
           resolve(
-            (this.downloadURL = await getDownloadURL(uploadTask.snapshot.ref))
+            (this.downloadURL = await runInInjectionContext(
+              this.environmentInjector,
+              () => getDownloadURL(uploadTask.snapshot.ref)
+            ))
           );
         }
       );
@@ -92,11 +99,15 @@ export class FirebaseService {
   }
 
   async deleteFile(path: string) {
-    const storageRef = ref(this.storage, path);
+    const storageRef = runInInjectionContext(this.environmentInjector, () =>
+      ref(this.storage, path)
+    );
     try {
-      await deleteObject(storageRef);
+      await runInInjectionContext(this.environmentInjector, () =>
+        deleteObject(storageRef)
+      );
     } catch (error) {
-      console.log(error);
+      console.error('Error when trying to delete a file');
     }
   }
 
@@ -142,8 +153,8 @@ export class FirebaseService {
 
   async updateDocData(collectionName: string, docId: string, data: any) {
     let docRef = this.getDocRef(docId, collectionName);
-    runInInjectionContext(this.environmentInjector, async () => {
-      await updateDoc(docRef, data);
+    await runInInjectionContext(this.environmentInjector, () => {
+      return updateDoc(docRef, data);
     });
   }
 }

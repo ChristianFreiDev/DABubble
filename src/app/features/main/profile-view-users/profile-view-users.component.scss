@@ -74,7 +74,7 @@ section {
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 560px), (max-height: 720px) {
   .overlayComponent {
     padding: 0 16px;
   }
@@ -82,6 +82,7 @@ section {
   .card {
     padding: 32px 20px;
     width: 100%;
+    max-width: 500px;
     height: unset;
     gap: 16px;
   }

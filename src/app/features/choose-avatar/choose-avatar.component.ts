@@ -1,4 +1,10 @@
-import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  signal,
+  ViewChild,
+} from '@angular/core';
 import { LoginHeaderComponent } from '../../shared/login-header/login-header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { CommonModule, Location } from '@angular/common';
@@ -8,16 +14,12 @@ import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 import { FirebaseService } from '../../core/services/firebase/firebase.service';
 
 @Component({
-    selector: 'app-choose-avatar',
-    imports: [CommonModule, LoginHeaderComponent, FooterComponent],
-    templateUrl: './choose-avatar.component.html',
-    styleUrls: [
-        './choose-avatar.component.scss',
-        '../../../styles/login.scss'
-    ]
+  selector: 'app-choose-avatar',
+  imports: [CommonModule, LoginHeaderComponent, FooterComponent],
+  templateUrl: './choose-avatar.component.html',
+  styleUrls: ['./choose-avatar.component.scss', '../../../styles/login.scss'],
 })
 export class ChooseAvatarComponent {
-
   inputFinished: boolean = false;
   userService = inject(UserService);
   firebaseService = inject(FirebaseService);
@@ -39,7 +41,7 @@ export class ChooseAvatarComponent {
   file: File | null | undefined = undefined;
   url: string = 'assets/img/profile.svg';
 
-  constructor(private location: Location, private router: Router) { }
+  constructor(private location: Location, private router: Router) {}
 
   goBack() {
     this.location.back();
@@ -71,7 +73,10 @@ export class ChooseAvatarComponent {
       this.uploadError = false;
       this.uploadInfo = '';
       switch (true) {
-        case (file.type != 'image/jpeg') && (file.type != 'image/png') && (file.type != 'image/svg+xml') && (file.type != 'image/webp'):
+        case file.type != 'image/jpeg' &&
+          file.type != 'image/png' &&
+          file.type != 'image/svg+xml' &&
+          file.type != 'image/webp':
           this.handleUploadError('type');
           break;
         case file.size > 500000:
@@ -89,14 +94,17 @@ export class ChooseAvatarComponent {
     if (info == 'size') {
       this.uploadInfo = 'Datei zu groß! Dateigröße < 500KB';
     } else if (info == 'type') {
-      this.uploadInfo = 'Kein gültiger Dateityp! Bitte JPEG, PNG, SVG oder WEBP auswählen';
+      this.uploadInfo =
+        'Kein gültiger Dateityp! Bitte JPEG, PNG, SVG oder WEBP auswählen';
     } else {
-      this.uploadInfo = 'Es ist ein Fehler aufgetreten! Bitte erneut versuchen.';
+      this.uploadInfo =
+        'Es ist ein Fehler aufgetreten! Bitte erneut versuchen.';
     }
   }
 
   async uploadImgToStorage(file: File) {
-    const path = 'profil-images/' + this.userService.newUser.email + '/' + file.name;
+    const path =
+      'profil-images/' + this.userService.newUser.email + '/' + file.name;
     try {
       await this.firebaseService.uploadFileToStorage(file, path);
       this.profileImgPathSignal.set(this.firebaseService.downloadURL);
@@ -108,7 +116,11 @@ export class ChooseAvatarComponent {
   }
 
   registerNewUser() {
-    createUserWithEmailAndPassword(this.auth, this.userService.newUser.email, this.userService.newUser.password)
+    createUserWithEmailAndPassword(
+      this.auth,
+      this.userService.newUser.email,
+      this.userService.newUser.password
+    )
       .then(async (userCredential) => {
         await this.uploadImg(this.file);
         const user = userCredential.user;
@@ -119,16 +131,16 @@ export class ChooseAvatarComponent {
       })
       .catch((error) => {
         this.handleUploadError('else');
-        console.log('Registrierung fehlgeschlagen, Error-Code:', error.code);
-        console.log('Registrierung fehlgeschlagen, Error-Message:', error.message);
+        console.error('Registration error');
       });
   }
 
   goToLogin() {
     this.inputFinished = true;
     setTimeout(() => {
-      this.router.navigateByUrl('' + '?email=' + this.userService.newUser.email);
+      this.router.navigateByUrl(
+        '' + '?email=' + this.userService.newUser.email
+      );
     }, 1300);
   }
-
 }

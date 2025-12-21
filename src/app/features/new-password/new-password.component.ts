@@ -4,19 +4,20 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { LoginHeaderComponent } from '../../shared/login-header/login-header.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { applyActionCode, Auth, confirmPasswordReset, verifyPasswordResetCode } from "@angular/fire/auth";
+import {
+  applyActionCode,
+  Auth,
+  confirmPasswordReset,
+  verifyPasswordResetCode,
+} from '@angular/fire/auth';
 
 @Component({
-    selector: 'app-new-password',
-    imports: [CommonModule, FormsModule, LoginHeaderComponent, FooterComponent],
-    templateUrl: './new-password.component.html',
-    styleUrls: [
-        './new-password.component.scss',
-        '../../../styles/login.scss'
-    ]
+  selector: 'app-new-password',
+  imports: [CommonModule, FormsModule, LoginHeaderComponent, FooterComponent],
+  templateUrl: './new-password.component.html',
+  styleUrls: ['./new-password.component.scss', '../../../styles/login.scss'],
 })
 export class NewPasswordComponent implements OnInit {
-
   newPassword: string = '';
   newPasswordRepeat: string = '';
   inputFinished: boolean = false;
@@ -27,15 +28,12 @@ export class NewPasswordComponent implements OnInit {
   resetPasswordError: boolean = false;
   errorMsg: string = 'Ihre Kennwörter stimmen nicht überein!';
 
-
-  constructor(private router: Router, private activeRoute: ActivatedRoute) { }
-
+  constructor(private router: Router, private activeRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.actionCode = this.activeRoute.snapshot.queryParamMap.get('oobCode')!;
     this.mode = this.activeRoute.snapshot.queryParamMap.get('mode')!;
   }
-
 
   async onSubmit(ngForm: NgForm) {
     if (ngForm.submitted && ngForm.form.valid) {
@@ -45,7 +43,6 @@ export class NewPasswordComponent implements OnInit {
     }
   }
 
-
   async handleResetPassword(auth: Auth, actionCode: string) {
     try {
       this.userEmail = await verifyPasswordResetCode(auth, actionCode);
@@ -54,23 +51,23 @@ export class NewPasswordComponent implements OnInit {
         this.goToLogin();
       } catch (error) {
         this.resetPasswordError = true;
-        this.errorMsg = 'Es ist ein Fehler aufgetreten! Bitte erneut versuchen.';
+        this.errorMsg =
+          'Es ist ein Fehler aufgetreten! Bitte erneut versuchen.';
       }
     } catch (error) {
       this.resetPasswordError = true;
-      this.errorMsg = 'Aktionscode ist ungültig oder abgelaufen! Bitte erneut versuchen.';
+      this.errorMsg =
+        'Aktionscode ist ungültig oder abgelaufen! Bitte erneut versuchen.';
     }
   }
-
 
   async sendActionCode() {
     await applyActionCode(this.auth, this.actionCode)
       .then(() => {
         this.goToLogin();
       })
-      .catch((error) => console.log('sendActionCode-Error:', error))
+      .catch((error) => console.error('Action code error'));
   }
-
 
   goToLogin() {
     this.inputFinished = true;
@@ -78,6 +75,4 @@ export class NewPasswordComponent implements OnInit {
       this.router.navigateByUrl('' + '?email=' + this.userEmail);
     }, 1300);
   }
-
-
 }

@@ -7,26 +7,25 @@ import { UserService } from '../../../core/services/user/user.service';
 import { environment } from '../../../../environments/environment.development';
 
 @Component({
-    selector: 'app-profile-view-logged-user',
-    imports: [CommonModule, FormsModule],
-    templateUrl: './profile-view-logged-user.component.html',
-    styleUrl: './profile-view-logged-user.component.scss'
+  selector: 'app-profile-view-logged-user',
+  imports: [CommonModule, FormsModule],
+  templateUrl: './profile-view-logged-user.component.html',
+  styleUrl: './profile-view-logged-user.component.scss',
 })
 export class ProfileViewLoggedUserComponent {
-  
   isProfileBeingEdited: boolean = false;
   inputFinished: boolean = false;
   uploadInfo: string = '';
   uploadFile: null | 'inProgress' | 'done' = null;
   uploadError: boolean = false;
-  newProfileImg: string | undefined
+  newProfileImg: string | undefined;
   @ViewChild('profileImg') profileImg!: ElementRef;
   data = {
     name: this.userService.currentOnlineUser().name,
-    email: this.userService.currentOnlineUser().email
-  }
+    email: this.userService.currentOnlineUser().email,
+  };
   guestUid: string = environment.guestUid;
-  
+
   constructor(
     public chatService: ChatService,
     public fireBaseService: FirebaseService,
@@ -50,11 +49,17 @@ export class ProfileViewLoggedUserComponent {
   async saveNewContactInfos(ngForm: NgForm): Promise<void> {
     if (ngForm.submitted && ngForm.form.valid) {
       if (this.data.email == this.userService.currentOnlineUser().email) {
-        await this.userService.updateUserDoc(this.userService.currentOnlineUser().userUID, this.data);
+        await this.userService.updateUserDoc(
+          this.userService.currentOnlineUser().userUID,
+          this.data
+        );
         this.checkNewProfileImg();
         this.chatService.profileViewLoggedUser = false;
       } else {
-        await this.userService.updateUserEmailandName(this.userService.currentOnlineUser().userUID, this.data);
+        await this.userService.updateUserEmailandName(
+          this.userService.currentOnlineUser().userUID,
+          this.data
+        );
         this.checkNewProfileImg();
         this.inputFinished = true;
         setTimeout(() => {
@@ -73,7 +78,10 @@ export class ProfileViewLoggedUserComponent {
     const file = input.files?.item(0);
     if (file) {
       switch (true) {
-        case (file.type != 'image/jpeg') && (file.type != 'image/png') && (file.type != 'image/svg+xml') && (file.type != 'image/webp'):
+        case file.type != 'image/jpeg' &&
+          file.type != 'image/png' &&
+          file.type != 'image/svg+xml' &&
+          file.type != 'image/webp':
           this.handleUploadError('type');
           break;
         case file.size > 500000:
@@ -85,22 +93,26 @@ export class ProfileViewLoggedUserComponent {
     }
   }
 
-
   handleUploadError(info: string) {
     this.uploadError = true;
     this.uploadFile = 'done';
     if (info == 'size') {
       this.uploadInfo = 'Datei zu groß! Dateigröße < 500KB';
     } else if (info == 'type') {
-      this.uploadInfo = 'Kein gültiger Dateityp! Bitte JPEG, PNG, SVG oder WEBP auswählen';
+      this.uploadInfo =
+        'Kein gültiger Dateityp! Bitte JPEG, PNG, SVG oder WEBP auswählen';
     } else {
-      this.uploadInfo = 'Es ist ein Fehler aufgetreten! Bitte erneut versuchen.';
+      this.uploadInfo =
+        'Es ist ein Fehler aufgetreten! Bitte erneut versuchen.';
     }
   }
 
-
   async uploadImgToStorage(file: File) {
-    const path = 'profil-images/' + this.userService.currentOnlineUser().email + '/' + file.name;
+    const path =
+      'profil-images/' +
+      this.userService.currentOnlineUser().email +
+      '/' +
+      file.name;
     this.uploadInfo = file.name;
     try {
       await this.fireBaseService.uploadFileToStorage(file, path);
@@ -109,14 +121,16 @@ export class ProfileViewLoggedUserComponent {
       this.uploadFile = 'done';
     } catch (error) {
       this.handleUploadError('else');
-      // console.log('Error:', error);
+      console.error('Image upload error');
     }
   }
 
-
   async checkNewProfileImg() {
     if (this.newProfileImg) {
-      await this.userService.updateUserDoc(this.userService.currentOnlineUser().userUID, {avatar: this.newProfileImg});
+      await this.userService.updateUserDoc(
+        this.userService.currentOnlineUser().userUID,
+        { avatar: this.newProfileImg }
+      );
     }
   }
 }

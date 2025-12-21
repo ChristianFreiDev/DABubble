@@ -1,4 +1,14 @@
-import { Component, ComponentRef, effect, ElementRef, Input, Renderer2, Signal, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  Component,
+  ComponentRef,
+  effect,
+  ElementRef,
+  Input,
+  Renderer2,
+  Signal,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { ChatService } from '../../../core/services/chat/chat.service';
 import { FormsModule } from '@angular/forms';
 import { AtComponent } from './at/at.component';
@@ -16,10 +26,16 @@ import { EventService } from '../../../core/services/event/event.service';
 import { DialogService } from '../../../core/services/dialog/dialog.service';
 
 @Component({
-    selector: 'app-message-textarea',
-    imports: [AtComponent, EmojiPickerComponent, DeletableFileComponent, FormsModule, CommonModule],
-    templateUrl: './message-textarea.component.html',
-    styleUrl: './message-textarea.component.scss'
+  selector: 'app-message-textarea',
+  imports: [
+    AtComponent,
+    EmojiPickerComponent,
+    DeletableFileComponent,
+    FormsModule,
+    CommonModule,
+  ],
+  templateUrl: './message-textarea.component.html',
+  styleUrl: './message-textarea.component.scss',
 })
 export class MessageTextareaComponent {
   @Input() placeholder: string = 'Nachricht an #';
@@ -31,22 +47,34 @@ export class MessageTextareaComponent {
   isAtVisible: Signal<boolean> = this.dialogService.opentAt;
   isEmojiPickerVisible: Signal<boolean> = this.dialogService.openEmojiPicker;
   @ViewChild('editableTextarea') editableTextarea!: ElementRef;
-  @ViewChild('mentionInsertion', { read: ViewContainerRef }) mentionInsertion!: ViewContainerRef;
+  @ViewChild('mentionInsertion', { read: ViewContainerRef })
+  mentionInsertion!: ViewContainerRef;
   @ViewChild('fileInput') fileInput!: ElementRef;
   uploadFile: null | 'inProgress' | 'done' = null;
   uploadError: boolean = false;
   fileUrl: string = '';
   fileName: string = '';
   fileType: string = '';
-  users: Signal<ChatUser[]> = this.chatService.usersInCurrentChannelWithoutCurrentUser;
+  users: Signal<ChatUser[]> =
+    this.chatService.usersInCurrentChannelWithoutCurrentUser;
   channels: Signal<Channel[]> = this.chatService.channels;
   usersOrChannels: Signal<ChatUser[]> | Signal<Channel[]> = this.users;
 
-  constructor(private chatService: ChatService, private firebaseService: FirebaseService, private renderer: Renderer2, private eventService: EventService, private layoutService: LayoutService, 
-    public sideNavService: SideNavService, private dialogService: DialogService
-  ) { 
+  constructor(
+    private chatService: ChatService,
+    private firebaseService: FirebaseService,
+    private renderer: Renderer2,
+    private eventService: EventService,
+    private layoutService: LayoutService,
+    public sideNavService: SideNavService,
+    private dialogService: DialogService
+  ) {
     effect(() => {
-      if (this.eventService.focusEvent() && this.editableTextarea && this.editableTextarea.nativeElement) {
+      if (
+        this.eventService.focusEvent() &&
+        this.editableTextarea &&
+        this.editableTextarea.nativeElement
+      ) {
         this.editableTextarea.nativeElement.focus();
         setTimeout(() => {
           this.scrollToBottom('auto');
@@ -72,26 +100,41 @@ export class MessageTextareaComponent {
   }
 
   addMessage() {
-   if (!this.textAreaDisabled) {
-    this.saveMessageText();
-    if (this.messageText.length > 0) {
-      if (this.type === 'chat') {
-        this.chatService.addChatMessage(this.messageText, this.fileUrl, this.fileType, this.fileName);
-        if (this.isNewMessage) {
-          this.chatService.openChannel(this.chatService.channelID);
-          this.layoutService.selectChat()
+    if (!this.textAreaDisabled) {
+      this.saveMessageText();
+      if (this.messageText.length > 0) {
+        if (this.type === 'chat') {
+          this.chatService.addChatMessage(
+            this.messageText,
+            this.fileUrl,
+            this.fileType,
+            this.fileName
+          );
+          if (this.isNewMessage) {
+            this.chatService.openChannel(this.chatService.channelID);
+            this.layoutService.selectChat();
+          }
+        } else if (this.type === 'thread') {
+          this.chatService.addThreadReply(
+            this.messageText,
+            this.fileUrl,
+            this.fileType,
+            this.fileName
+          );
+        } else {
+          this.chatService.addDirectMessage(
+            this.messageText,
+            this.fileUrl,
+            this.fileType,
+            this.fileName
+          );
+          if (this.isNewMessage) {
+            this.chatService.openChat(this.chatService.contactUUID);
+          }
         }
-      } else if (this.type === 'thread') {
-        this.chatService.addThreadReply(this.messageText, this.fileUrl, this.fileType, this.fileName);
-      } else {
-        this.chatService.addDirectMessage(this.messageText, this.fileUrl, this.fileType, this.fileName);
-        if (this.isNewMessage) {
-          this.chatService.openChat(this.chatService.contactUUID);
-        }
+        this.resetAfterAddingMessage();
       }
-      this.resetAfterAddingMessage();
     }
-   }
   }
 
   resetUploadData() {
@@ -123,8 +166,8 @@ export class MessageTextareaComponent {
 
   keys = {
     shift: false,
-    enter: false
-  }
+    enter: false,
+  };
 
   handleTextAreaKeyDown(event: KeyboardEvent) {
     if (event.key === '@') {
@@ -197,7 +240,9 @@ export class MessageTextareaComponent {
       sel?.deleteFromDocument();
     }
     this.removeBrTag();
-    let mention!: ComponentRef<MentionComponent> | ComponentRef<ChannelMentionComponent>;
+    let mention!:
+      | ComponentRef<MentionComponent>
+      | ComponentRef<ChannelMentionComponent>;
     if (userOrChannel instanceof ChatUser) {
       mention = this.mentionInsertion.createComponent(MentionComponent);
       mention.instance.user = userOrChannel;
@@ -205,13 +250,18 @@ export class MessageTextareaComponent {
       mention = this.mentionInsertion.createComponent(ChannelMentionComponent);
       mention.instance.channel = userOrChannel;
     }
-    this.renderer.appendChild(this.editableTextarea.nativeElement, mention.location.nativeElement);
+    this.renderer.appendChild(
+      this.editableTextarea.nativeElement,
+      mention.location.nativeElement
+    );
     this.setRangeToEnd();
   }
 
   setRangeToEnd() {
-    this.editableTextarea.nativeElement.focus()
-    window.getSelection()?.selectAllChildren(this.editableTextarea.nativeElement);
+    this.editableTextarea.nativeElement.focus();
+    window
+      .getSelection()
+      ?.selectAllChildren(this.editableTextarea.nativeElement);
     window.getSelection()?.collapseToEnd();
   }
 
@@ -225,7 +275,12 @@ export class MessageTextareaComponent {
   }
 
   isImage(fileType: string) {
-    return fileType === 'image/jpeg' || fileType === 'image/png' || fileType === 'image/svg+xml' || fileType === 'image/webp';
+    return (
+      fileType === 'image/jpeg' ||
+      fileType === 'image/png' ||
+      fileType === 'image/svg+xml' ||
+      fileType === 'image/webp'
+    );
   }
 
   addFile(input: HTMLInputElement) {
@@ -235,7 +290,7 @@ export class MessageTextareaComponent {
     if (file) {
       this.fileName = file.name;
       switch (true) {
-        case (!this.isImage(file.type) && file.type != 'application/pdf'):
+        case !this.isImage(file.type) && file.type != 'application/pdf':
           this.handleUploadError('type');
           break;
         case file.size >= 500000:
@@ -250,13 +305,15 @@ export class MessageTextareaComponent {
 
   async uploadFileToStorage(file: File) {
     try {
-      const path = `channels/${this.chatService.currentChannel().id}/${self.crypto.randomUUID()}/${file.name}`;
+      const path = `channels/${
+        this.chatService.currentChannel().id
+      }/${self.crypto.randomUUID()}/${file.name}`;
       await this.firebaseService.uploadFileToStorage(file, path);
       this.fileUrl = this.firebaseService.downloadURL;
       this.uploadFile = 'done';
     } catch (error) {
       this.handleUploadError('else');
-      console.log('Error:', error);
+      console.error('File upload error');
     }
   }
 
@@ -269,8 +326,8 @@ export class MessageTextareaComponent {
     if (this.messagesContainerRef) {
       this.messagesContainerRef.scrollTo({
         top: this.messagesContainerRef.scrollHeight,
-        behavior: behavior
-      })
+        behavior: behavior,
+      });
     }
   }
 }
